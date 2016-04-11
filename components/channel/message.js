@@ -17,9 +17,9 @@ export default class Message extends Component{
 		return (
 
 			<View style={s.container}>					
-					<View style={{margin:7,marginRight:0,marginLeft:4,
+					<View style={{margin:8,marginRight:0,marginLeft:4,
 						borderColor:this.props.color,borderLeftWidth:2,
-						padding:5,paddingBottom:0,paddingTop:0}}>
+						paddingLeft:5,paddingBottom:0,paddingTop:0}}>
 
 						<View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:5*k,width:300*k}}>
 							<View style={{flexDirection:'row',...center}}> 
@@ -32,10 +32,10 @@ export default class Message extends Component{
 								</View>
 							</View>
 							<View style={{flexDirection:'row',...center}}>
-								<Text style={{color:'green',marginRight:5*k}}>+120</Text>
+								<Text style={{color:'green',marginRight:5*k,fontSize:16}}>+120</Text>
 								<TouchableOpacity onPress={()=>console.log('pressed	')}>
-									<View style={{width:30*k,height:40*k,justifyContent:'center',alignItems:'flex-end'}}>
-										<Image source={{uri:'menu',isStatic:true}} style={s.menuImage}/>
+									<View style={{width:40*k,marginLeft:5*k,paddingRight:5*k,height:40*k,justifyContent:'center',alignItems:'flex-end',}}>
+										<Image source={{uri:'menu',isStatic:true,}} style={s.menuImage}/>
 									</View>
 								</TouchableOpacity>
 							</View>

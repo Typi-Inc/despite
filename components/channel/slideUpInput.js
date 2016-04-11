@@ -70,7 +70,7 @@ export default class SlideUpInput extends Component{
                 borderColor:'rgb(180,180,180)',width:320*k,}}>
                   <TextInput
                     ref={el=>this.textInput=el}
-                    style={{height: Math.max(30*k, this.state.height),marginLeft:5,flex:5,
+                    style={{height: Math.max(30*k, this.state.height),marginLeft:7,flex:5,
                     fontSize:17,alignItems:'flex-end',
                       borderColor: '#BD10E0', borderLeftWidth:2,justifyContent:'flex-start',
                       alignSelf:'center',width:240*k,paddingLeft:10*k,paddingBottom:4*k}}
@@ -95,7 +95,7 @@ export default class SlideUpInput extends Component{
                     	<TouchableOpacity onPress={()=>buttonClicks({action:'add',component:'hooks'})}><Text
                     	style={{
                     		color:'#BD10E0',fontWeight:'400',
-                    		marginRight:5,fontSize:30*k,marginBottom:5*k,
+                    		marginRight:10*k,fontSize:30*k,marginBottom:5*k,
                     	}}
 
                     	>+</Text></TouchableOpacity>
