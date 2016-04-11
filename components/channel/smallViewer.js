@@ -5,6 +5,7 @@ import {buttonClicks$} from '../../actions/buttonClicks'
 import {keyboard,verFast} from '../animations'
 var dismissKeyboard = require('dismissKeyboard');
 import AddHooks from './addHooks'
+import MessageActions from './messageActions'
 let {
   AppRegistry,
   Component,
@@ -20,12 +21,13 @@ export default class SmallViewer extends Component{
 	state={child:<AddHooks/>};
 	componentWillMount(){
 	  	this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
-	  		console.log(x[0].action)
-	  		if(x[0].action==='close'){
+	  		if(x.action==='close'){
 	  			this.closeSmallViewer(x)
 	  			return;
-	  		}else if(x[0].action==='add'){	
-	  			this.setState({child:<AddHooks/>})		
+	  		}else if(x.action==='add'){	
+	  			this.setState({child:<AddHooks/>,title:'Добавить'})		
+	  		}else if (x.action==='messageActions'){
+	  			this.setState({child:<MessageActions color={x.props.color}/>,title:'I would like to'})	
 	  		}
 	  		this.openSmallViewer(x)	
 	  		
@@ -75,8 +77,8 @@ export default class SmallViewer extends Component{
 				height:510*k,width:294*k,marginLeft:14*k,top:600*k,paddingLeft:6*k,
 				backgroundColor:'white',alignSelf:'center'}}>
 					<Text style={{fontSize:20,color:'rgb(120,120,120)',
-					margin:10*k,marginTop:20*k}}>Добавить</Text>
-					<View style={{width:270*k,height:1,backgroundColor:'rgb(210,210,210)',margin:10*k}}/>
+					margin:10*k,marginTop:20*k}}>{this.state.title}</Text>
+					<View style={{width:265*k,height:1,backgroundColor:'rgb(210,210,210)',margin:10*k,marginBottom:0}}/>
 					{this.state.child}
 					<Animated.View style={{position:'absolute',borderRadius:20*k,right:5*k,alignSelf:'center',
 					height:this.anim.interpolate({inputRange:[0,1],outputRange:[0,40*k]}),...center,
@@ -86,7 +88,10 @@ export default class SmallViewer extends Component{
 					right:this.anim.interpolate({inputRange:[0,1],outputRange:[0,-10*k]})}} 
 					ref={el=>this.close=el}>
 						<TouchableOpacity style={{...center,height:40*k,width:40*k}} onPress={()=>this.closeSmallViewer()}>
-							<Animated.Text style={{alignSelf:'center',color:'gray',fontSize:this.anim.interpolate({inputRange:[0,1],outputRange:[0.0001,16]})}}>X</Animated.Text>
+							<Animated.Image source={{uri:'close',isStatic:true}} 
+							style={{width:this.anim.interpolate({inputRange:[0,1],outputRange:[0,14*k]}),alignSelf:'center',
+							height:this.anim.interpolate({inputRange:[0,1],outputRange:[0,14*k]}),
+							}}/>
 						</TouchableOpacity>
 					</Animated.View>
 				</View>

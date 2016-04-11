@@ -10,7 +10,7 @@ let {
   TouchableOpacity,
   View
 } =React;
-
+import {buttonClicks} from '../../actions/buttonClicks'
 export default class Message extends Component{
 	state={};
 	render(){
@@ -33,7 +33,7 @@ export default class Message extends Component{
 							</View>
 							<View style={{flexDirection:'row',...center}}>
 								<Text style={{color:'green',marginRight:5*k,fontSize:16}}>+120</Text>
-								<TouchableOpacity onPress={()=>console.log('pressed	')}>
+								<TouchableOpacity onPress={()=>buttonClicks({action:'messageActions',props:this.props})}>
 									<View style={{width:40*k,marginLeft:5*k,paddingRight:5*k,height:40*k,justifyContent:'center',alignItems:'flex-end',}}>
 										<Image source={{uri:'menu',isStatic:true,}} style={s.menuImage}/>
 									</View>
