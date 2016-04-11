@@ -1,6 +1,6 @@
 import TimerMixin from 'react-timer-mixin'
 let UIManager = require('NativeModules').UIManager;
-import s from '../styles'
+import s from '../../styles'
 import React from 'react-native'; 
 import Drawer from 'react-native-drawer'
 import Tube from './tube'
@@ -22,9 +22,11 @@ export default class Channel extends Component{
 				openDrawerOffset={37*k}
 				// closedDrawerOffset={100}
 				tapToClose={true}
+
 				side={'right'}
 				styles={{drawer:{height:568*h},main: {shadowColor: "#000000", shadowOpacity: 0.8, shadowRadius: 3,backgroundColor:'white'}}}
-				tweenHandler={Drawer.tweenPresets.parallax}
+				// tweenHandler={Drawer.tweenPresets.parallax}
+				
 				>
 				<Tube />
 			</Drawer>

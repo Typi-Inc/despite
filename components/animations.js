@@ -10,7 +10,7 @@ export let openAnimation={duration: 400,
 		      springDamping:1,
 		    }
 		}
-export let keyboard=LayoutAnimation.create(150,LayoutAnimation.Types.keyboard,LayoutAnimation.Properties.opacity);
+export let keyboard=LayoutAnimation.create(50,LayoutAnimation.Types.keyboard,LayoutAnimation.Properties.opacity);
 export let scrollToTopAnimation={duration: 300,
     create: {
       type: LayoutAnimation.Types.easeInEaseOut,

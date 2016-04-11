@@ -1,6 +1,6 @@
 import TimerMixin from 'react-timer-mixin'
 let UIManager = require('NativeModules').UIManager;
-import s from '../styles'
+import s from '../../styles'
 import React from 'react-native'; 
 let {
   AppRegistry,

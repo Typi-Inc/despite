@@ -1,8 +1,9 @@
 import TimerMixin from 'react-timer-mixin'
 let UIManager = require('NativeModules').UIManager;
-import s from '../styles'
+import s from '../../styles'
 import React from 'react-native'; 
-import {veryFast,fast,keyboard} from './animations'
+import {veryFast,fast,keyboard} from '../animations'
+import {buttonClicks} from '../../actions/buttonClicks'
 let {
   AppRegistry,
   Component,
@@ -25,20 +26,19 @@ export default class SlideUpInput extends Component{
 			LayoutAnimation.configureNext(keyboard);
 			this.t.setNativeProps({style:{bottom:e.endCoordinates.height}})
 		}
-		
+		 // this.props.setBottom(this.addHeight)
  	 }
- 	  hide(){
+ 	hide(){
  	  	if(this.t){
  	  		LayoutAnimation.configureNext(keyboard);
 			this.t.setNativeProps({style:{bottom:0}})
-
  	  	}
  	  	this.props.setBottom(this.addHeight)
- 	  	
 	  }
-
-
-	  componentWillMount(){
+	getAddHeight(){
+		return this.addHeight
+	}
+	componentWillMount(){
 	  	this.windowHeight=Dimensions.get('window').height
 	  	
 	  	RCTStatusBarManager.getHeight(this.callMe.bind(this))
@@ -92,13 +92,13 @@ export default class SlideUpInput extends Component{
                     {/\S/.test(this.state.text)?<Text onPress={()=>this.textInput.blur()} style={[s.blueText,{
                     	color:'#BD10E0',fontWeight:'600',flex:1,marginRight:5,//alignSelf:'center',
                     	fontSize:17,marginBottom:11*k,marginLeft:5*k}]}>Send</Text>:
-                    	<Text
+                    	<TouchableOpacity onPress={()=>buttonClicks({action:'add',component:'hooks'})}><Text
                     	style={{
-                    		color:'#BD10E0',fontWeight:'400',flex:0.4,
-                    		marginRight:5,fontSize:30,marginBottom:5*k,
+                    		color:'#BD10E0',fontWeight:'400',
+                    		marginRight:5,fontSize:30*k,marginBottom:5*k,
                     	}}
 
-                    	>+</Text>
+                    	>+</Text></TouchableOpacity>
 
                     }
                   

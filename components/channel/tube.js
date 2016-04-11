@@ -1,15 +1,17 @@
 import TimerMixin from 'react-timer-mixin'
 let UIManager = require('NativeModules').UIManager;
-import s from '../styles'
+import s from '../../styles'
 import React from 'react-native'; 
-import {keyboard} from './animations'
+import {keyboard,verFast} from '../animations'
 let {
   AppRegistry,
   Component,
   Text,
   ScrollView,
   DeviceEventEmitter,LayoutAnimation,
-  View
+  View,
+  TouchableOpacity,
+  Animated
 } =React;
 import Message from './message'
 import SlideUpInput from './slideUpInput'
@@ -18,7 +20,7 @@ export default class Tube extends Component{
 	show(e){
 		LayoutAnimation.configureNext(keyboard);
 		this.keyboardHeight=e.endCoordinates.height
-		this.scroll.setNativeProps({style:{bottom:e.endCoordinates.height},contentInset:{top:e.endCoordinates.height}})
+		this.scroll.setNativeProps({style:{bottom:e.endCoordinates.height+this.input.getAddHeight()},contentInset:{top:e.endCoordinates.height+this.input.getAddHeight()}})
  	}
 
  	hide(){
@@ -27,41 +29,34 @@ export default class Tube extends Component{
   		if(this.contentOffset===0){
   			this.scroll.setNativeProps({contentOffset:{y:0}})
   		}
-		this.scroll.setNativeProps({contentInset:{top:0},style:{bottom:0}})
+		this.scroll.setNativeProps({contentInset:{top:this.input.getAddHeight()}})
   	
 	 
 	}
 	setBottom(addHeight){
-		// LayoutAnimation.configureNext(keyboard);
 		this.scroll.setNativeProps({style:{bottom:this.keyboardHeight+addHeight}})
-
-
 	}
 
 
 	componentWillMount(){
-	  	// this.windowHeight=Dimensions.get('window').height
-	  	
-	  	// RCTStatusBarManager.getHeight(this.callMe.bind(this))
-	  	 this._keyboardWillShowSubscription= DeviceEventEmitter.addListener('keyboardWillShow', this.show.bind(this));
-	      this._keyboardWillHideSubscription= DeviceEventEmitter.addListener('keyboardWillHide', this.hide.bind(this));
+
+	  	this._keyboardWillShowSubscription= DeviceEventEmitter.addListener('keyboardWillShow', this.show.bind(this));
+	    this._keyboardWillHideSubscription= DeviceEventEmitter.addListener('keyboardWillHide', this.hide.bind(this));
 	 
 	  }
-	  componentWillUnmount(){
-	  	
+	componentWillUnmount(){
 	  	this._keyboardWillShowSubscription.remove()
 	  	this._keyboardWillHideSubscription.remove()
 
-	  }
+	 }
 	handleScroll(e){
 		if (e.nativeEvent.contentOffset.y<0){
 			this.contentOffset=0
 		}else{
 			this.contentOffset=1
 		}
-		console.log(this.contentOffset);
-
 	}
+	
 	render(){
 		this.keyboardHeight=this.keyboardHeight || 0
 		return (
@@ -91,7 +86,7 @@ export default class Tube extends Component{
 
 				</ScrollView>
 
-				<SlideUpInput setBottom={this.setBottom.bind(this)}/>
+				<SlideUpInput ref={(e)=>this.input=e} setBottom={this.setBottom.bind(this)}/>
 			</View>
 			)
 	}
