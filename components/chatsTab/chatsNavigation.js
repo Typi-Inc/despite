@@ -15,6 +15,8 @@ import Topics from './topics'
 import TopicPager from './topicPager'
 import dismissKeyboard from 'dismissKeyboard'
 import {buttonClicks$} from '../../actions/buttonClicks'
+var RCTStatusBarManager = require('NativeModules').StatusBarManager;
+
 let NavigationBarRouteMapper={
 		LeftButton(route, navigator, index, navState){
 			if(route.name==='deal'){
@@ -59,12 +61,9 @@ let NavigationBarRouteMapper={
 			return null
 		},
 		Title(route, navigator, index, navState){
-			if(route.title){
+			if(route.name==='topics'){
 				console.log(index)
-
-			return	<Topics/>
-
-
+			return;
 			}
 			return null
 		}
@@ -72,8 +71,8 @@ let NavigationBarRouteMapper={
 	}
 export default class ChatsNavigation extends Component{
 	// static contextTypes={toggleTabs:React.PropTypes.func,tabsHidden:React.PropTypes.func};
-	state={height:65};
-	componentDidMount(){
+	state={height:0,statusBarHeight:20};
+	componentWillMount(){
 		// this.subscription=this.nav.navigationContext.addListener('willfocus', ()=>{
 		// 	if(this.nav.navigationContext._currentRoute.name==='deal' && this.context.tabsHidden()){
 		// 		this.context.toggleTabs(false)
@@ -81,7 +80,7 @@ export default class ChatsNavigation extends Component{
 		// })
 		this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
 	  		// if(x.action==='choose topic') this.setHeightOfNavigation(100)
-	  		
+	  	RCTStatusBarManager.getHeight((e)=>this.setState({statusBarHeight:e.height}))
 	  		
 	  	})
 	}
@@ -100,7 +99,7 @@ export default class ChatsNavigation extends Component{
 	render(){
 		return (
 			<Navigator 
-				style={{paddingTop:50}}
+				style={{paddingTop:this.statusBarHeight}}
 				ref={el=>this.nav=el}
 				navigator={this.props.navigator}
 				// willFocus={()=>console.log('will focus')}

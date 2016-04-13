@@ -5,6 +5,7 @@ let {
   Component,
   Text,
   ScrollView,
+  TouchableWithoutFeedback,
   View
 } =React;
 import {buttonClicks} from '../../actions/buttonClicks'
@@ -16,17 +17,27 @@ export default class Topics extends Component{
 		this.scroll.scrollTo({x: topic.index*20*k, y:0, animated: true})
 		buttonClicks({action:'choose topic', topic:topic})
 	}
+	scrollToTab(i){
+		this.scroll.scrollTo({x:i*40*k, y:0, animated: true})
+	}
 	render(){
+			// console.log('iam here ',this.props)
+
 		return (
 
-			<View style={{width:320*k,}}>
-						<ScrollView ref={el=>this.scroll=el} style={{padding:10}} horizontal={true} showsHorizontalScrollIndicator={false}>
-					<Topic activate={this.activate.bind(this)} active={this.state.activeIndex===0} topic={{index:0,name:'For You'}}/>
-					<Topic activate={this.activate.bind(this)} active={this.state.activeIndex===1} topic={{index:1,name:'Nearby'}}/>
-					<Topic activate={this.activate.bind(this)} active={this.state.activeIndex===2} topic={{index:2 ,name:'Trending'}}/>
-					<Topic activate={this.activate.bind(this)} active={this.state.activeIndex===3} topic={{index:3 ,name:'Dating'}}/>
-					<Topic activate={this.activate.bind(this)} active={this.state.activeIndex===4} topic={{index:4 ,name:'Eating out'}}/>
-					<Topic activate={this.activate.bind(this)} active={this.state.activeIndex===5} topic={{index:5 ,name:'Funny'}}/>
+			<View style={{width:320*k,height:65,borderBottomWidth:.5,borderColor:'rgb(215,215,215)',justifyContent:'center'}}>
+						<ScrollView ref={el=>this.scroll=el} style={{...center}} horizontal={true} 
+							showsHorizontalScrollIndicator={false}>
+					{this.props.tabs.map((tab, i) => {
+				          return <TouchableWithoutFeedback key={tab} onPress={() => {
+				          	this.scroll.scrollTo({x: i*40*k, y:0, animated: true})
+				          	this.props.goToPage(i)}} >
+								<Text  name={tab} style={{height:40,
+									paddingTop:20,fontSize:15,
+									color:this.props.activeTab===i?'black':'rgb(160,160,160)',
+									marginLeft:5*k,marginRight:5*k,alignSelf:'center'}}> {tab}</Text>
+							</TouchableWithoutFeedback>
+				        })}
 						</ScrollView></View> 
 
 			)

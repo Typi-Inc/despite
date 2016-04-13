@@ -12,7 +12,7 @@ export default class Topic extends Component{
 	render(){
 		return (
 		<TouchableWithoutFeedback onPress={()=>this.props.activate(this.props.topic)}>
-			<Text style={{height:35,fontSize:15,color:this.props.active?'black':'rgb(160,160,160)',marginLeft:5*k,marginRight:5*k}}> {this.props.topic.name}</Text>
+			<Text style={{height:40,paddingTop:20,fontSize:15,color:this.props.active?'black':'rgb(160,160,160)',marginLeft:5*k,marginRight:5*k,alignSelf:'center'}}> {this.props.topic.name}</Text>
 		</TouchableWithoutFeedback>
 			)
 	}
