@@ -13,12 +13,12 @@ let {
 // import Message from './message'
 import SmallViewer from './channel/smallViewer'
 import Channel from './channel/channel'
+import Tabs from './tabs'
 export default class App extends Component{
 	state={};
 	render(){
 		return (
 			<View style={{flex:1,}}>
-				<View style={{height:20,borderBottomWidth:.5,borderColor:'rgb(220,220,220)'}}/>
 			<Navigator
 				initialRoute={{name:'message'}}
 				renderScene={this.renderApp.bind(this)}
@@ -28,7 +28,7 @@ export default class App extends Component{
 			)
 	}
 	renderApp(route,navigator){
-		return <Channel/>
+		return <Tabs/>
 	}
 
 };

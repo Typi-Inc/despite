@@ -26,10 +26,12 @@ export default class SmallViewer extends Component{
 	  			return;
 	  		}else if(x.action==='add'){	
 	  			this.setState({child:<AddHooks/>,title:'Добавить'})		
+	  			this.openSmallViewer(x)	
 	  		}else if (x.action==='messageActions'){
 	  			this.setState({child:<MessageActions color={x.props.color}/>,title:'I would like to'})	
+	  			this.openSmallViewer(x)	
 	  		}
-	  		this.openSmallViewer(x)	
+	  		
 	  		
 	  	})
 	  }

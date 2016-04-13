@@ -62,8 +62,9 @@ export default class Tube extends Component{
 		return (
 			<View style={{flex:1}}>
 				
-				<ScrollView  
-				//keyboardDismissMode='interactive' 
+				<ScrollView  automaticallyAdjustContentInsets={true}
+				//keyboardDismissMode='interactive'
+				indicatorStyle={'black'} 
 					scrollEventThrottle={500}
 					onScroll={this.handleScroll.bind(this)} 
 					ref={el=>this.scroll=el}
