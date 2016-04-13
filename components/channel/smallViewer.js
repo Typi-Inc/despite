@@ -2,7 +2,7 @@ import TimerMixin from 'react-timer-mixin'
 import s from '../../styles'
 import React from 'react-native'; 
 import {buttonClicks$} from '../../actions/buttonClicks'
-import {keyboard,verFast} from '../animations'
+import {openAnimation,verFast} from '../animations'
 var dismissKeyboard = require('dismissKeyboard');
 import AddHooks from './addHooks'
 import MessageActions from './messageActions'
@@ -45,14 +45,14 @@ export default class SmallViewer extends Component{
 		dismissKeyboard()
 		this.background.setNativeProps({style:{left:0}})
 		this.setTimeout(()=>{
-			LayoutAnimation.configureNext(keyboard)
+			LayoutAnimation.configureNext(openAnimation)
 		this.smallViewer.setNativeProps({style:{top:35*k}})
 		this.setTimeout(()=>{
 			Animated.timing(this.anim,{
 				toValue:1,
 				duration:150,
 			}).start()
-		},300)
+		},200)
 		},0)
 		
 	}
@@ -63,7 +63,7 @@ export default class SmallViewer extends Component{
 				duration:150,
 		}).start()
 		this.setTimeout(()=>{
-			LayoutAnimation.configureNext(keyboard)
+			LayoutAnimation.configureNext(openAnimation)
 			
 			this.smallViewer.setNativeProps({style:{top:600*k}})
 		},0)

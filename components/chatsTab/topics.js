@@ -9,7 +9,6 @@ let {
   View
 } =React;
 import {buttonClicks} from '../../actions/buttonClicks'
-import Topic from './topic'
 export default class Topics extends Component{
 	state={activeIndex:0};
 	activate(topic){
@@ -18,7 +17,8 @@ export default class Topics extends Component{
 		buttonClicks({action:'choose topic', topic:topic})
 	}
 	scrollToTab(i){
-		this.scroll.scrollTo({x:i*40*k, y:0, animated: true})
+		if(i>4) this.scroll.scrollTo({x:i*50*k, y:0, animated: true})
+		else this.scroll.scrollTo({x:i*25*k, y:0, animated: true})
 	}
 	render(){
 			// console.log('iam here ',this.props)
@@ -30,7 +30,7 @@ export default class Topics extends Component{
 							showsHorizontalScrollIndicator={false}>
 					{this.props.tabs.map((tab, i) => {
 				          return <TouchableWithoutFeedback key={tab} onPress={() => {
-				          	this.scroll.scrollTo({x: i*40*k, y:0, animated: true})
+				          	this.scroll.scrollTo({x: i*25*k, y:0, animated: true})
 				          	this.props.goToPage(i)}} >
 								<Text  name={tab} style={{height:40,
 									paddingTop:20,fontSize:15,

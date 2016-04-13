@@ -1,6 +1,6 @@
 import React from 'react-native'
 let {LayoutAnimation}=React
-export let openAnimation={duration: 400,
+export let openAnimation={duration: 300,
 		    create: {
 		      type: LayoutAnimation.Types.easeOut,
 		      property: LayoutAnimation.Properties.opacity,
@@ -10,7 +10,7 @@ export let openAnimation={duration: 400,
 		      springDamping:1,
 		    }
 		}
-export let keyboard=LayoutAnimation.create(50,LayoutAnimation.Types.keyboard,LayoutAnimation.Properties.opacity);
+export let keyboard=LayoutAnimation.create(200,LayoutAnimation.Types.keyboard,LayoutAnimation.Properties.opacity);
 export let scrollToTopAnimation={duration: 300,
     create: {
       type: LayoutAnimation.Types.easeInEaseOut,

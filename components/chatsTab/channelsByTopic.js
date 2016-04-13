@@ -8,60 +8,20 @@ let {
   ScrollView,
   View
 } =React;
+import {channelList} from '../mock'
+import ChannelItem from './channelItem'
 export default class ChannelsByTopic extends Component{
 	state={}
 	render(){
 		return (
-		<View style={{flex:1,width:320*k}}>
-		<ScrollView pagingEnabled={false} directionalLockEnabled={true}>
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#first Channel</Text>
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#second Channel</Text>
 
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#second Channel</Text>
-
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#second Channel</Text>
-
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#second Channel</Text>
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#second Channel</Text>
-
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#third Channel</Text>
-
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#third Channel</Text>
-
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#third Channel</Text>
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#third Channel</Text>
-
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#third Channel</Text>
-
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#third Channel</Text>
-
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#first Channel</Text>
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#first Channel</Text>
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#second Channel</Text>
-
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#second Channel</Text>
-
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#second Channel</Text>
-
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#second Channel</Text>
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#second Channel</Text>
-
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#third Channel</Text>
-
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#third Channel</Text>
-
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#third Channel</Text>
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#third Channel</Text>
-
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#third Channel</Text>
-
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#third Channel</Text>
-
-			<Text style={{fontSize:20,margin:20,alignSelf:'center'}}>#first Channel</Text>
-
+		<ScrollView directionalLockEnabled={true}>
+				{channelList.map((channel)=>{
+					return <ChannelItem channel={channel}/>
+				})}
 
 		</ScrollView>
-		</View>
+
 			)
 	}
 };
