@@ -48,9 +48,9 @@ export default class Message extends Component{
 						</Text>
 
 						<View style={{flexDirection:'row',marginTop:5*k,marginLeft:3*k,marginBottom:0}}>
-							<Text style={s.smallGreyText}>Reply</Text>
+							<TouchableOpacity ><Text style={s.smallGreyText}>Reply</Text></TouchableOpacity>
 
-							<Text style={s.smallGreyText}>      View line</Text>
+							<TouchableOpacity onPress={()=>buttonClicks({action:'navigation push',name:'line',nav:'channelNav',info:this.props})}><Text style={s.smallGreyText}>      View line</Text></TouchableOpacity>
 						</View>
 					</View>
 

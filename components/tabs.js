@@ -14,7 +14,6 @@ let {
   View
 } =React;
 import Channel from './channel/channel'
-import ChatsNavigation from './chatsTab/chatsNavigation'
 import TopicPager from './chatsTab/topicPager'
 var update = React.addons.update
 import TabNavigator from 'react-native-tab-navigator'

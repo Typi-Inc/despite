@@ -79,17 +79,17 @@ export default class Tube extends Component{
 					onScroll={this.handleScroll.bind(this)} 
 					ref={el=>this.scroll=el}
 				>	
-					<Message color={'#F5A623'}/>
-					<Message color={'#BD10E0'}/>
-					<Message color={'#4A90E2'}/>
-					<Message color={'#4A90E2'}/>
-					<Message color={'#4A90E2'}/>
-					<Message color={'#D0021B'}/>
-					<Message color={'#F5A623'}/>
-					<Message color={'#BD10E0'}/>
-					<Message color={'#4A90E2'}/>
-					<Message color={'#4A90E2'}/>
-					<Message color={'#D0021B'}/>
+					<Message color={this.props.color}/>
+					<Message color={this.props.color}/>
+					<Message color={this.props.color}/>
+					<Message color={this.props.color}/>
+					<Message color={this.props.color}/>
+					<Message color={this.props.color}/>
+					<Message color={this.props.color}/>
+					<Message color={this.props.color}/>
+					<Message color={this.props.color}/>
+					<Message color={this.props.color}/>
+					<Message color={this.props.color}/>
 					<View ref={(el)=>this.t=el} style={{height:50*k}}/>
 
 				</ScrollView>

@@ -9,8 +9,13 @@ let {
   Image,
   View
 } =React;
+import {buttonClicks} from '../../actions/buttonClicks'
 export default class MessageActions extends Component{
 	state={};
+	viewLine(){
+		buttonClicks({action:'close'})
+		buttonClicks({action:'navigation push',name:'line',nav:'channelNav',info:this.props})
+	}
 	render(){
 		return (
 
@@ -24,7 +29,9 @@ export default class MessageActions extends Component{
 				</TouchableOpacity>
 					<View style={{width:265*k,height:1,backgroundColor:'rgb(210,210,210)',marginLeft:10*k,marginBottom:0}}/>
 
-				<TouchableOpacity style={{...center,width:265*k,height:60*k,marginLeft:10*k,}}>
+				<TouchableOpacity 
+					onPress={this.viewLine.bind(this)}
+				 style={{...center,width:265*k,height:60*k,marginLeft:10*k,}}>
 					<View style={{flexDirection:'row',...center}}>
 					<View style={{width:2,height:20*k,backgroundColor:this.props.color}}/>
 					<Text style={{fontSize:18,marginLeft:10*k}}>View Line</Text></View>

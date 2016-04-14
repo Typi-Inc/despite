@@ -12,7 +12,7 @@ import {buttonClicks} from '../../actions/buttonClicks'
 export default class ChannelItem extends Component{
 	state={};
 	goToChannel(channel){
-		buttonClicks({action:'navigation push',toRoute:'channel',info:channel})
+		buttonClicks({action:'navigation push',nav:'topNav',name:'channel',info:channel})
 	}
 	render(){
 		return (
