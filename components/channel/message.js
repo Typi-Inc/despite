@@ -47,10 +47,10 @@ export default class Message extends Component{
 								agreement on the brexit issue fully subsidized
 						</Text>
 
-						<View style={{flexDirection:'row',marginTop:5*k,marginLeft:3*k,marginBottom:0}}>
-							<TouchableOpacity ><Text style={s.smallGreyText}>Reply</Text></TouchableOpacity>
+						<View style={{flexDirection:'row',marginLeft:3*k,marginBottom:0}}>
+							<TouchableOpacity onPress={()=>buttonClicks({action:'reply pressed',to:'Johnnrdino'})} style={{height:24,width:54,justifyContent:'flex-end'}}><Text style={s.smallGreyText}>Reply</Text></TouchableOpacity>
 
-							<TouchableOpacity onPress={()=>buttonClicks({action:'navigation push',name:'line',nav:'channelNav',info:this.props})}><Text style={s.smallGreyText}>      View line</Text></TouchableOpacity>
+							<TouchableOpacity style={{height:24,width:80,justifyContent:'flex-end'}} onPress={()=>buttonClicks({action:'navigation push',name:'line',nav:'channelNav',info:this.props})}><Text style={s.smallGreyText}>View line</Text></TouchableOpacity>
 						</View>
 					</View>
 

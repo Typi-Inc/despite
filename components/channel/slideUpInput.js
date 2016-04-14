@@ -3,7 +3,7 @@ let UIManager = require('NativeModules').UIManager;
 import s from '../../styles'
 import React from 'react-native'; 
 import {veryFast,fast,keyboard} from '../animations'
-import {buttonClicks} from '../../actions/buttonClicks'
+import {buttonClicks,buttonClicks$} from '../../actions/buttonClicks'
 let {
   AppRegistry,
   Component,
@@ -20,8 +20,9 @@ let {
 } =React;
 var RCTStatusBarManager = require('NativeModules').StatusBarManager;
 export default class SlideUpInput extends Component{
-	state={height:0*k,allCanSee:true,allCanAnswer:true,statusBarHeight:0,text:''};
+	state={height:0*k,replyAction:false,statusBarHeight:0,text:'',disable:false};
 	show(e){
+    if(this.state.disable) return
 		if(this.t){
 			LayoutAnimation.configureNext(keyboard);
 			this.t && this.t.setNativeProps({style:{bottom:e.endCoordinates.height}})
@@ -29,6 +30,7 @@ export default class SlideUpInput extends Component{
 		 // this.props.setBottom(this.addHeight)
  	 }
  	hide(){
+      if(this.state.disable) return
  	  	if(this.t){
  	  		LayoutAnimation.configureNext(keyboard);
 		    this.t &&	this.t.setNativeProps({style:{bottom:0}})
@@ -40,14 +42,18 @@ export default class SlideUpInput extends Component{
 	}
 	componentWillMount(){
 	  	this.windowHeight=Dimensions.get('window').height
-	  	
+	  	this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
+        if(x.action==='searchInput is focused') this.setState({disable:true})
+        else if(x.action==='searchInput is blurred') this.setState({disable:false})
+        else if (x.action==='reply pressed') this.reply(x.to)
+      })
 	  	RCTStatusBarManager.getHeight(this.callMe.bind(this))
 	  	 this._keyboardWillShowSubscription= DeviceEventEmitter.addListener('keyboardWillShow', this.show.bind(this));
 	      this._keyboardWillHideSubscription= DeviceEventEmitter.addListener('keyboardWillHide', this.hide.bind(this));
 	 
 	  }
 	  componentWillUnmount(){
-	  	
+	  	this.buttonClicksSubscription.unsubscribe()
 	  	this._keyboardWillShowSubscription.remove()
 	  	this._keyboardWillHideSubscription.remove()
 
@@ -55,7 +61,10 @@ export default class SlideUpInput extends Component{
 	  callMe(e){
 	  	this.setState({statusBarHeight:e.height})
 	  }
-	 
+	 reply(to){
+    this.setState({text:'@'+to+':',replyAction:true})
+    this.textInput && this.textInput.focus()
+   }
 	render(){
 		this.windowHeight=this.windowHeight || 568
 		this.addHeight=this.addHeight || 0
@@ -81,6 +90,7 @@ export default class SlideUpInput extends Component{
                       LayoutAnimation.configureNext(veryFast)
                         this.setState({
                           text: event.nativeEvent.text,
+                          replyAction:false,
                           height: Math.min(event.nativeEvent.contentSize.height,129*k)
                         });
                        	this.addHeight=this.state.height<35*k?0:this.state.height-30*k
@@ -90,10 +100,10 @@ export default class SlideUpInput extends Component{
                     multiline={true}
                     placeholder={'Начать разговор'}
                     />
-                    {/\S/.test(this.state.text)?<Text onPress={()=>this.textInput.blur()} style={[s.blueText,{
+                    {/\S/.test(this.state.text) && !this.state.replyAction?<Text onPress={()=>this.textInput.blur()} style={[s.blueText,{
                     	color:'#BD10E0',fontWeight:'600',flex:1,marginRight:5,//alignSelf:'center',
                     	fontSize:17,marginBottom:11*k,marginLeft:5*k}]}>Send</Text>:
-                    	<TouchableOpacity onPress={()=>buttonClicks({action:'add',component:'hooks'})}><Text
+                    	<TouchableOpacity style={{width:30,}} onPress={()=>buttonClicks({action:'add',component:'hooks'})}><Text
                     	style={{
                     		color:'#BD10E0',fontWeight:'400',
                     		marginRight:10*k,fontSize:30*k,marginBottom:5*k,

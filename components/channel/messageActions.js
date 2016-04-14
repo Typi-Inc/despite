@@ -16,12 +16,16 @@ export default class MessageActions extends Component{
 		buttonClicks({action:'close'})
 		buttonClicks({action:'navigation push',name:'line',nav:'channelNav',info:this.props})
 	}
+	reply(){
+		buttonClicks({action:'close',})
+		buttonClicks({action:'reply pressed',to:'Johnnrdino'})
+	}
 	render(){
 		return (
 
 			<View style={{flex:1}}>
 				
-				<TouchableOpacity style={{...center,width:265*k,height:60*k,marginLeft:10*k,}}>
+				<TouchableOpacity onPress={this.reply.bind(this)} style={{...center,width:265*k,height:60*k,marginLeft:10*k,}}>
 					<View style={{flexDirection:'row',...center}}>
 					<Image source={{uri:'reply',isStatic:true}} style={{width:24*k,height:17*k}}/>
 					<Text style={{fontSize:18,marginLeft:10*k}}>Reply</Text></View>

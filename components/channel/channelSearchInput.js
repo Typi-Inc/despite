@@ -7,6 +7,7 @@ let {
   TextInput,
   View
 } =React;
+import {buttonClicks} from '../../actions/buttonClicks'
 export default class ChannelSearchInput extends Component{
 	state={};
 	render(){
@@ -16,7 +17,8 @@ export default class ChannelSearchInput extends Component{
 				style={{paddingLeft:10,marginTop:5,marginLeft:35,backgroundColor:'rgb(230,230,230)',
 					width:250*k,height:33,borderRadius:5,borderColor:'rgb(230,230,230)',borderWidth:1}}
 			   	value={this.state.text}
-                onFocus={()=>{console.log('focusing second')}}
+                onFocus={()=>{buttonClicks({action:'searchInput is focused'})}}
+                onBlur={buttonClicks({action:'searchInput is blurred'})}
                 placeholder={'#'+this.props.info.title}
                 placeholderTextColor={'rgb(120,120,120)'}
                 onChange={(event) => {

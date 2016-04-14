@@ -82,11 +82,7 @@ export default class Tube extends Component{
 					<Message color={this.props.color}/>
 					<Message color={this.props.color}/>
 					<Message color={this.props.color}/>
-					<Message color={this.props.color}/>
-					<Message color={this.props.color}/>
-					<Message color={this.props.color}/>
-					<Message color={this.props.color}/>
-					<Message color={this.props.color}/>
+					
 					<Message color={this.props.color}/>
 					<Message color={this.props.color}/>
 					<Message color={this.props.color}/>

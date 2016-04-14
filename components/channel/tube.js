@@ -14,18 +14,21 @@ let {
   InteractionManager,
   Animated
 } =React;
+import {buttonClicks$} from '../../actions/buttonClicks'
 const Incremental = require('Incremental');
 import Message from './message'
 import SlideUpInput from './slideUpInput'
 export default class Tube extends Component{
-	state={loading:true};
+	state={loading:true,disable:false};
 	show(e){
+		if(this.state.disable) return;
 		LayoutAnimation.configureNext(keyboard);
 		this.keyboardHeight=e.endCoordinates.height
 		this.scroll && this.scroll.setNativeProps({style:{bottom:e.endCoordinates.height+this.input.getAddHeight()},contentInset:{top:e.endCoordinates.height+this.input.getAddHeight()}})
  	}
 
  	hide(){
+ 		if(this.state.disable) return;
   		LayoutAnimation.configureNext(keyboard);
   		this.keyboardHeight=0
   		if(this.contentOffset===0){
@@ -41,7 +44,10 @@ export default class Tube extends Component{
 
 
 	componentWillMount(){
-
+		this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
+       		 if(x.action==='searchInput is focused') this.setState({disable:true})
+       		 else if(x.action==='searchInput is blurred') this.setState({disable:false})
+    	})
 	  	this._keyboardWillShowSubscription= DeviceEventEmitter.addListener('keyboardWillShow', this.show.bind(this));
 	    this._keyboardWillHideSubscription= DeviceEventEmitter.addListener('keyboardWillHide', this.hide.bind(this));
 	 
@@ -52,6 +58,7 @@ export default class Tube extends Component{
 		// 	})
 	}
 	componentWillUnmount(){
+		this.buttonClicksSubscription.unsubscribe()
 	  	this._keyboardWillShowSubscription.remove()
 	  	this._keyboardWillHideSubscription.remove()
 

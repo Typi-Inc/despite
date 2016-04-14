@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   smallGreyText:{
     color:'gray',
     fontWeight:'500',
-    fontSize:12,
+    fontSize:13,
   },
   menuImage:{
     height:20*k,
