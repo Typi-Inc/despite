@@ -20,7 +20,9 @@ import App from './components/app.js'
 class despite extends Component {
   render() {
     return (
+      <View style={{flex:1,backgroundColor:'black'}}>
      <App/>
+     </View>
     );
   }
 }

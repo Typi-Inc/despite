@@ -11,30 +11,32 @@ let {
   DeviceEventEmitter,LayoutAnimation,
   View,
   TouchableOpacity,
+  InteractionManager,
   Animated
 } =React;
+const Incremental = require('Incremental');
 import Message from './message'
 import SlideUpInput from './slideUpInput'
 export default class Tube extends Component{
-	state={};
+	state={loading:true};
 	show(e){
 		LayoutAnimation.configureNext(keyboard);
 		this.keyboardHeight=e.endCoordinates.height
-		this.scroll.setNativeProps({style:{bottom:e.endCoordinates.height+this.input.getAddHeight()},contentInset:{top:e.endCoordinates.height+this.input.getAddHeight()}})
+		this.scroll && this.scroll.setNativeProps({style:{bottom:e.endCoordinates.height+this.input.getAddHeight()},contentInset:{top:e.endCoordinates.height+this.input.getAddHeight()}})
  	}
 
  	hide(){
   		LayoutAnimation.configureNext(keyboard);
   		this.keyboardHeight=0
   		if(this.contentOffset===0){
-  			this.scroll.setNativeProps({contentOffset:{y:0}})
+  			this.scroll&&this.scroll.setNativeProps({contentOffset:{y:0}})
   		}
-		this.scroll.setNativeProps({contentInset:{top:this.input.getAddHeight()}})
+		this.scroll && this.scroll.setNativeProps({contentInset:{top:this.input.getAddHeight()}})
   	
 	 
 	}
 	setBottom(addHeight){
-		this.scroll.setNativeProps({style:{bottom:this.keyboardHeight+addHeight}})
+		this.scroll && this.scroll.setNativeProps({style:{bottom:this.keyboardHeight+addHeight}})
 	}
 
 
@@ -44,6 +46,11 @@ export default class Tube extends Component{
 	    this._keyboardWillHideSubscription= DeviceEventEmitter.addListener('keyboardWillHide', this.hide.bind(this));
 	 
 	  }
+	componentDidMount(){
+		// InteractionManager.runAfterInteractions(()=>{
+		// 		this.setState({loading:false})
+		// 	})
+	}
 	componentWillUnmount(){
 	  	this._keyboardWillShowSubscription.remove()
 	  	this._keyboardWillHideSubscription.remove()
@@ -59,6 +66,9 @@ export default class Tube extends Component{
 	
 	render(){
 		this.keyboardHeight=this.keyboardHeight || 0
+		// if(this.state.loading){
+		// 	return <View style={{flex:1,...center}}><Text>Loading...</Text></View>
+		// }
 		return (
 			<View style={{flex:1}}>
 				
@@ -75,14 +85,6 @@ export default class Tube extends Component{
 					<Message color={'#4A90E2'}/>
 					<Message color={'#4A90E2'}/>
 					<Message color={'#4A90E2'}/>
-					<Message color={'#D0021B'}/>
-					<Message color={'#F5A623'}/>
-					<Message color={'#BD10E0'}/>
-					<Message color={'#4A90E2'}/>
-					<Message color={'#4A90E2'}/>
-					<Message color={'#4A90E2'}/>
-					<Message color={'#D0021B'}/>
-					<Message color={'#F5A623'}/>
 					<View ref={(el)=>this.t=el} style={{height:50*k}}/>
 
 				</ScrollView>

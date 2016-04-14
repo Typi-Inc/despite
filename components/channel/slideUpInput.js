@@ -24,7 +24,7 @@ export default class SlideUpInput extends Component{
 	show(e){
 		if(this.t){
 			LayoutAnimation.configureNext(keyboard);
-			this.t.setNativeProps({style:{bottom:e.endCoordinates.height}})
+			this.t && this.t.setNativeProps({style:{bottom:e.endCoordinates.height}})
 		}
 		 // this.props.setBottom(this.addHeight)
  	 }

@@ -12,7 +12,6 @@ let {
 export default class MessageActions extends Component{
 	state={};
 	render(){
-		console.log('here her e',this.props.color)
 		return (
 
 			<View style={{flex:1}}>

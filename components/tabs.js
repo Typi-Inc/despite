@@ -15,16 +15,17 @@ let {
 } =React;
 import Channel from './channel/channel'
 import ChatsNavigation from './chatsTab/chatsNavigation'
+import TopicPager from './chatsTab/topicPager'
 var update = React.addons.update
 import TabNavigator from 'react-native-tab-navigator'
 export default class Tabs extends Component{
-	state={height:50,overflow:'visible',selectedTab:'search'};
+	state={height:45,overflow:'visible',selectedTab:'chats'};
 	// static childContextTypes={toggleTabs:React.PropTypes.func,tabsHidden:React.PropTypes.func};
 	tabsHidden(){
 		return this.state.height===0
 	}
 	toggleTabs(val){
-  		this.setState({height:val?0:50,overflow:val?'hidden':'visible'})
+  		this.setState({height:val?0:45,overflow:val?'hidden':'visible'})
   	}
 	renderChats(route,navigator){
 		if(route.name==='chats'){
@@ -60,7 +61,7 @@ export default class Tabs extends Component{
 					renderIcon={()=><Image source={{uri:'chats',isStatic:true}} style={{height:19,width:19}}/>}
 					renderSelectedIcon={()=><Image source={{uri:'chatA',isStatic:true}} style={{height:19,width:19}}/>}
 				>
-					<ChatsNavigation/>
+					<TopicPager tabsHidden={this.tabsHidden.bind(this)} toggleTabs={this.toggleTabs.bind(this)}/>
 				</TabNavigator.Item>
 				<TabNavigator.Item
 					selected={this.state.selectedTab === 'create'}

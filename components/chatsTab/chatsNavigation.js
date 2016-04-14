@@ -12,18 +12,21 @@ let {
   Image
 } =React;
 import Topics from './topics'
+import Channel from '../channel/channel'
 import TopicPager from './topicPager'
 import dismissKeyboard from 'dismissKeyboard'
-import {buttonClicks$} from '../../actions/buttonClicks'
+import {buttonClicks$,buttonClicks} from '../../actions/buttonClicks'
 var RCTStatusBarManager = require('NativeModules').StatusBarManager;
 
 let NavigationBarRouteMapper={
 		LeftButton(route, navigator, index, navState){
-			if(route.name==='deal'){
-
+			if(route.name==='channel'){
+				// if(index===1){
+				// 	buttonClicks({action:'from channel to topicPager'})
+				// }
 				return <TouchableOpacity style={{height:45*k,width:45*k}} onPress={()=>{
 
-					navigator.parentNavigator.pop()
+					navigator.pop()
 				}}>
 
 					<Image source={{uri:'arrowBlue',isStatic:true}} style={{margin:10*k,height:19,width:11,marginTop:0}}/>
@@ -62,7 +65,7 @@ let NavigationBarRouteMapper={
 		},
 		Title(route, navigator, index, navState){
 			if(route.name==='topics'){
-				console.log(index)
+				// console.log(index)
 			return;
 			}
 			return null
@@ -73,12 +76,21 @@ export default class ChatsNavigation extends Component{
 	// static contextTypes={toggleTabs:React.PropTypes.func,tabsHidden:React.PropTypes.func};
 	state={height:0,statusBarHeight:20};
 	componentWillMount(){
-		// this.subscription=this.nav.navigationContext.addListener('willfocus', ()=>{
-		// 	if(this.nav.navigationContext._currentRoute.name==='deal' && this.context.tabsHidden()){
-		// 		this.context.toggleTabs(false)
+		// this.subscription=this.nav.addListener('willfocus', ()=>{
+		// 	if(this.nav._currentRoute.name==='channel' && this.props.tabsHidden()){
+		// 		this.props.toggleTabs(false)
+		// 		this.setState({height:0})
 		// 	}
 		// })
 		this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
+			if(x.action==='navigation push'){
+				// this.setState({height:60})
+				// this.props.toggleTabs(true)
+				this.nav.push({name:'channel',routeInfo:x.info})
+			}else if (x.action==='from channel to topicPager'){
+				this.setState({height:0})
+				this.props.toggleTabs(false)
+			}
 	  		// if(x.action==='choose topic') this.setHeightOfNavigation(100)
 	  	RCTStatusBarManager.getHeight((e)=>this.setState({statusBarHeight:e.height}))
 	  		
@@ -91,6 +103,8 @@ export default class ChatsNavigation extends Component{
 	renderDeal(route,navigator){
 		if(route.name==='topics'){
 			return <TopicPager navigator={navigator}/>
+		}else if(route.name==='channel'){
+			return <Channel/>
 		}
 	}
 	setHeightOfNavigation(height){
@@ -99,7 +113,7 @@ export default class ChatsNavigation extends Component{
 	render(){
 		return (
 			<Navigator 
-				style={{paddingTop:this.statusBarHeight}}
+				style={{paddingTop:this.state.height>0?this.state.height:this.statusBarHeight}}
 				ref={el=>this.nav=el}
 				navigator={this.props.navigator}
 				// willFocus={()=>console.log('will focus')}

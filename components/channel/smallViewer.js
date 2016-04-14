@@ -41,7 +41,6 @@ export default class SmallViewer extends Component{
 
 
 	openSmallViewer(x){
-		console.log(x)
 		dismissKeyboard()
 		this.background.setNativeProps({style:{left:0}})
 		this.setTimeout(()=>{
@@ -72,7 +71,7 @@ export default class SmallViewer extends Component{
 	render(){
 		this.anim=this.anim || new Animated.Value(0)
 		return (
-			<View style={{position:'absolute',top:0,left:0,background:'green',width:320*k,paddingTop:20,...center}}>
+			<View style={{position:'absolute',top:0,left:0,width:320*k,paddingTop:20,...center}}>
 				<View  ref={el=>this.background=el} style={{position:'absolute',
 					left:756*k,top:0,height:600*k,width:600*k,backgroundColor:'rgb(0,0,0)',opacity:0.7}}/>
 				<View ref={el=>this.smallViewer=el} style={{position:'absolute',

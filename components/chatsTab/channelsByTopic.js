@@ -6,6 +6,7 @@ let {
   TouchableWithoutFeedback,
   Text,
   ScrollView,
+
   View
 } =React;
 import {channelList} from '../mock'
@@ -16,8 +17,8 @@ export default class ChannelsByTopic extends Component{
 		return (
 
 		<ScrollView directionalLockEnabled={true}>
-				{channelList.map((channel)=>{
-					return <ChannelItem channel={channel}/>
+				{channelList.map((channel,i)=>{
+					return <ChannelItem key={i} channel={channel}/>
 				})}
 
 		</ScrollView>

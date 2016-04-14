@@ -26,7 +26,7 @@ export default class Topics extends Component{
 		return (
 
 			<View style={{width:320*k,height:65,borderBottomWidth:.5,borderColor:'rgb(215,215,215)',justifyContent:'center'}}>
-						<ScrollView ref={el=>this.scroll=el} style={{...center}} horizontal={true} 
+						<ScrollView ref={el=>this.scroll=el} contentContainerStyle={{...center,paddingTop:10}} horizontal={true} 
 							showsHorizontalScrollIndicator={false}>
 					{this.props.tabs.map((tab, i) => {
 				          return <TouchableWithoutFeedback key={tab} onPress={() => {
