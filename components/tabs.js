@@ -17,16 +17,20 @@ import Channel from './channel/channel'
 import TopicPager from './chatsTab/topicPager'
 var update = React.addons.update
 import {buttonClicks} from '../actions/buttonClicks'
+import {openAnimation} from './animations'
 import TabNavigator from 'react-native-tab-navigator'
 import NotificationsTab from './notificationTab/notificationsTab'
 export default class Tabs extends Component{
-	state={height:45,overflow:'visible',selectedTab:'chats'};
+	state={height:50,overflow:'visible',selectedTab:'chats'};
 	// static childContextTypes={toggleTabs:React.PropTypes.func,tabsHidden:React.PropTypes.func};
 	tabsHidden(){
 		return this.state.height===0
 	}
 	toggleTabs(val){
   		this.setState({height:val?0:45,overflow:val?'hidden':'visible'})
+  	}
+  	componentWillMount(){
+  		// LayoutAnimation.configureNext(openAnimation)
   	}
 	renderChats(route,navigator){
 		if(route.name==='chats'){
@@ -37,6 +41,7 @@ export default class Tabs extends Component{
 		}
 	}
 	render(){
+		LayoutAnimation.configureNext(openAnimation)
 		return (
 			<TabNavigator 
 			    tabBarStyle={{height:this.state.height,overflow:this.state.overflow,backgroundColor:'black'}}
@@ -62,7 +67,7 @@ export default class Tabs extends Component{
 					renderIcon={()=><Image source={{uri:'chats',isStatic:true}} style={{height:19,width:19}}/>}
 					renderSelectedIcon={()=><Image source={{uri:'chatA',isStatic:true}} style={{height:19,width:19}}/>}
 				>
-					<TopicPager tabsHidden={this.tabsHidden.bind(this)} toggleTabs={this.toggleTabs.bind(this)}/>
+					<TopicPager/>
 				</TabNavigator.Item>
 				<TabNavigator.Item
 					selected={this.state.selectedTab === 'create'}
@@ -70,7 +75,7 @@ export default class Tabs extends Component{
 					renderIcon={()=><Image source={{uri:'create',isStatic:true}} style={{height:22,width:22}}/>}
 					renderSelectedIcon={()=><Image source={{uri:'createA',isStatic:true}} style={{height:22,width:22}}/>}
 				>
-					<View style={{flex:1,backgroundColor:'blue'}}/>
+					<View/>
 				</TabNavigator.Item>
 				<TabNavigator.Item
 					selected={this.state.selectedTab === 'activity'}

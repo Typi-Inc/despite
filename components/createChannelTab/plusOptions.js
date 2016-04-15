@@ -18,6 +18,11 @@ export default class AddHooks extends Component{
 		buttonClicks({action:'navigation push',nav:'topNav',name:'channel',info:channel})
 
 	}
+	createChannel(info){
+		console.log('here')
+		buttonClicks({action:'close'})
+		buttonClicks({action:'navigation push',nav:'topNav',name:'createChannel',info:info})
+	}
 	render(){
 		return (
 
@@ -40,7 +45,7 @@ export default class AddHooks extends Component{
 						<Image source={{uri:'flower',isStatic:true}} style={{width:28*k,height:32*k,margin:15*k}}/>
 						<Text>Заказать цветы</Text>
 					</View></TouchableOpacity>
-					<TouchableOpacity><View style={{margin:10*k,width:260*k,height:120*k,borderRadius:12*k,...center,borderWidth:2,borderColor:'rgb(220,220,220)'}}>
+					<TouchableOpacity onPress={this.createChannel.bind(this,{title:'createChannel'})}><View style={{margin:10*k,width:260*k,height:120*k,borderRadius:12*k,...center,borderWidth:2,borderColor:'rgb(220,220,220)'}}>
 						<Image source={{uri:'createChannel',isStatic:true}} style={{width:28*k,height:28*k,margin:15*k}}/>
 						<Text>Создать канал</Text>
 

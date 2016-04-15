@@ -3,7 +3,6 @@ let UIManager = require('NativeModules').UIManager;
 import s from '../../styles'
 import React from 'react-native'; 
 import Tube from './tube'
-import ControlPanel from './controlPanel'
 let {
   AppRegistry,
   Component,

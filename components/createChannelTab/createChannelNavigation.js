@@ -12,17 +12,17 @@ let {
   ScrollView,
   Image
 } =React;
-import Channel from './channel'
-import BackButton from './backButton'
+import CreateChannel from './createChannel'
+import AddTags from './addTags'
+import Invite from './invite'
+import ChannelSettings from './channelSettings'
+import BackButton from '../channel/backButton'
 import dismissKeyboard from 'dismissKeyboard'
 import {buttonClicks$,buttonClicks} from '../../actions/buttonClicks'
 var RCTStatusBarManager = require('NativeModules').StatusBarManager;
-import ChannelSearchInput from './channelSearchInput'
-import Line from './line'
-import ChannelMenuButton from './channelMenuButton'
 let NavigationBarRouteMapper={
 		LeftButton(route, navigator, index, navState){
-			if(route.name==='channel'){
+			if(route.name==='createChannel'){
 				// if(index===1){
 				// 	buttonClicks({action:'from channel to topicPager'})
 				// }
@@ -31,12 +31,11 @@ let NavigationBarRouteMapper={
 			return <BackButton index={index} route={route} navigator={navigator}/>
 		},
 		RightButton(route, navigator, index, navState){
-			return <ChannelMenuButton route={route}/>
-		
+
+			return null		
 		},
 		Title(route, navigator, index, navState){
-			if(route.name==='line') return <ChannelSearchInput info={{title:'inline'}} index={index}/>
-			return <ChannelSearchInput info={route.info} index={index}/>
+			return null
 		}
 
 	}
@@ -64,14 +63,16 @@ export default class ChannelNavigation extends Component{
 	componentWillUnmount(){
 		this.buttonClicksSubscription.unsubscribe()
 	}
-	renderChannel(route,navigator){
-		if(route.name==='topics'){
-			return <TopicPager navigator={navigator}/>
-		}else if(route.name==='channel'){
-			return <Channel/>
-		}else if(route.name==='line'){
+	renderCreateChannel(route,navigator){
+		if(route.name==='createChannel'){
+			return <CreateChannel/>
+		}else if(route.name==='invite'){
+			return <Invite/>
+		}else if(route.name==='addTags'){
 			// console.log(route,'route')
-			return <Line color={route.routeInfo.color}/>
+			return <AddTags />
+		}else if(route.name==='channelSettings'){
+			return <ChannelSettings/>
 		}
 	}
 	setHeightOfNavigation(height){
@@ -83,8 +84,8 @@ export default class ChannelNavigation extends Component{
 				style={{paddingTop:65}}
 				ref={el=>this.nav=el}
 				navigator={this.props.navigator}
-				initialRoute={{name:'channel',info:this.props.routeInfo}}
-				renderScene={this.renderChannel.bind(this)}
+				initialRoute={{name:'createChannel',info:this.props.routeInfo}}
+				renderScene={this.renderCreateChannel.bind(this)}
 				navigationBar={
 					<Navigator.NavigationBar
 					// navigator={navigator}

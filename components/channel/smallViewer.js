@@ -7,6 +7,7 @@ var dismissKeyboard = require('dismissKeyboard');
 import AddHooks from './addHooks'
 import MessageActions from './messageActions'
 import PlusOptions from '../createChannelTab/plusOptions'
+import ChannelOptions from './channelOptions'
 let {
   AppRegistry,
   Component,
@@ -19,7 +20,7 @@ let {
 } =React;
 
 export default class SmallViewer extends Component{
-	state={child:<AddHooks/>};
+	state={child:<View/>};
 	componentWillMount(){
 	  	this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
 	  		if(x.action==='close'){
@@ -33,6 +34,9 @@ export default class SmallViewer extends Component{
 	  			this.openSmallViewer(x)	
 	  		}else if(x.action==='plusTab'){
 	  			this.setState({child:<PlusOptions/>,title:'Я хочу'})	
+	  			this.openSmallViewer(x)	
+	  		}else if (x.action==='channelOptions'){
+	  			this.setState({child:<ChannelOptions/>,title:'#'+x.info.title})	
 	  			this.openSmallViewer(x)	
 	  		}
 	  		
@@ -79,7 +83,7 @@ export default class SmallViewer extends Component{
 				<View  ref={el=>this.background=el} style={{position:'absolute',
 					left:756*k,top:0,height:600*k,width:600*k,backgroundColor:'rgb(0,0,0)',opacity:0.7}}/>
 				<View ref={el=>this.smallViewer=el} style={{position:'absolute',
-				height:510*k,width:294*k,marginLeft:14*k,top:600*k,paddingLeft:6*k,
+				height:500*k,width:294*k,marginLeft:14*k,top:600*k,paddingLeft:6*k,
 				backgroundColor:'white',alignSelf:'center'}}>
 					<Text style={{fontSize:20,color:'rgb(120,120,120)',
 					margin:10*k,marginTop:20*k}}>{this.state.title}</Text>

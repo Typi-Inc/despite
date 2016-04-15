@@ -20,6 +20,7 @@ import Channel from './channel/channel'
 import {buttonClicks$} from '../actions/buttonClicks'
 import ChannelNavigation from './channel/channelNavigation'
 import Tabs from './tabs'
+import CreateChannelNavigation from './createChannelTab/createChannelNavigation'
 
 export default class App extends Component{
 	state={};
@@ -28,7 +29,7 @@ export default class App extends Component{
 			if(x.action==='navigation push'&&x.nav==='topNav'){
 				this.nav&&this.nav.push({name:x.name,routeInfo:x.info})
 			}else if (x.action==='go back to chats'&&x.nav==='topNav'){
-				this.nav&&this.nav.pop()
+				this.nav&&this.nav.jumpBack()
 			}	
 	  	})
 	  	RCTStatusBarManager.getHeight((e)=>this.setState({statusBarHeight:e.height}))
@@ -43,8 +44,12 @@ export default class App extends Component{
 			<View style={{flex:1}}>
 			<Navigator ref={el=>this.nav=el}
 				initialRoute={{name:'message'}}
+				configureScene={(route,routeStack)=>{
+					if(route.name==='createChannel') return Navigator.SceneConfigs.FloatFromBottom
+					return Navigator.SceneConfigs.PushFromRight
+				}}
 				renderScene={this.renderApp.bind(this)}
-				style={{paddingTop:this.state.height>0?this.state.height:this.statusBarHeight,backgroundColor:'black'}}
+				style={{paddingTop:this.statusBarHeight,backgroundColor:'black'}}
 				
 			/>
 			<SmallViewer/>
@@ -54,6 +59,9 @@ export default class App extends Component{
 	renderApp(route,navigator){
 		if(route.name==='channel') return <View style={{flex:1,backgroundColor:'white'}}>
 				<ChannelNavigation routeInfo={route.routeInfo} topNav={navigator}/></View>
+		else if(route.name==='createChannel') return <View style={{flex:1,backgroundColor:'white'}}>
+			<CreateChannelNavigation routeInfo={route.routeInfo} topNav={navigator}/>
+			</View>
 		return <Tabs/>
 	}
 

@@ -17,7 +17,7 @@ export default class ChannelMenuButton extends Component{
 
 			<TouchableOpacity style={{height:45,width:45,justifyContent:'center',alignItems:'center'}} onPress={()=>{
 					// dismissKeyboard()
-					buttonClicks({action:'add',component:'hooks'})
+					buttonClicks({action:'channelOptions',info:this.props.route.info})
 					
 				}}>
 					<Image source={{uri:'burger',isStatic:true}} style={{height:14,

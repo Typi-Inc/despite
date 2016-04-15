@@ -2,7 +2,7 @@ import TimerMixin from 'react-timer-mixin'
 let UIManager = require('NativeModules').UIManager;
 import s from '../../styles'
 import React from 'react-native'; 
-import {keyboard,verFast} from '../animations'
+import {keyboard,verFast,openAnimation} from '../animations'
 let {
   AppRegistry,
   Component,
@@ -17,6 +17,7 @@ let {
 import {buttonClicks$} from '../../actions/buttonClicks'
 const Incremental = require('Incremental');
 import Message from './message'
+import MessagePlaceholder from './messagePlaceholder'
 import SlideUpInput from './slideUpInput'
 export default class Tube extends Component{
 	state={loading:true,disable:false};
@@ -53,9 +54,9 @@ export default class Tube extends Component{
 	 
 	  }
 	componentDidMount(){
-		// InteractionManager.runAfterInteractions(()=>{
-		// 		this.setState({loading:false})
-		// 	})
+		InteractionManager.runAfterInteractions(()=>{
+				this.setState({loading:false})
+			})
 	}
 	componentWillUnmount(){
 		this.buttonClicksSubscription.unsubscribe()
@@ -73,9 +74,10 @@ export default class Tube extends Component{
 	
 	render(){
 		this.keyboardHeight=this.keyboardHeight || 0
-		// if(this.state.loading){
-		// 	return <View style={{flex:1,...center}}><Text>Loading...</Text></View>
-		// }
+		if(this.state.loading){
+			return <MessagePlaceholder/>
+		}
+		LayoutAnimation.configureNext(openAnimation)
 		return (
 			<View style={{flex:1}}>
 				
@@ -97,6 +99,21 @@ export default class Tube extends Component{
 					<Message color={'#4A90E2'}/>
 					<Message color={'#4A90E2'}/>
 					<Message color={'#D0021B'}/>
+					<Message color={'#F5A623'}/>
+					<Message color={'#BD10E0'}/>
+					<Message color={'#4A90E2'}/>
+					<Message color={'#4A90E2'}/>
+					<Message color={'#4A90E2'}/>
+					<Message color={'#D0021B'}/>
+					<Message color={'#F5A623'}/>
+					<Message color={'#BD10E0'}/>
+					<Message color={'#4A90E2'}/>
+					<Message color={'#4A90E2'}/>
+					<Message color={'#D0021B'}/>
+					
+
+
+
 					<View ref={(el)=>this.t=el} style={{height:50*k}}/>
 
 				</ScrollView>

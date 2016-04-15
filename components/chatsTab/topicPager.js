@@ -18,7 +18,7 @@ export default class TopicPager extends Component{
 		return (
 		<ScrollableTabView 
 			onScroll={(f)=>{
-				if(f === parseInt(f, 10)){
+				if(Math.abs(f - parseInt(f, 10))<0.1){
 					this.topics.scrollToTab(f)
 				}
 			}}
