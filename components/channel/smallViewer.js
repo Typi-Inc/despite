@@ -6,6 +6,7 @@ import {openAnimation,verFast} from '../animations'
 var dismissKeyboard = require('dismissKeyboard');
 import AddHooks from './addHooks'
 import MessageActions from './messageActions'
+import PlusOptions from '../createChannelTab/plusOptions'
 let {
   AppRegistry,
   Component,
@@ -29,6 +30,9 @@ export default class SmallViewer extends Component{
 	  			this.openSmallViewer(x)	
 	  		}else if (x.action==='messageActions'){
 	  			this.setState({child:<MessageActions color={x.props.color}/>,title:'I would like to'})	
+	  			this.openSmallViewer(x)	
+	  		}else if(x.action==='plusTab'){
+	  			this.setState({child:<PlusOptions/>,title:'Я хочу'})	
 	  			this.openSmallViewer(x)	
 	  		}
 	  		

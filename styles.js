@@ -23,6 +23,10 @@ const styles = StyleSheet.create({
     width:5*k,
     marginLeft:3*k,
     marginRight:3*k
+  },
+  viewTitle:{
+    fontWeight:'400',
+    fontSize:18
   }
 
 });

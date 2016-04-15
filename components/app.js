@@ -44,7 +44,7 @@ export default class App extends Component{
 			<Navigator ref={el=>this.nav=el}
 				initialRoute={{name:'message'}}
 				renderScene={this.renderApp.bind(this)}
-				style={{paddingTop:this.state.height>0?this.state.height:this.statusBarHeight}}
+				style={{paddingTop:this.state.height>0?this.state.height:this.statusBarHeight,backgroundColor:'black'}}
 				
 			/>
 			<SmallViewer/>
@@ -52,7 +52,8 @@ export default class App extends Component{
 			)
 	}
 	renderApp(route,navigator){
-		if(route.name==='channel') return <ChannelNavigation routeInfo={route.routeInfo} topNav={navigator}/>
+		if(route.name==='channel') return <View style={{flex:1,backgroundColor:'white'}}>
+				<ChannelNavigation routeInfo={route.routeInfo} topNav={navigator}/></View>
 		return <Tabs/>
 	}
 

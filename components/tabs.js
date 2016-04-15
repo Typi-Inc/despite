@@ -16,7 +16,9 @@ let {
 import Channel from './channel/channel'
 import TopicPager from './chatsTab/topicPager'
 var update = React.addons.update
+import {buttonClicks} from '../actions/buttonClicks'
 import TabNavigator from 'react-native-tab-navigator'
+import NotificationsTab from './notificationTab/notificationsTab'
 export default class Tabs extends Component{
 	state={height:45,overflow:'visible',selectedTab:'chats'};
 	// static childContextTypes={toggleTabs:React.PropTypes.func,tabsHidden:React.PropTypes.func};
@@ -38,7 +40,7 @@ export default class Tabs extends Component{
 		return (
 			<TabNavigator 
 			    tabBarStyle={{height:this.state.height,overflow:this.state.overflow,backgroundColor:'black'}}
-				sceneStyle={{paddingBottom: this.state.height }}
+				sceneStyle={{paddingBottom: this.state.height ,backgroundColor:'white'}}
 			>
 				<TabNavigator.Item
 					selected={this.state.selectedTab === 'search'}
@@ -64,7 +66,7 @@ export default class Tabs extends Component{
 				</TabNavigator.Item>
 				<TabNavigator.Item
 					selected={this.state.selectedTab === 'create'}
-					onPress={() =>this.setState({ selectedTab: 'create' })}
+					onPress={() =>buttonClicks({action:'plusTab'})}
 					renderIcon={()=><Image source={{uri:'create',isStatic:true}} style={{height:22,width:22}}/>}
 					renderSelectedIcon={()=><Image source={{uri:'createA',isStatic:true}} style={{height:22,width:22}}/>}
 				>
@@ -76,7 +78,7 @@ export default class Tabs extends Component{
 					renderIcon={()=><Image source={{uri:'notif',isStatic:true}} style={{height:20,width:18}}/>}
 					renderSelectedIcon={()=><Image source={{uri:'notifA',isStatic:true}} style={{height:20,width:18}}/>}
 				>
-					<View style={{flex:1,backgroundColor:'white'}}/>
+					<NotificationsTab/>
 				</TabNavigator.Item>
 				<TabNavigator.Item
 					selected={this.state.selectedTab === 'profile'}
