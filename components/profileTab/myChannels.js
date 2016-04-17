@@ -6,15 +6,16 @@ let {
   Text,
   View
 } =React;
-export default class Settings extends Component{
+import ChannelsByTopic from '../chatsTab/channelsByTopic'
+export default class MyChannels extends Component{
 	state={};
 	render(){
 		return (
 
-			<View style={{backgroundColor:'#0F3057',height:568*h}}/>
+			<ChannelsByTopic/>
 
 			)
 	}
 
 };
-Object.assign(Settings.prototype, TimerMixin);
+Object.assign(MyChannels.prototype, TimerMixin);

@@ -6,7 +6,7 @@ let {
   Text,
   View
 } =React;
-export default class Settings extends Component{
+export default class Saved extends Component{
 	state={};
 	render(){
 		return (
@@ -17,4 +17,4 @@ export default class Settings extends Component{
 	}
 
 };
-Object.assign(Settings.prototype, TimerMixin);
+Object.assign(Saved.prototype, TimerMixin);

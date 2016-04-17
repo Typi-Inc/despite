@@ -33,7 +33,7 @@ export default class Topics extends Component{
 				          	this.scroll.scrollTo({x: i*25*k, y:0, animated: true})
 				          	this.props.goToPage(i)}} >
 								<Text  name={tab} style={{height:40,
-									paddingTop:20,fontSize:15,
+									paddingTop:20,fontSize:15,fontWeight:this.props.activeTab===i?'500':'400',
 									color:this.props.activeTab===i?'black':'rgb(160,160,160)',
 									marginLeft:5*k,marginRight:5*k,alignSelf:'center'}}> {tab}</Text>
 							</TouchableWithoutFeedback>
