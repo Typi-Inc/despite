@@ -18,7 +18,7 @@ export default class ChannelSearchInput extends Component{
 					width:250*k,height:33,borderRadius:5,borderColor:'rgb(230,230,230)',borderWidth:1}}
 			   	value={this.state.text}
                 onFocus={()=>{buttonClicks({action:'searchInput is focused'})}}
-                onBlur={buttonClicks({action:'searchInput is blurred'})}
+                onBlur={()=>buttonClicks({action:'searchInput is blurred'})}
                 placeholder={'#'+this.props.info.title}
                 placeholderTextColor={'rgb(120,120,120)'}
                 onChange={(event) => {

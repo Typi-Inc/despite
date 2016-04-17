@@ -9,7 +9,7 @@ let {
 export default class MessagePlaceholder extends Component{
 	state={};
 	render(){
-		let gray='rgb(200,200,200)'
+		let gray='rgb(230,230,230)'
 		return (
 
 			<View style={{flex:1}}>
@@ -20,18 +20,18 @@ export default class MessagePlaceholder extends Component{
 						<View style={{flexDirection:'row',}}>
 							<View style={{backgroundColor:gray,borderRadius:5*k,width:35*k,height:35*k,margin:2}}/>
 							<View>
-								<View style={{backgroundColor:gray,borderRadius:1*k,width:120*k,height:12*k,margin:4}}/>
-								<View style={{backgroundColor:gray,borderRadius:1*k,width:50*k,height:3*k,margin:4}}/>
+								<View style={{backgroundColor:gray,borderRadius:4*k,width:120*k,height:12*k,margin:4}}/>
+								<View style={{backgroundColor:gray,borderRadius:4*k,width:50*k,height:3*k,margin:4}}/>
 							</View>
 						</View>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:50*k,height:3*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:50*k,height:3*k,margin:5}}/>
 					</View>
 				</View>
 				<View style={{margin:8,marginRight:0,marginLeft:7,
@@ -43,23 +43,23 @@ export default class MessagePlaceholder extends Component{
 						<View style={{flexDirection:'row',}}>
 							<View style={{backgroundColor:gray,borderRadius:5*k,width:35*k,height:35*k,margin:2}}/>
 							<View>
-								<View style={{backgroundColor:gray,borderRadius:1*k,width:120*k,height:12*k,margin:4}}/>
-								<View style={{backgroundColor:gray,borderRadius:1*k,width:50*k,height:3*k,margin:4}}/>
+								<View style={{backgroundColor:gray,borderRadius:4*k,width:120*k,height:12*k,margin:4}}/>
+								<View style={{backgroundColor:gray,borderRadius:4*k,width:50*k,height:3*k,margin:4}}/>
 							</View>
 
 						</View>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
 					
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:50*k,height:3*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:50*k,height:3*k,margin:5}}/>
 					</View>
 				</View>
 				<View style={{margin:8,marginRight:0,marginLeft:7,
@@ -71,19 +71,17 @@ export default class MessagePlaceholder extends Component{
 						<View style={{flexDirection:'row',}}>
 							<View style={{backgroundColor:gray,borderRadius:5*k,width:35*k,height:35*k,margin:2}}/>
 							<View>
-								<View style={{backgroundColor:gray,borderRadius:1*k,width:120*k,height:12*k,margin:4}}/>
-								<View style={{backgroundColor:gray,borderRadius:1*k,width:50*k,height:3*k,margin:4}}/>
+								<View style={{backgroundColor:gray,borderRadius:4*k,width:120*k,height:12*k,margin:4}}/>
+								<View style={{backgroundColor:gray,borderRadius:4*k,width:50*k,height:3*k,margin:4}}/>
 							</View>
 
 						</View>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:1*k,width:50*k,height:3*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
+						
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:50*k,height:3*k,margin:5}}/>
 					</View>
 				</View>
 

@@ -46,7 +46,10 @@ export default class Tube extends Component{
 
 	componentWillMount(){
 		this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
-       		 if(x.action==='searchInput is focused') this.setState({disable:true})
+       		 if(x.action==='searchInput is focused') {
+       		 	if(this.keyboardHeight>0) this.hide()
+       		 	this.setState({disable:true})
+       		 }
        		 else if(x.action==='searchInput is blurred') this.setState({disable:false})
     	})
 	  	this._keyboardWillShowSubscription= DeviceEventEmitter.addListener('keyboardWillShow', this.show.bind(this));
@@ -71,11 +74,17 @@ export default class Tube extends Component{
 			this.contentOffset=1
 		}
 	}
+	generateRandomColor(){
+		return `rgb(${Math.rand()*255},${Math.rand()*255},${Math.rand()*255})`
+	}
 	
 	render(){
 		this.keyboardHeight=this.keyboardHeight || 0
 		if(this.state.loading){
-			return <MessagePlaceholder/>
+			return <View style={{flex:1}}><MessagePlaceholder/>
+
+
+			</View>
 		}
 		LayoutAnimation.configureNext(openAnimation)
 		return (
@@ -102,16 +111,7 @@ export default class Tube extends Component{
 					<Message color={'#F5A623'}/>
 					<Message color={'#BD10E0'}/>
 					<Message color={'#4A90E2'}/>
-					<Message color={'#4A90E2'}/>
-					<Message color={'#4A90E2'}/>
-					<Message color={'#D0021B'}/>
-					<Message color={'#F5A623'}/>
-					<Message color={'#BD10E0'}/>
-					<Message color={'#4A90E2'}/>
-					<Message color={'#4A90E2'}/>
-					<Message color={'#D0021B'}/>
-					
-
+		
 
 
 					<View ref={(el)=>this.t=el} style={{height:50*k}}/>

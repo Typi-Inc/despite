@@ -43,7 +43,9 @@ export default class SlideUpInput extends Component{
 	componentWillMount(){
 	  	this.windowHeight=Dimensions.get('window').height
 	  	this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
-        if(x.action==='searchInput is focused') this.setState({disable:true})
+        if(x.action==='searchInput is focused') {
+          this.hide()
+          this.setState({disable:true})}
         else if(x.action==='searchInput is blurred') this.setState({disable:false})
         else if (x.action==='reply pressed') this.reply(x.to)
       })
@@ -76,7 +78,7 @@ export default class SlideUpInput extends Component{
               style={{backgroundColor:'white',marginBottom:0,
              	 height:Math.max(43*k, (12*k+this.state.height)),borderTopWidth:.5,
               	flexDirection:'row',justifyContent:'flex-start',alignItems:'flex-end',
-                borderColor:'rgb(180,180,180)',width:320*k,}}>
+                borderColor:'rgb(170,170,170)',width:320*k,}}>
                   <TextInput
                     ref={el=>this.textInput=el}
                     style={{height: Math.max(30*k, this.state.height),marginLeft:7,flex:5,
@@ -84,7 +86,7 @@ export default class SlideUpInput extends Component{
                       borderColor: '#BD10E0', borderLeftWidth:2,justifyContent:'flex-start',
                       alignSelf:'center',width:240*k,paddingLeft:10*k,paddingBottom:4*k}}
                     value={this.state.text}
-                    onFocus={()=>{console.log('focus')}}
+                    // onFocus={()=>{console.log('focus')}}
                     onChange={(event) => {
                       // event.nativeEvent.text.length===0?this.submit.setNativeProps({style:{backgroundColor:'gray'}}):this.submit.setNativeProps({style:{backgroundColor:'#0084b4'}})
                       LayoutAnimation.configureNext(veryFast)
@@ -99,6 +101,7 @@ export default class SlideUpInput extends Component{
                     // clearButtonMode={'while-editing'}
                     multiline={true}
                     placeholder={'Начать разговор'}
+                    placeholderTextColor={'rgb(160,160,160)'}
                     />
                     {/\S/.test(this.state.text) && !this.state.replyAction?<Text onPress={()=>this.textInput.blur()} style={[s.blueText,{
                     	color:'#BD10E0',fontWeight:'600',flex:1,marginRight:5,//alignSelf:'center',

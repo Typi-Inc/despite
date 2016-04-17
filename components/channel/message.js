@@ -26,7 +26,7 @@ export default class Message extends Component{
 								<Image source={{uri:'http://www.binarytradingforum.com/core/image.php?userid=27&dateline=1355305878'}} 
 								style={{borderRadius:5*k,width:35*k,height:35*k}}/>
 								<View style={{margin:5}}>	
-									<Text style={{fontSize:18,fontWeight:'bold',color:'rgb(80,80,80)'}}>Johnnrdino</Text>
+									<Text style={{fontSize:16,fontWeight:'bold',color:'rgb(80,80,80)'}}>Johnnrdino</Text>
 									<Text style={s.smallGreyText}>12:54</Text>
 
 								</View>

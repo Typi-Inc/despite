@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
     marginRight:3*k
   },
   viewTitle:{
-    fontWeight:'400',
     fontSize:18
   }
 

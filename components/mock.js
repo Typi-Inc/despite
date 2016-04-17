@@ -34,7 +34,47 @@ export let channelList=[
 	memberCount:123,currentlyOnline:12},
 	{color:'#D0021B',title:'fukcked',image:'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR_uvGQvbqhAUfsqpzowejAb-fD_C6swvo3FSDIUFAf6QKa-Vn6',
 	memberCount:123,currentlyOnline:12},
-
-
-
 ]
+
+// export let messages=[
+// 	{author:{name:'Arthur',image:''},
+// 	content:{type:,body:},
+// 	createdAt:,karma:,color:''},
+// 	{author:{name:'Arthur',image:''},
+// 	content:{type:,body:},
+// 	createdAt:,karma:,color:''},
+// 	{author:{name:'Arthur',image:''},
+// 	content:{type:,body:},
+// 	createdAt:,karma:,color:''},
+// 	{author:{name:'Arthur',image:''},
+// 	content:{type:,body:},
+// 	createdAt:,karma:,color:''},
+// 	{author:{name:'Arthur',image:''},
+// 	content:{type:,body:},
+// 	createdAt:,karma:,color:''},
+// 	{author:{name:'Arthur',image:''},
+// 	content:{type:,body:},
+// 	createdAt:,karma:,color:''},
+// 	{author:{name:'Arthur',image:''},
+// 	content:{type:,body:},
+// 	createdAt:,karma:,color:''},
+// 	{author:{name:'Arthur',image:''},
+// 	content:{type:,body:},
+// 	createdAt:,karma:,color:''},
+// 	{author:{name:'Arthur',image:''},
+// 	content:{type:,body:},
+// 	createdAt:,karma:,color:''},
+// 	{author:{name:'Arthur',image:''},
+// 	content:{type:,body:},
+// 	createdAt:,karma:,color:''},
+// 	{author:{name:'Arthur',image:''},
+// 	content:{type:,body:},
+// 	createdAt:,karma:,color:''},
+// 	{author:{name:'Arthur',image:''},
+// 	content:{type:,body:},
+// 	createdAt:,karma:,color:''},
+
+
+
+
+// ]

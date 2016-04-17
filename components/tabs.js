@@ -20,8 +20,9 @@ import {buttonClicks} from '../actions/buttonClicks'
 import {openAnimation} from './animations'
 import TabNavigator from 'react-native-tab-navigator'
 import NotificationsTab from './notificationTab/notificationsTab'
+import ProfileNavigation from './profileTab/profileNaivgation'
 export default class Tabs extends Component{
-	state={height:50,overflow:'visible',selectedTab:'chats'};
+	state={height:50,overflow:'visible',selectedTab:'profile'};
 	// static childContextTypes={toggleTabs:React.PropTypes.func,tabsHidden:React.PropTypes.func};
 	tabsHidden(){
 		return this.state.height===0
@@ -47,6 +48,15 @@ export default class Tabs extends Component{
 			    tabBarStyle={{height:this.state.height,overflow:this.state.overflow,backgroundColor:'black'}}
 				sceneStyle={{paddingBottom: this.state.height ,backgroundColor:'white'}}
 			>
+				
+				<TabNavigator.Item
+					selected={this.state.selectedTab === 'chats'}
+					onPress={() =>this.setState({ selectedTab: 'chats' })}
+					renderIcon={()=><Image source={{uri:'chats',isStatic:true}} style={{height:19,width:19}}/>}
+					renderSelectedIcon={()=><Image source={{uri:'chatA',isStatic:true}} style={{height:19,width:19}}/>}
+				>
+					<TopicPager/>
+				</TabNavigator.Item>
 				<TabNavigator.Item
 					selected={this.state.selectedTab === 'search'}
 					onPress={() =>this.setState({ selectedTab: 'search' })}
@@ -60,14 +70,6 @@ export default class Tabs extends Component{
 			            	return Navigator.SceneConfigs.PushFromRight
 			            }}
 					/>
-				</TabNavigator.Item>
-				<TabNavigator.Item
-					selected={this.state.selectedTab === 'chats'}
-					onPress={() =>this.setState({ selectedTab: 'chats' })}
-					renderIcon={()=><Image source={{uri:'chats',isStatic:true}} style={{height:19,width:19}}/>}
-					renderSelectedIcon={()=><Image source={{uri:'chatA',isStatic:true}} style={{height:19,width:19}}/>}
-				>
-					<TopicPager/>
 				</TabNavigator.Item>
 				<TabNavigator.Item
 					selected={this.state.selectedTab === 'create'}
@@ -91,7 +93,7 @@ export default class Tabs extends Component{
 					renderIcon={()=><Image source={{uri:'profile',isStatic:true}} style={{height:19,width:19}}/>}
 					renderSelectedIcon={()=><Image source={{uri:'profileA',isStatic:true}} style={{height:19,width:19}}/>}
 				>
-					<View style={{flex:1,backgroundColor:'green'}}/>
+					<ProfileNavigation/>
 				</TabNavigator.Item>
 			</TabNavigator>
 

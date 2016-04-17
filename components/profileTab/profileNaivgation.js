@@ -1,35 +1,35 @@
 import TimerMixin from 'react-timer-mixin'
 import React from 'react-native'; 
+import s from '../../styles'
 let {
   AppRegistry,
   Component,
   View,
+  Text,
   Navigator,
 } =React;
-import Channel from './channel'
-import BackButton from './backButton'
+import BackButton from '../channel/backButton'
 import dismissKeyboard from 'dismissKeyboard'
+import Profile from './profile'
+import Settings from './profile'
 import {buttonClicks$,buttonClicks} from '../../actions/buttonClicks'
 var RCTStatusBarManager = require('NativeModules').StatusBarManager;
-import ChannelSearchInput from './channelSearchInput'
-import Line from './line'
-import ChannelMenuButton from './channelMenuButton'
 let NavigationBarRouteMapper={
 		LeftButton(route, navigator, index, navState){
-			if(route.name==='channel'){
-				return <BackButton index={index} route={route}/>
+			if(route.name==='profileTab'){
+				return null
 			}
 			return <BackButton index={index} route={route} navigator={navigator}/>
 		},
 		RightButton(route, navigator, index, navState){
-			return <ChannelMenuButton route={route}/>
+			return null
 		},
 		Title(route, navigator, index, navState){
-			if(route.name==='line') return <ChannelSearchInput info={{title:'inline'}} index={index}/>
-			return <ChannelSearchInput info={route.info} index={index}/>
+			if(route.name==='profileTab') return 	<View style={{paddingTop:10}}><Text style={s.viewTitle}>Profile</Text></View>
+			return null
 		}
 	}
-export default class ChannelNavigation extends Component{
+export default class ProfileNavigation extends Component{
 	state={height:0,statusBarHeight:20};
 	componentWillMount(){
 		this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
@@ -43,10 +43,10 @@ export default class ChannelNavigation extends Component{
 		this.buttonClicksSubscription.unsubscribe()
 	}
 	renderChannel(route,navigator){
-		if(route.name==='channel'){
-			return <Channel/>
-		}else if(route.name==='line'){
-			return <Line color={route.routeInfo.color}/>
+		if(route.name==='profileTab'){
+			return <Profile/>
+		}else if(route.name==='settings'){
+			return <Settings/>
 		}
 	}
 	setHeightOfNavigation(height){
@@ -57,8 +57,7 @@ export default class ChannelNavigation extends Component{
 			<Navigator 
 				style={{paddingTop:65}}
 				ref={el=>this.nav=el}
-				navigator={this.props.navigator}
-				initialRoute={{name:'channel',info:this.props.routeInfo}}
+				initialRoute={{name:'profileTab',info:this.props.routeInfo}}
 				renderScene={this.renderChannel.bind(this)}
 				navigationBar={
 					<Navigator.NavigationBar
@@ -71,4 +70,4 @@ export default class ChannelNavigation extends Component{
 			)
 	}
 };
-Object.assign(ChannelNavigation.prototype, TimerMixin);
+Object.assign(ProfileNavigation.prototype, TimerMixin);
