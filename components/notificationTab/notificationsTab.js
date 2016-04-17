@@ -26,6 +26,10 @@ export default class NotificationsTab extends Component{
 					<Notification notification={{type:'mention',message:'dumb ass'}}/>
 					<Notification notification={{type:'mention',message:'a invite you here'}}/>
 					<Notification notification={{type:'mention',message:'love yourself'}}/>
+					<Notification notification={{type:'mention',message:'hello world'}}/>
+					<Notification notification={{type:'mention',message:'dumb ass'}}/>
+					<Notification notification={{type:'mention',message:'a invite you here'}}/>
+					<Notification notification={{type:'mention',message:'love yourself'}}/>
  
 
 				</ScrollView>

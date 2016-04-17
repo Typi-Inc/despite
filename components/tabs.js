@@ -41,6 +41,19 @@ export default class Tabs extends Component{
 			return <View style={{flex:1,backgroundColor:'rd'}} navigator={navigator}/>
 		}
 	}
+	renderNotificationBadge(){
+		return <View style={{height:6,width:6,backgroundColor:'#F59C0B',borderRadius:5,left:15,top:-5}}/>
+	}
+	hideNotificationBadge(){
+		return <View/>
+	}
+	notificationPress(){
+		this.setState({ selectedTab: 'activity',hideBadge:true })
+		this.setTimeout(()=>{
+			if(this.state.selectedTab!=='activity') this.setState({hideBadge:false})
+			
+		},5000)
+	}
 	render(){
 		LayoutAnimation.configureNext(openAnimation)
 		return (
@@ -81,9 +94,10 @@ export default class Tabs extends Component{
 				</TabNavigator.Item>
 				<TabNavigator.Item
 					selected={this.state.selectedTab === 'activity'}
-					onPress={() =>this.setState({ selectedTab: 'activity' })}
+					onPress={() =>this.notificationPress()}
 					renderIcon={()=><Image source={{uri:'notif',isStatic:true}} style={{height:20,width:18}}/>}
 					renderSelectedIcon={()=><Image source={{uri:'notifA',isStatic:true}} style={{height:20,width:18}}/>}
+					renderBadge={this.state.hideBadge?this.hideNotificationBadge:this.renderNotificationBadge.bind(this)}
 				>
 					<NotificationsTab/>
 				</TabNavigator.Item>

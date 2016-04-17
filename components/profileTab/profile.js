@@ -41,7 +41,7 @@ export default class Profile extends Component{
 
 					<View style={{backgroundColor:'white',flexDirection:'row',height:100*k,width:320*k,padding:10,alignItems:'center'}}>
 						<Image source={{uri:'http://www.binarytradingforum.com/core/image.php?userid=27&dateline=1355305878'}} 
-								style={{borderRadius:5*k,width:60*k,height:60*k}}/>
+								style={{borderRadius:5*k,width:65*k,height:65*k}}/>
 						<View style={{margin:10,width:150*k,}}>
 							<Text style={{fontSize:16,fontWeight:'bold',color:'rgb(80,80,80)'}}>Johnnrdino</Text>
 							<Text style={{fontSize:14,fontWeight:'500',color:'rgb(80,80,80)',marginTop:5}}>Karma: 456</Text>
