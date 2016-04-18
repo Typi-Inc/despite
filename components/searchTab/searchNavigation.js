@@ -28,7 +28,7 @@ let NavigationBarRouteMapper={
 	},
 	Title(route, navigator, index, navState){
 		if(route.name==='searchTab') return <SearchInput/>
-		if(route.name==='channels') return <View style={{paddingTop:10,width:280*k,...center}}><Text style={s.viewTitle}>{route.title}</Text></View>
+		if(route.name==='channels') return <View style={{paddingTop:10,width:300*k,...center,height:70,paddingBottom:35}}><Text style={s.viewTitle}>{route.title}</Text></View>
 		return null
 	
 	}
