@@ -19,6 +19,10 @@ export default class NavigationTitle extends Component{
 			}
 		})
 	}
+	shouldComponentUpdate(nextProps,nextState){
+		if (this.state!==nextState) return true
+		return false
+	}
 	componentWillUnmount(){
 		this.buttonClicksSubscription.unsubscribe()
 	}

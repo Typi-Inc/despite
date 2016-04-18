@@ -30,7 +30,7 @@ export default class SearchInput extends Component{
   render(){
     return (
       <View style={{flexDirection:'row',alignItems:'center'}}>
-      <TextInput ref={el=>this.input=el} autoCorrect={false}
+      <TextInput ref={el=>this.input=el} autoCorrect={false} clearButtonMode={'while-editing'}
         style={{paddingLeft:10,marginTop:5,marginLeft:10*k,marginRight:10*k,backgroundColor:'rgb(240,240,240)',fontWeight:'900',
           width:300*k,height:40,borderRadius:5}}
           // value={this.state.text}
@@ -45,8 +45,9 @@ export default class SearchInput extends Component{
                     
                   }}
       
+      
       />
-      <Text onPress={this.cancel.bind(this)} style={{fontSize:0.1,marginRight:4*k}} ref={el=>this.cancelText=el}>Cancel</Text>
+      <Text onPress={this.cancel.bind(this)} style={{fontWeight:'500',fontSize:0.1,marginRight:7*k,marginTop:4,color:'rgb(80,80,80)'}} ref={el=>this.cancelText=el}>Cancel</Text>
 
 
       </View>

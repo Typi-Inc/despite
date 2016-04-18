@@ -10,6 +10,7 @@ let {
   LayoutAnimation,
   View
 } =React;
+import ChannelsPlaceholder from './channelsPlaceholder'
 import {openAnimation} from '../animations'
 import {channelList} from '../mock'
 import ChannelItem from './channelItem'
@@ -21,7 +22,7 @@ export default class ChannelsByTopic extends Component{
 			})
 	}
 	render(){
-		if(this.state.loading) return <View style={{flex:1,backgroundColor:'white'}}/>
+		if(this.state.loading) return <ChannelsPlaceholder/>
 		LayoutAnimation.configureNext(openAnimation)
 		return (
 			<View style={{flex:1,backgroundColor:'white'}}>

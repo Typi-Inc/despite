@@ -11,6 +11,7 @@ let {
   View
 } =React;
 import Topic from './topic'
+import {topics} from '../mock'
 export default class SearchTab extends Component{
 	state={};
 	render(){
@@ -19,9 +20,7 @@ export default class SearchTab extends Component{
 			<View style={{flex:1}}>
 				<ScrollView contentContainerStyle={{marginTop:10}}>
 
-					{['Здоровье','Интересное','Обо всем','Для женщин','Дизайн','Мода','Мой босс','Секретики','Путешествия','Куда сходить?','Места','Строительство','Что рядом?','Стрижка','Женская мода','Домашние животные',
-					'Архитектура','Исскуство','Машина','Знаменитости','Подарки','Коллекции','Мотоциклы','Куда сводить девушку?','Истории','Фотографы','Продукты','Татухи','Тэйлор Свифт','Цитаты','Спорт','Хозяйтсвенные',
-					'Свадьба','Любовь','Технологии','Индустрия','Наука','Шутки',].map((topic)=>{
+					{topics.map((topic)=>{
 
 						return <Topic topic={topic}/>
 					})}
