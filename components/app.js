@@ -12,6 +12,8 @@ let {
   Navigator,
 
 } =React;
+import dismissKeyboard from 'dismissKeyboard'
+
 var RCTStatusBarManager = require('NativeModules').StatusBarManager;
 import BlackScreen from './searchTab/blackScreen'
 // import Tube from './tube'
@@ -49,6 +51,7 @@ export default class App extends Component{
 					if(route.name==='createChannel') return Navigator.SceneConfigs.FloatFromBottom
 					return Navigator.SceneConfigs.PushFromRight
 				}}
+				onWillFocus={(e)=>dismissKeyboard()}
 				renderScene={this.renderApp.bind(this)}
 				style={{paddingTop:this.statusBarHeight,backgroundColor:'black'}}
 				

@@ -19,6 +19,7 @@ import Invite from './invite'
 import ChannelSettings from './channelSettings'
 import BackButton from '../channel/backButton'
 import dismissKeyboard from 'dismissKeyboard'
+import CrossBackButton from '../searchTab/crossBackButton'
 import {buttonClicks$,buttonClicks} from '../../actions/buttonClicks'
 var RCTStatusBarManager = require('NativeModules').StatusBarManager;
 let NavigationBarRouteMapper={
@@ -27,12 +28,13 @@ let NavigationBarRouteMapper={
 				// if(index===1){
 				// 	buttonClicks({action:'from channel to topicPager'})
 				// }
-				return <BackButton index={index} route={route}/>
+				return <CrossBackButton index={index} route={route}/>
 			}
 			return <BackButton index={index} route={route} navigator={navigator}/>
 		},
 		RightButton(route, navigator, index, navState){
-
+			if(route.name==='createChannel') return <TouchableOpacity>
+				<Text style={{fontSize:14,alignSelf:'center',margin:8,marginTop:13}}>Сохранить</Text></TouchableOpacity>
 			return null		
 		},
 		Title(route, navigator, index, navState){

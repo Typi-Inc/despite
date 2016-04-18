@@ -11,6 +11,7 @@ let {
   TouchableOpacity,
   ScrollView,
   Image,
+  StatusBarIOS,
   View
 } =React;
 import Channel from './channel/channel'
@@ -33,6 +34,7 @@ export default class Tabs extends Component{
   	}
   	componentWillMount(){
   		// LayoutAnimation.configureNext(openAnimation)
+  		StatusBarIOS.setStyle('default')
   	}
 	renderNotificationBadge(){
 		return <View style={{height:6,width:6,backgroundColor:'#F59C0B',borderRadius:5,left:15,top:-5}}/>
