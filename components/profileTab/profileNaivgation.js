@@ -8,15 +8,13 @@ let {
   Text,
   Navigator,
 } =React;
+import SettingsButton from './settingsButton'
 import BackButton from '../channel/backButton'
 import dismissKeyboard from 'dismissKeyboard'
 import Profile from './profile'
 import Settings from './settings'
 import Edit from './edit'
-import Directs from './directs'
-import Business from './business'
-import Saved from './saved'
-import MyChannels from './myChannels'
+import NavigationTitle from './navigationTitle'
 import {buttonClicks$,buttonClicks} from '../../actions/buttonClicks'
 var RCTStatusBarManager = require('NativeModules').StatusBarManager;
 let NavigationBarRouteMapper={
@@ -27,19 +25,25 @@ let NavigationBarRouteMapper={
 			return <BackButton index={index} route={route} navigator={navigator}/>
 		},
 		RightButton(route, navigator, index, navState){
+			if(route.name==='profileTab') return <SettingsButton/>
 			return null
 		},
 		Title(route, navigator, index, navState){
+			if(route.name==='profileTab') return <NavigationTitle route={route}/>
 			return 	<View style={{paddingTop:10}}><Text style={s.viewTitle}>{route.title}</Text></View>
 		
 		}
 	}
 export default class ProfileNavigation extends Component{
-	state={height:0,statusBarHeight:20};
+	state={height:0,statusBarHeight:20,width:0.5};
 	componentWillMount(){
 		this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
 			if(x.action==='navigation push' && x.nav==='profileNav'){
 				this.nav&&this.nav.push({name:x.name,routeInfo:x.info,title:x.title})
+			}else if(x.action==='create border'){
+				this.setState({width:0.5})
+			}else if(x.action==='delete border'){
+				this.setState({width:0})
 			}
 		})
 	  	RCTStatusBarManager.getHeight((e)=>this.setState({statusBarHeight:e.height}))
@@ -52,14 +56,6 @@ export default class ProfileNavigation extends Component{
 			return <Profile/>
 		}else if(route.name==='settings'){
 			return <Settings/>
-		}else if(route.name==='directs'){
-			return <Directs/>
-		}else if(route.name==='myChannels'){
-			return <MyChannels/>
-		}else if(route.name==='saved'){
-			return <Saved/>
-		}else if(route.name==='business'){
-			return <Business/>
 		}else if(route.name==='edit'){
 			return <Edit/>
 		}
@@ -83,7 +79,7 @@ export default class ProfileNavigation extends Component{
 					<Navigator.NavigationBar
 						ref={el=>this.navBar=el}
 			            routeMapper={NavigationBarRouteMapper}
-			            style={{height:65,backgroundColor:'white',borderBottomWidth:.5,borderColor:'rgb(215,215,215)'}}
+			            style={{height:65,backgroundColor:'white',borderBottomWidth:this.state.width,borderColor:'rgb(215,215,215)'}}
 			          />
 				}
 			/>

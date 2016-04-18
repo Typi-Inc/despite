@@ -19,7 +19,6 @@ export default class AddHooks extends Component{
 
 	}
 	createChannel(info){
-		console.log('here')
 		buttonClicks({action:'close'})
 		buttonClicks({action:'navigation push',nav:'topNav',name:'createChannel',info:info})
 	}

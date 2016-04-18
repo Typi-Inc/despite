@@ -9,10 +9,11 @@ let {
   View,
   TouchableOpacity,
   Image,
-  Navigator
+  Navigator,
+
 } =React;
 var RCTStatusBarManager = require('NativeModules').StatusBarManager;
-
+import BlackScreen from './searchTab/blackScreen'
 // import Tube from './tube'
 // import Message from './message'
 import SmallViewer from './channel/smallViewer'
@@ -53,6 +54,7 @@ export default class App extends Component{
 				
 			/>
 			<SmallViewer/>
+			<BlackScreen/>
 			</View>
 			)
 	}

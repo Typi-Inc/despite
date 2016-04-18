@@ -12,6 +12,7 @@ let {
   ScrollView,
   Image
 } =React;
+import s from '../../styles'
 import CreateChannel from './createChannel'
 import AddTags from './addTags'
 import Invite from './invite'
@@ -35,7 +36,8 @@ let NavigationBarRouteMapper={
 			return null		
 		},
 		Title(route, navigator, index, navState){
-			return null
+
+			return <View style={{paddingTop:10}}><Text style={s.viewTitle}>{route.title}</Text></View>
 		}
 
 	}
@@ -84,7 +86,7 @@ export default class ChannelNavigation extends Component{
 				style={{paddingTop:65}}
 				ref={el=>this.nav=el}
 				navigator={this.props.navigator}
-				initialRoute={{name:'createChannel',info:this.props.routeInfo}}
+				initialRoute={{name:'createChannel',info:this.props.routeInfo,title:'Create channel'}}
 				renderScene={this.renderCreateChannel.bind(this)}
 				navigationBar={
 					<Navigator.NavigationBar

@@ -21,8 +21,9 @@ import {openAnimation} from './animations'
 import TabNavigator from 'react-native-tab-navigator'
 import NotificationsTab from './notificationTab/notificationsTab'
 import ProfileNavigation from './profileTab/profileNaivgation'
+import SearchNavigation from './searchTab/searchNavigation'
 export default class Tabs extends Component{
-	state={height:50,overflow:'visible',selectedTab:'profile'};
+	state={height:50,overflow:'visible',selectedTab:'search'};
 	// static childContextTypes={toggleTabs:React.PropTypes.func,tabsHidden:React.PropTypes.func};
 	tabsHidden(){
 		return this.state.height===0
@@ -33,14 +34,6 @@ export default class Tabs extends Component{
   	componentWillMount(){
   		// LayoutAnimation.configureNext(openAnimation)
   	}
-	renderChats(route,navigator){
-		if(route.name==='chats'){
-			return <Channel/>
-		}else if(route.name==='deal'){
-			
-			return <View style={{flex:1,backgroundColor:'rd'}} navigator={navigator}/>
-		}
-	}
 	renderNotificationBadge(){
 		return <View style={{height:6,width:6,backgroundColor:'#F59C0B',borderRadius:5,left:15,top:-5}}/>
 	}
@@ -53,6 +46,9 @@ export default class Tabs extends Component{
 			if(this.state.selectedTab!=='activity') this.setState({hideBadge:false})
 			
 		},5000)
+	}
+	createChannel(){
+		buttonClicks({action:'navigation push',nav:'topNav',name:'createChannel'})
 	}
 	render(){
 		LayoutAnimation.configureNext(openAnimation)
@@ -73,20 +69,14 @@ export default class Tabs extends Component{
 				<TabNavigator.Item
 					selected={this.state.selectedTab === 'search'}
 					onPress={() =>this.setState({ selectedTab: 'search' })}
-					renderIcon={()=><Image source={{uri:'search',isStatic:true}} style={{height:19,width:19}}/>}
-					renderSelectedIcon={()=><Image source={{uri:'searchA',isStatic:true}} style={{height:19,width:19}}/>}
+					renderIcon={()=><Image source={{uri:'search',isStatic:true}} style={{height:20,width:20}}/>}
+					renderSelectedIcon={()=><Image source={{uri:'searchA',isStatic:true}} style={{height:20,width:20}}/>}
 				>
-					<Navigator ref={el=>this.featureNav=el}
-						initialRoute={{name:'chats'}}
-						renderScene={this.renderChats.bind(this)}
-						configureScene={(route,routeStack)=> {		
-			            	return Navigator.SceneConfigs.PushFromRight
-			            }}
-					/>
+					<SearchNavigation/>
 				</TabNavigator.Item>
 				<TabNavigator.Item
 					selected={this.state.selectedTab === 'create'}
-					onPress={() =>buttonClicks({action:'plusTab'})}
+					onPress={() =>this.createChannel()}
 					renderIcon={()=><Image source={{uri:'create',isStatic:true}} style={{height:22,width:22}}/>}
 					renderSelectedIcon={()=><Image source={{uri:'createA',isStatic:true}} style={{height:22,width:22}}/>}
 				>

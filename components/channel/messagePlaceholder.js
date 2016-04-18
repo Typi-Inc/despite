@@ -14,7 +14,7 @@ export default class MessagePlaceholder extends Component{
 
 			<View style={{flex:1}}>
 				<View style={{margin:8,marginRight:0,marginLeft:7,
-						borderColor:gray,borderLeftWidth:2,
+						borderColor:gray,borderLeftWidth:2,marginTop:10,
 						paddingLeft:5,paddingBottom:0,paddingTop:0}}>
 					<View>
 						<View style={{flexDirection:'row',}}>

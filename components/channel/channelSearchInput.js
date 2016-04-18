@@ -14,13 +14,13 @@ export default class ChannelSearchInput extends Component{
 		return (
 
 			<TextInput
-				style={{paddingLeft:10,marginTop:5,marginLeft:35,backgroundColor:'rgb(230,230,230)',
-					width:250*k,height:33,borderRadius:5,borderColor:'rgb(230,230,230)',borderWidth:1}}
+				style={{paddingLeft:10,marginTop:5,marginLeft:35,backgroundColor:'rgb(240,240,240)',
+					width:250*k,height:33,borderRadius:5,}}
 			   	value={this.state.text}
                 onFocus={()=>{buttonClicks({action:'searchInput is focused'})}}
                 onBlur={()=>buttonClicks({action:'searchInput is blurred'})}
                 placeholder={'#'+this.props.info.title}
-                placeholderTextColor={'rgb(120,120,120)'}
+                placeholderTextColor={'rgb(140,140,140)'}
                 onChange={(event) => {
                   // event.nativeEvent.text.length===0?this.submit.setNativeProps({style:{backgroundColor:'gray'}}):this.submit.setNativeProps({style:{backgroundColor:'#0084b4'}})
                     this.setState({

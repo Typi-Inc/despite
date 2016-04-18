@@ -58,6 +58,7 @@ export default class Tube extends Component{
 	  }
 	componentDidMount(){
 		InteractionManager.runAfterInteractions(()=>{
+			LayoutAnimation.configureNext(openAnimation)
 				this.setState({loading:false})
 			})
 	}
@@ -86,7 +87,7 @@ export default class Tube extends Component{
 
 			</View>
 		}
-		LayoutAnimation.configureNext(openAnimation)
+		// LayoutAnimation.configureNext(openAnimation)
 		return (
 			<View style={{flex:1}}>
 				

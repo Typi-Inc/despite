@@ -22,14 +22,14 @@ export default class NotificationsTab extends Component{
 				</View>
 				<ScrollView>
 
-					<Notification notification={{type:'mention',message:'hello world'}}/>
-					<Notification notification={{type:'mention',message:'dumb ass'}}/>
-					<Notification notification={{type:'mention',message:'a invite you here'}}/>
-					<Notification notification={{type:'mention',message:'love yourself'}}/>
-					<Notification notification={{type:'mention',message:'hello world'}}/>
-					<Notification notification={{type:'mention',message:'dumb ass'}}/>
-					<Notification notification={{type:'mention',message:'a invite you here'}}/>
-					<Notification notification={{type:'mention',message:'love yourself'}}/>
+					<Notification backgroundColor={'rgb(255,255,255)'}  notification={{type:'mention',message:'hello world'}}/>
+					<Notification backgroundColor={'rgb(245,245,245)'}  notification={{type:'mention',message:'dumb ass'}}/>
+					<Notification backgroundColor={'rgb(245,245,245)'}  notification={{type:'mention',message:'a invite you here'}}/>
+					<Notification  backgroundColor={'rgb(255,255,255)'} notification={{type:'mention',message:'love yourself'}}/>
+					<Notification  backgroundColor={'rgb(255,255,255)'} notification={{type:'mention',message:'hello world'}}/>
+					<Notification  backgroundColor={'rgb(255,255,255)'} notification={{type:'mention',message:'dumb ass'}}/>
+					<Notification  backgroundColor={'rgb(255,255,255)'} notification={{type:'mention',message:'a invite you here'}}/>
+					<Notification backgroundColor={'rgb(255,255,255)'}  notification={{type:'mention',message:'love yourself'}}/>
  
 
 				</ScrollView>
