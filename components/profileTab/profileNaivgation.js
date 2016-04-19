@@ -25,7 +25,7 @@ let NavigationBarRouteMapper={
 			return <BackButton index={index} route={route} navigator={navigator}/>
 		},
 		RightButton(route, navigator, index, navState){
-			if(route.name==='profileTab') return <SettingsButton/>
+			// if(route.name==='profileTab') return <SettingsButton/>
 			return null
 		},
 		Title(route, navigator, index, navState){
@@ -40,10 +40,6 @@ export default class ProfileNavigation extends Component{
 		this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
 			if(x.action==='navigation push' && x.nav==='profileNav'){
 				this.nav&&this.nav.push({name:x.name,routeInfo:x.info,title:x.title})
-			}else if(x.action==='create border'){
-				this.setState({width:0.5})
-			}else if(x.action==='delete border'){
-				this.setState({width:0})
 			}
 		})
 	  	RCTStatusBarManager.getHeight((e)=>this.setState({statusBarHeight:e.height}))
@@ -58,7 +54,7 @@ export default class ProfileNavigation extends Component{
 			return <Settings/>
 		}else if(route.name==='edit'){
 			return <Edit/>
-		}
+		}else return <Settings/>
 
 	}
 	setHeightOfNavigation(height){

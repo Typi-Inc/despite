@@ -11,6 +11,7 @@ let {
   SegmentedControlIOS,
   View
 } =React;
+import {directs} from '../mock'
 import ChannelsByTopic from '../chatsTab/channelsByTopic'
 import Direct from './direct'
 export default class ChatsTab extends Component{
@@ -41,15 +42,7 @@ export default class ChatsTab extends Component{
 				<Animated.View style={{flex:1,top:75,bottom:0,position:'absolute',left:this.anim.interpolate({inputRange:[0,1],outputRange:[0,320*k]})}}>
 					<ScrollView>
 
-						<Direct notification={{message:'help'}} backgroundColor={'rgb(255,255,255)'}/>
-						<Direct  backgroundColor={'rgb(255,255,255)'}/>
-						<Direct notification={{message:'help'}} backgroundColor={'rgb(255,255,255)'}/>
-						<Direct  backgroundColor={'rgb(255,255,255)'}/>
-						<Direct notification={{message:'help'}} backgroundColor={'rgb(255,255,255)'}/>
-						<Direct  backgroundColor={'rgb(255,255,255)'}/>
-						<Direct notification={{message:'help'}} backgroundColor={'rgb(255,255,255)'}/>
-						<Direct  backgroundColor={'rgb(255,255,255)'}/>
-						
+						{directs.map((direct,i)=><Direct key={i} direct={direct}/>)}
 
 	 
 

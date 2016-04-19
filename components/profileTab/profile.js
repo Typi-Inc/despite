@@ -1,7 +1,5 @@
 import TimerMixin from 'react-timer-mixin'
 import React from 'react-native'; 
-let UIManager = require('NativeModules').UIManager;
-
 let {
   AppRegistry,
   Component,
@@ -9,74 +7,80 @@ let {
   TouchableOpacity,
   ScrollView,
   Image,
-  SegmentedControlIOS,
   View
 } =React;
-import Switcher from './switcher'
 import {buttonClicks} from '../../actions/buttonClicks'
+import TopicPager from '../chatsTab/topicPager'
 export default class Profile extends Component{
 	state={};
 	showEdit(){
 		buttonClicks({name:'edit',action:'navigation push',nav:'profileNav',title:'Edit',info:{what:'going to edit'}})
 	}
+	showHistory(){
+		buttonClicks({name:'directs',action:'navigation push',nav:'profileNav',title:'Message history',info:{what:'going to edit'}})
+	}
+	showMyChannels(){
+		buttonClicks({name:'myChannels',action:'navigation push',nav:'profileNav',title:'My channels',info:{what:'going to edit'}})
+	}
+	showSaved(){
+		buttonClicks({name:'saved',action:'navigation push',nav:'profileNav',title:'Saved messages',info:{what:'going to edit'}})
+	}
+	showBusiness(){
+		buttonClicks({name:'business',action:'navigation push',nav:'profileNav',title:'Business channels',info:{what:'going to edit'}})
+	}
 	showSettings(){
 		buttonClicks({name:'settings',action:'navigation push',nav:'profileNav',title:'Settings',info:{what:'going to edit'}})
 	}
-	componentDidMount(){
-		if(this.segmentedControl){
-			this.handle = React.findNodeHandle(this.segmentedControl);
-		}
-	}
 	render(){
-
-		this.py=this.py||120
 		return (
 
+			<View style={{backgroundColor:'rgb(245,245,245)',flex:1}}>
 
-				<ScrollView automaticallyAdjustContentInsets={false} ref={el=>this.scroll=el} scrollEventThrottle={200} onScroll={(e)=>{
-						UIManager.measure(this.handle,(x,y,w,h,px,py)=>{
-							this.py=py
-							if(py>73&&py<78){
-								buttonClicks({action:'delete border'})
-							}else{
-								buttonClicks({action:'create border'})
-							}
-						})
-					}}
 
-				 stickyHeaderIndices={[1]} >
-
-					<View style={{backgroundColor:'white',flexDirection:'row',height:100*k,width:320*k,padding:10,alignItems:'center',}}>
+					<View style={{backgroundColor:'white',flexDirection:'row',height:100*k,width:320*k,padding:10,alignItems:'center'}}>
 						<Image source={{uri:'http://www.binarytradingforum.com/core/image.php?userid=27&dateline=1355305878'}} 
-								style={{borderRadius:5*k,width:65*k,height:65*k}}/>
+								style={{borderRadius:5*k,width:60*k,height:60*k}}/>
 						<View style={{margin:10,width:150*k,}}>
-							<Text style={{fontSize:18,fontWeight:'bold',color:'rgb(80,80,80)'}}>Johnnrdino</Text>
-							<Text style={{fontSize:16,fontWeight:'500',color:'rgb(80,80,80)',marginTop:5}}>Karma: 456</Text>
+							<Text style={{fontSize:16,fontWeight:'bold',color:'rgb(80,80,80)'}}>Johnnrdino</Text>
+							<Text style={{fontSize:14,fontWeight:'500',color:'rgb(80,80,80)',marginTop:5}}>Karma: 456</Text>
 						</View>
 						<TouchableOpacity onPress={this.showEdit.bind(this)} style={{...center,left:10*k,padding:14,paddingTop:7,paddingBottom:7,borderRadius:5*k,borderColor:'black',borderWidth:1}}>
 							<Text>Edit</Text>
 						</TouchableOpacity>
 
 					</View>
-					<View style={{paddingTop:10,paddingBottom:10,padding:10,borderBottomWidth:1,borderColor:'rgb(230,230,230)',backgroundColor:'white'}}>
-						<SegmentedControlIOS ref={el=>this.segmentedControl=el} values={['Message history', 'Saved messages']} 
-						   tintColor={'black'} selectedIndex={0} style={{backgroundColor:'white',margin:10*k,marginBottom:0,marginTop:0}}
-						   onValueChange={(e)=>{
-						   	if(this.py<80) this.scroll && this.scroll.scrollTo({x:0,y:100,animated:false})
-						   		if (e==='Message history') {
-						   			this.switcher.switch(0)
-						   		}else if(e==='Saved messages'){
-						   			this.switcher.switch(1)
-						   		}
-						   }}
-						   />	
-					   </View>
+					<View style={{height:1,width:320*k,backgroundColor:'rgb(230,230,230)',marginBottom:20,}}/>
 
+					<View style={{height:1,width:320*k,backgroundColor:'rgb(230,230,230)'}}/>
 
-					<Switcher ref={el=>this.switcher=el}/>
+					<TouchableOpacity onPress={this.showHistory.bind(this)}><View style={{justifyContent:'space-between',backgroundColor:'white',alignItems:'center',paddingLeft:15,flexDirection:'row',height:50*k,width:320*k,}}>
+						
+						<Text style={{fontSize:16}}>Message history</Text>	
+						
 
+					</View></TouchableOpacity>
+					<View style={{height:1,width:320*k,backgroundColor:'rgb(230,230,230)'}}/>
+					<TouchableOpacity onPress={this.showMyChannels.bind(this)}><View style={{backgroundColor:'white',alignItems:'center',paddingLeft:15,flexDirection:'row',height:50*k,width:320*k}}>
+						<Text style={{fontSize:16}}>My channels</Text>
 
-				</ScrollView>
+					</View></TouchableOpacity>
+					<View style={{height:1,width:320*k,backgroundColor:'rgb(230,230,230)'}}/>
+					<TouchableOpacity onPress={this.showSaved.bind(this)}><View style={{backgroundColor:'white',alignItems:'center',paddingLeft:15,flexDirection:'row',height:50*k,width:320*k}}>
+						<Text style={{fontSize:16}}>Saved messages</Text>
+
+					</View></TouchableOpacity>
+					
+					<View style={{height:1,width:320*k,backgroundColor:'rgb(230,230,230)',marginBottom:20,}}/>
+
+					<View style={{height:1,width:320*k,backgroundColor:'rgb(230,230,230)'}}/>
+
+					<TouchableOpacity onPress={this.showSettings.bind(this)}><View style={{backgroundColor:'white',alignItems:'center',paddingLeft:15,flexDirection:'row',height:50*k,width:320*k,}}>
+						<Text style={{fontSize:16}}>Settings</Text>	
+
+					</View></TouchableOpacity>
+					<View style={{height:1,width:320*k,backgroundColor:'rgb(230,230,230)'}}/>
+
+			</View>
 
 			)
 	}
