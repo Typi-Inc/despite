@@ -24,21 +24,21 @@ export default class Direct extends Component{
 			<TouchableOpacity onPress={this.goToChannel.bind(this,'hello')}>
 				<View style={{flexDirection:'row',height:90*k,width:320*k,padding:10,alignItems:'center'}}>
 						
-						<View style={{flexDirection:'row',flex:6}}>
-							<Image source={{uri:this.props.direct.toWhom.image}} 
-									style={{borderRadius:5*k,width:60*k,height:60*k}}/>
-							<View style={{margin:10,marginTop:0}}>
-								
-								<Text style={{fontSize:18,fontWeight:'bold',color:'rgb(80,80,80)'}}>{this.props.direct.toWhom.name } </Text>
-								<Text style={{fontSize:14,fontWeight:'500',color:'rgb(80,80,80)',marginTop:5}}>Karma: {this.props.direct.toWhom.karma}</Text>
-								<Text style={{fontSize:13,fontWeight:'500',color:'rgb(120,120,120)',marginTop:5}}>Whatever you saying in the last ...</Text>
+					<Image source={{uri:this.props.direct.toWhom.image}} 
+							style={{borderRadius:5*k,width:60*k,height:60*k}}/>
+					<View style={{margin:10,marginTop:0}}>
+						
+						<Text style={{fontSize:18,fontWeight:'bold',color:'rgb(80,80,80)',marginTop:5}}>{this.props.direct.toWhom.name } </Text>
+						<Text style={{fontSize:14,fontWeight:'500',color:'rgb(80,80,80)',marginTop:5}}>Karma: {this.props.direct.toWhom.karma}</Text>
+						<Text style={{fontSize:13,fontWeight:'500',color:'rgb(120,120,120)',marginTop:5}}>Whatever you saying in the last day..</Text>
 
-							</View>
-						</View>
-						<View style={{flex:1,justifyContent:'flex-end',alignItems:'flex-end'}}>
-							<Text style={{color:'rgb(140,140,140)'}}>{this.props.direct.lastTime}</Text>
-							<Image source={{uri:'arrow',isStatic:true}} style={{margin:8,height:14*k,width:8*k,transform:[{rotate:'180deg'}]}}/>
-						</View>
+					</View>
+					<Text style={{position:'absolute',top:10,right:10,color:'rgb(140,140,140)'}}>{this.props.direct.lastTime}</Text>
+					
+					{this.props.direct.counter>0?<View style={{position:'absolute',
+					top:30*k,right:15,padding:6,paddingTop:2,paddingBottom:2,borderRadius:10,backgroundColor:'rgb(14,122,254)'}}>
+						<Text style={{color:'white',fontWeight:'500'}}>{this.props.direct.counter}</Text>
+					</View>:null}
 
 					
 

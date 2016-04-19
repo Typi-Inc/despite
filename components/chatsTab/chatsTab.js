@@ -7,7 +7,7 @@ let {
   Text,
   Animated,
   ScrollView,
-  TouchableOpacity,
+  TouchableWithoutFeedback,
   SegmentedControlIOS,
   View
 } =React;
@@ -24,18 +24,48 @@ export default class ChatsTab extends Component{
 		return (
 			<View style={{flex:1}}>
 
-					<View style={{marginTop:19,paddingTop:10,paddingBottom:10,padding:10,borderBottomWidth:1,borderColor:'rgb(230,230,230)',backgroundColor:'white'}}>
-						<SegmentedControlIOS ref={el=>this.segmentedControl=el} values={['Directs', 'Channels']} 
-						   tintColor={'black'} selectedIndex={0} style={{fontSize:18,height:35,backgroundColor:'white',margin:10*k,marginBottom:0,marginTop:0}}
-						   onValueChange={(e)=>{
-						   		if (e==='Directs') {
-						   			this.switch(0)
-						   		}else if(e==='Channels'){
-						   			this.switch(1)
-						   		}
-						   }}
-						   />	
-					   </View>
+					<View style={{width:320*k,flexDirection:'row',height:75,borderBottomWidth:.5,borderColor:'rgb(215,215,215)',
+						...center,paddingTop:14,}}>
+
+						<TouchableWithoutFeedback style={{padding:10,...center,flex:1}} onPress={this.switch.bind(this,0)}>
+
+							<Animated.View style={{flex:1,height:40,...center}}>
+							<Animated.View style={{
+								height:this.anim.interpolate({inputRange:[0,1],outputRange:[2,0]}),
+								width:this.anim.interpolate({inputRange:[0,1],outputRange:[60,0]}),
+								backgroundColor:'black'
+							}}/>
+							<Animated.Text style={{//textDecorationLine:this.anim.interpolate({inputRange:[0,1],outputRange:['underline','none']}),
+								color:this.anim.interpolate({inputRange:[0,1],outputRange:['black','rgb(150,150,150)']}),
+								fontSize:18,fontWeight:'600',
+							}}>Directs</Animated.Text>
+							
+							<Text style={{color:'rgb(14,122,254)'}}>3 unread</Text>
+
+								</Animated.View>
+						</TouchableWithoutFeedback>
+					<View style={{height:50,width:1,backgroundColor:'rgb(215,215,215)',marginTop:5}}/>
+						<TouchableWithoutFeedback style={{flex:1,padding:10,...center}} onPress={this.switch.bind(this,1)}>
+					<Animated.View style={{flex:1,height:40,...center}}>
+					<Animated.View style={{
+								height:this.anim.interpolate({inputRange:[0,1],outputRange:[0,2]}),
+								width:this.anim.interpolate({inputRange:[0,1],outputRange:[0,80]}),
+								backgroundColor:'black'
+							}}/>
+
+							<Animated.Text style={{//textDecorationLine:this.anim.interpolate({inputRange:[0,1],outputRange:['none','underline']}),
+								color:this.anim.interpolate({inputRange:[0,1],outputRange:['rgb(150,150,150)','black']}),
+								fontSize:18,fontWeight:'600'
+							}}>Channels</Animated.Text>
+							<Animated.View/>
+							<Text style={{color:'rgb(14,122,254)'}}>5 unread</Text>
+					</Animated.View>
+
+						</TouchableWithoutFeedback>
+
+
+
+						</View>
 
 
 
