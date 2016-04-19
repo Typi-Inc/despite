@@ -29,7 +29,7 @@ export default class Profile extends Component{
 	}
 	render(){
 
-		this.py=this.py||0
+		this.py=this.py||120
 		return (
 
 
@@ -50,25 +50,23 @@ export default class Profile extends Component{
 						<Image source={{uri:'http://www.binarytradingforum.com/core/image.php?userid=27&dateline=1355305878'}} 
 								style={{borderRadius:5*k,width:65*k,height:65*k}}/>
 						<View style={{margin:10,width:150*k,}}>
-							<Text style={{fontSize:16,fontWeight:'bold',color:'rgb(80,80,80)'}}>Johnnrdino</Text>
-							<Text style={{fontSize:14,fontWeight:'500',color:'rgb(80,80,80)',marginTop:5}}>Karma: 456</Text>
+							<Text style={{fontSize:18,fontWeight:'bold',color:'rgb(80,80,80)'}}>Johnnrdino</Text>
+							<Text style={{fontSize:16,fontWeight:'500',color:'rgb(80,80,80)',marginTop:5}}>Karma: 456</Text>
 						</View>
 						<TouchableOpacity onPress={this.showEdit.bind(this)} style={{...center,left:10*k,padding:14,paddingTop:7,paddingBottom:7,borderRadius:5*k,borderColor:'black',borderWidth:1}}>
 							<Text>Edit</Text>
 						</TouchableOpacity>
 
 					</View>
-					<View style={{paddingTop:10,paddingBottom:10,borderBottomWidth:1,borderColor:'rgb(230,230,230)',backgroundColor:'white'}}>
-						<SegmentedControlIOS ref={el=>this.segmentedControl=el} values={['Directs', 'Channels', 'Saved']} 
+					<View style={{paddingTop:10,paddingBottom:10,padding:10,borderBottomWidth:1,borderColor:'rgb(230,230,230)',backgroundColor:'white'}}>
+						<SegmentedControlIOS ref={el=>this.segmentedControl=el} values={['Message history', 'Saved messages']} 
 						   tintColor={'black'} selectedIndex={0} style={{backgroundColor:'white',margin:10*k,marginBottom:0,marginTop:0}}
 						   onValueChange={(e)=>{
 						   		if(this.py<80) this.scroll && this.scroll.scrollTo({x:0,y:100,animated:false})
-						   		if (e==='Directs') {
+						   		if (e==='Message history') {
 						   			this.switcher.changeNum(0)
-						   		}else if(e==='Channels'){
+						   		}else if(e==='Saved messages'){
 						   			this.switcher.changeNum(1)
-						   		}else if(e==='Saved'){
-						   			this.switcher.changeNum(2)
 						   		}
 						   }}
 						   />	

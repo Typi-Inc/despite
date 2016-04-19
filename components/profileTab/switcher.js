@@ -7,7 +7,7 @@ let {
   LayoutAnimation,
   View
 } =React;
-import ChannelsByTopic from '../chatsTab/channelsByTopic'
+import Line from '../channel/line'
 import Channel from '../channel/channel'
 import {openAnimation} from '../animations'
 export default class Switcher extends Component{
@@ -22,9 +22,9 @@ export default class Switcher extends Component{
 		let comments=<Text>comments</Text>
 		let tab;
 		if(this.state.num===0){
-			tab=<ChannelsByTopic/>;
+			tab=<Line/>;
 		}else if(this.state.num===1){
-			tab=<ChannelsByTopic/>;
+			tab=<Channel/>;
 		}else{
 			tab=<Channel/>;
 		}

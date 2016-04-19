@@ -11,7 +11,7 @@ let {
   View
 } =React;
 import {buttonClicks} from '../../actions/buttonClicks'
-export default class Notification extends Component{
+export default class Direct extends Component{
 	state={};
 	goToChannel(channel){
 		buttonClicks({action:'navigation push',nav:'topNav',name:'channel',info:{title:this.props.notification.message}})
@@ -27,11 +27,8 @@ export default class Notification extends Component{
 								style={{borderRadius:5*k,width:60*k,height:60*k}}/>
 						<View style={{margin:10,width:220*k,}}>
 							
-							<Text style={{fontSize:15,marginTop:3,marginBottom:5}}>
-								<Text style={{fontSize:16,fontWeight:'bold',color:'rgb(80,80,80)'}}>Johnnrdino  </Text>
-								mentioned you in a channel <Text style={{color:'black',fontWeight:'500'}}>#politics</Text>
-							</Text>
-							<Text style={{fontSize:12,fontWeight:'600',color:'gray',marginTop:5}}>Today, 12:54</Text>
+							<Text style={{fontSize:18,fontWeight:'bold',color:'rgb(80,80,80)'}}>Johnnrdino  </Text>
+							<Text style={{fontSize:16,fontWeight:'500',color:'rgb(80,80,80)',marginTop:5}}>Karma: 456</Text>
 						</View>
 
 					
@@ -46,4 +43,4 @@ export default class Notification extends Component{
 	}
 
 };
-Object.assign(Notification.prototype, TimerMixin);
+Object.assign(Direct.prototype, TimerMixin);
