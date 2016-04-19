@@ -1,12 +1,13 @@
 import TimerMixin from 'react-timer-mixin'
 import s from '../../styles'
 import React from 'react-native'; 
-import {buttonClicks$} from '../../actions/buttonClicks'
+import {buttonClicks$,buttonClicks} from '../../actions/buttonClicks'
 import {openAnimation,verFast} from '../animations'
 var dismissKeyboard = require('dismissKeyboard');
 import AddHooks from './addHooks'
 import MessageActions from './messageActions'
 import PlusOptions from '../createChannelTab/plusOptions'
+import ProfileCard from '../profileTab/profileCard'
 import ChannelOptions from './channelOptions'
 let {
   AppRegistry,
@@ -14,30 +15,34 @@ let {
   Text,
   Animated,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   LayoutAnimation,
   ScrollView,
   View
 } =React;
 
 export default class SmallViewer extends Component{
-	state={child:<View/>};
+	state={child:<View/>,height:500*k,top:35*k,width:294*k,marginLeft:14*k};
 	componentWillMount(){
 	  	this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
 	  		if(x.action==='close'){
-	  			this.closeSmallViewer(x)
+	  			this.closeSmallViewer()
 	  			return;
 	  		}else if(x.action==='add'){	
-	  			this.setState({child:<AddHooks/>,title:'Добавить'})		
+	  			this.setState({child:<AddHooks/>,title:'Добавить',height:430*k,width:294*k,marginLeft:14*k,top:60*k})		
 	  			this.openSmallViewer(x)	
 	  		}else if (x.action==='messageActions'){
-	  			this.setState({child:<MessageActions color={x.props.color}/>,title:'I would like to'})	
+	  			this.setState({child:<MessageActions color={x.props.color}/>,title:'I would like to',height:480*k,width:294*k,marginLeft:14*k,top:35*k})	
 	  			this.openSmallViewer(x)	
 	  		}else if(x.action==='plusTab'){
-	  			this.setState({child:<PlusOptions/>,title:'Я хочу'})	
+	  			this.setState({child:<PlusOptions/>,title:'Я хочу',height:500*k,width:294*k,marginLeft:14*k,top:35*k})	
 	  			this.openSmallViewer(x)	
 	  		}else if (x.action==='channelOptions'){
-	  			this.setState({child:<ChannelOptions/>,title:'#'+x.info.title})	
+	  			this.setState({child:<ChannelOptions/>,title:'#'+x.info.title,height:500*k,width:294*k,marginLeft:14*k,top:35*k})	
 	  			this.openSmallViewer(x)	
+	  		}else if (x.action==='profileCard'){
+	  			this.setState({child:<ProfileCard profile={x.profile}/>,title:'Profile of',height:400*k,width:250*k,marginLeft:35*k,top:90*k})
+	  			this.openSmallViewer(x)
 	  		}
 	  		
 	  		
@@ -53,7 +58,7 @@ export default class SmallViewer extends Component{
 		Animated.timing(this.bAnim,{toValue:1,duration:1}).start()
 		this.setTimeout(()=>{
 			LayoutAnimation.configureNext(openAnimation)
-		this.smallViewer.setNativeProps({style:{top:35*k}})
+		this.smallViewer.setNativeProps({style:{top:this.state.top}})
 		this.setTimeout(()=>{
 			Animated.timing(this.anim,{
 				toValue:1,
@@ -81,15 +86,15 @@ export default class SmallViewer extends Component{
 		this.anim=this.anim || new Animated.Value(0)
 		return (
 			<View style={{position:'absolute',top:0,left:0,width:320*k,paddingTop:20,...center}}>
-				<Animated.View  ref={el=>this.background=el} style={{position:'absolute',
+				<TouchableWithoutFeedback onPress={()=>this.closeSmallViewer()}><Animated.View  ref={el=>this.background=el} style={{position:'absolute',
 					left:this.bAnim.interpolate({inputRange:[0,1],outputRange:[600*k,0]}),
-					top:0,height:600*k,width:600*k,backgroundColor:'rgb(0,0,0)',opacity:0.7}}/>
-				<View ref={el=>this.smallViewer=el} style={{position:'absolute',
-				height:500*k,width:294*k,marginLeft:14*k,top:600*k,paddingLeft:6*k,
+					top:0,height:600*k,width:600*k,backgroundColor:'rgb(0,0,0)',opacity:0.7}}/></TouchableWithoutFeedback>
+				<View ref={el=>this.smallViewer=el} style={{position:'absolute',borderRadius:5,
+				height:this.state.height,width:this.state.width,marginLeft:this.state.marginLeft,top:600*k,paddingLeft:6*k,
 				backgroundColor:'white',alignSelf:'center'}}>
 					<Text style={{fontSize:20,color:'rgb(120,120,120)',
 					margin:10*k,marginTop:20*k}}>{this.state.title}</Text>
-					<View style={{width:265*k,height:1,backgroundColor:'rgb(210,210,210)',margin:10*k,marginBottom:0}}/>
+					<View style={{width:this.state.width-30*k,height:1,backgroundColor:'rgb(210,210,210)',margin:10*k,marginBottom:0}}/>
 					{this.state.child}
 					<Animated.View style={{position:'absolute',borderRadius:20*k,right:5*k,alignSelf:'center',
 					height:this.anim.interpolate({inputRange:[0,1],outputRange:[0,40*k]}),...center,
@@ -107,6 +112,7 @@ export default class SmallViewer extends Component{
 					</Animated.View>
 				</View>
 			</View>
+
 
 			)
 	}

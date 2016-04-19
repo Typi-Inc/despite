@@ -8,6 +8,7 @@ let {
   Text,
   Image,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View
 } =React;
 import {buttonClicks} from '../../actions/buttonClicks'
@@ -22,15 +23,19 @@ export default class Message extends Component{
 						paddingLeft:5,paddingBottom:0,paddingTop:0}}>
 
 						<View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:5*k,width:300*k}}>
-							<View style={{flexDirection:'row',...center}}> 
-								<Image source={{uri:'http://www.binarytradingforum.com/core/image.php?userid=27&dateline=1355305878'}} 
-								style={{borderRadius:5*k,width:35*k,height:35*k}}/>
-								<View style={{margin:5}}>	
-									<Text style={{fontSize:16,fontWeight:'bold',color:'rgb(80,80,80)'}}>Johnnrdino</Text>
-									<Text style={s.smallGreyText}>12:54</Text>
+							<TouchableWithoutFeedback style={{backgroundColor:'red'}} onPress={()=>buttonClicks({action:'profileCard',profile:{name:'Johnnrdino',karma:1232,image:'http://www.binarytradingforum.com/core/image.php?userid=27&dateline=1355305878'}})}>
+							
+								<View style={{flexDirection:'row',...center,}}> 
+										<Image source={{uri:'http://www.binarytradingforum.com/core/image.php?userid=27&dateline=1355305878'}} 
+										style={{borderRadius:5*k,width:35*k,height:35*k}}/>
+										<View style={{margin:5}}>	
+											<Text style={{fontSize:16,fontWeight:'bold',color:'rgb(80,80,80)'}}>Johnnrdino</Text>
+											<Text style={s.smallGreyText}>12:54</Text>
 
+										</View>
 								</View>
-							</View>
+							</TouchableWithoutFeedback>
+
 							<View style={{flexDirection:'row',...center}}>
 								<Text style={{color:'green',marginRight:5*k,fontSize:16}}>+120</Text>
 								<TouchableOpacity onPress={()=>buttonClicks({action:'messageActions',props:this.props})}>

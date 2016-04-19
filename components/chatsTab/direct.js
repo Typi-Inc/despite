@@ -25,12 +25,12 @@ export default class Direct extends Component{
 				<View style={{flexDirection:'row',height:90*k,width:320*k,padding:10,alignItems:'center'}}>
 						
 					<Image source={{uri:this.props.direct.toWhom.image}} 
-							style={{borderRadius:5*k,width:60*k,height:60*k}}/>
+							style={{borderRadius:5*k,width:70*k,height:70*k}}/>
 					<View style={{margin:10,marginTop:0}}>
 						
-						<Text style={{fontSize:18,fontWeight:'bold',color:'rgb(80,80,80)',marginTop:5}}>{this.props.direct.toWhom.name } </Text>
+						<Text style={{fontSize:18,fontWeight:'bold',color:'rgb(80,80,80)',marginTop:7}}>{this.props.direct.toWhom.name } </Text>
 						<Text style={{fontSize:14,fontWeight:'500',color:'rgb(80,80,80)',marginTop:5}}>Karma: {this.props.direct.toWhom.karma}</Text>
-						<Text style={{fontSize:13,fontWeight:'500',color:'rgb(120,120,120)',marginTop:5}}>Whatever you saying in the last day..</Text>
+						<Text style={{fontSize:13,fontWeight:'500',color:'rgb(120,120,120)',marginTop:8}}>Whatever you saying in the last day..</Text>
 
 					</View>
 					<Text style={{position:'absolute',top:10,right:10,color:'rgb(140,140,140)'}}>{this.props.direct.lastTime}</Text>
