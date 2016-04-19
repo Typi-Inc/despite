@@ -50,7 +50,7 @@ export default class SmallViewer extends Component{
 
 	openSmallViewer(x){
 		dismissKeyboard()
-		this.background.setNativeProps({style:{left:0}})
+		Animated.timing(this.bAnim,{toValue:1,duration:1}).start()
 		this.setTimeout(()=>{
 			LayoutAnimation.configureNext(openAnimation)
 		this.smallViewer.setNativeProps({style:{top:35*k}})
@@ -64,7 +64,7 @@ export default class SmallViewer extends Component{
 		
 	}
 	closeSmallViewer(){
-		this.background.setNativeProps({style:{left:670}})
+		Animated.timing(this.bAnim,{toValue:0,duration:1}).start()
 		Animated.timing(this.anim,{
 				toValue:0,
 				duration:150,
@@ -77,11 +77,13 @@ export default class SmallViewer extends Component{
 		
 	}
 	render(){
+		this.bAnim=this.bAnim || new Animated.Value(0)
 		this.anim=this.anim || new Animated.Value(0)
 		return (
 			<View style={{position:'absolute',top:0,left:0,width:320*k,paddingTop:20,...center}}>
-				<View  ref={el=>this.background=el} style={{position:'absolute',
-					left:756*k,top:0,height:600*k,width:600*k,backgroundColor:'rgb(0,0,0)',opacity:0.7}}/>
+				<Animated.View  ref={el=>this.background=el} style={{position:'absolute',
+					left:this.bAnim.interpolate({inputRange:[0,1],outputRange:[600*k,0]}),
+					top:0,height:600*k,width:600*k,backgroundColor:'rgb(0,0,0)',opacity:0.7}}/>
 				<View ref={el=>this.smallViewer=el} style={{position:'absolute',
 				height:500*k,width:294*k,marginLeft:14*k,top:600*k,paddingLeft:6*k,
 				backgroundColor:'white',alignSelf:'center'}}>

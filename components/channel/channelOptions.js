@@ -11,6 +11,7 @@ let {
   TouchableOpacity,
   View
 } =React;
+import ChannelsByTopic from '../chatsTab/channelsByTopic'
 export default class ChannelOptions extends Component{
 	state={};
 	render(){

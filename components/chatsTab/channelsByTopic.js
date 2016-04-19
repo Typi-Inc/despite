@@ -14,6 +14,7 @@ import ChannelsPlaceholder from './channelsPlaceholder'
 import {openAnimation} from '../animations'
 import {channelList} from '../mock'
 import ChannelItem from './channelItem'
+
 export default class ChannelsByTopic extends Component{
 	state={loading:true}
 	componentDidMount(){

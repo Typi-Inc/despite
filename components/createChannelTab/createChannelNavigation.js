@@ -19,6 +19,7 @@ import Invite from './invite'
 import ChannelSettings from './channelSettings'
 import BackButton from '../channel/backButton'
 import dismissKeyboard from 'dismissKeyboard'
+import BlackButton from './blackButton'
 import CrossBackButton from '../searchTab/crossBackButton'
 import {buttonClicks$,buttonClicks} from '../../actions/buttonClicks'
 var RCTStatusBarManager = require('NativeModules').StatusBarManager;
@@ -33,12 +34,11 @@ let NavigationBarRouteMapper={
 			return <BackButton index={index} route={route} navigator={navigator}/>
 		},
 		RightButton(route, navigator, index, navState){
-			if(route.name==='createChannel') return <TouchableOpacity>
-				<Text style={{fontSize:14,alignSelf:'center',margin:8,marginTop:13}}>Сохранить</Text></TouchableOpacity>
+			if(route.name==='createChannel') return <BlackButton type={'create channel'}/>
 			return null		
 		},
 		Title(route, navigator, index, navState){
-
+			if(route.name==='createChannel') return <Text style={{fontSize:16,marginTop:12,fontWeight:'500'}}>Новый канал</Text>
 			return <View style={{paddingTop:10}}><Text style={s.viewTitle}>{route.title}</Text></View>
 		}
 
