@@ -70,7 +70,7 @@ export default class Tube extends Component{
 		// 	return <View style={{flex:1,...center}}><Text>Loading...</Text></View>
 		// }
 		return (
-			<View style={{flex:1}}>
+			<View style={{flex:1,paddingLeft:3}}>
 				
 				<ScrollView  automaticallyAdjustContentInsets={true}
 				//keyboardDismissMode='interactive'

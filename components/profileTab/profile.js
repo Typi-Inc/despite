@@ -33,7 +33,7 @@ export default class Profile extends Component{
 		return (
 
 
-				<ScrollView ref={el=>this.scroll=el} scrollEventThrottle={200} onScroll={(e)=>{
+				<ScrollView automaticallyAdjustContentInsets={false} ref={el=>this.scroll=el} scrollEventThrottle={200} onScroll={(e)=>{
 						UIManager.measure(this.handle,(x,y,w,h,px,py)=>{
 							this.py=py
 							if(py>73&&py<78){
@@ -62,11 +62,11 @@ export default class Profile extends Component{
 						<SegmentedControlIOS ref={el=>this.segmentedControl=el} values={['Message history', 'Saved messages']} 
 						   tintColor={'black'} selectedIndex={0} style={{backgroundColor:'white',margin:10*k,marginBottom:0,marginTop:0}}
 						   onValueChange={(e)=>{
-						   		if(this.py<80) this.scroll && this.scroll.scrollTo({x:0,y:100,animated:false})
+						   	if(this.py<80) this.scroll && this.scroll.scrollTo({x:0,y:100,animated:false})
 						   		if (e==='Message history') {
-						   			this.switcher.changeNum(0)
+						   			this.switcher.switch(0)
 						   		}else if(e==='Saved messages'){
-						   			this.switcher.changeNum(1)
+						   			this.switcher.switch(1)
 						   		}
 						   }}
 						   />	

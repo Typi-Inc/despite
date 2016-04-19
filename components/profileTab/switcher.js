@@ -4,36 +4,43 @@ let {
   AppRegistry,
   Component,
   Text,
+  Animated,
   LayoutAnimation,
   View
 } =React;
 import Line from '../channel/line'
-import Channel from '../channel/channel'
+import Message from '../channel/message'
 import {openAnimation} from '../animations'
 export default class Switcher extends Component{
-	state={num:0};
-	changeNum(num){
-		LayoutAnimation.configureNext(openAnimation)
-		this.setState({num:num})
+	state={};
+	switch(val){
+		Animated.timing(this.anim,{toValue:val,duration:1}).start()
 	}
 	render(){
-		let buy=<Text>buy</Text>
-		let author=<Text>author</Text>
-		let comments=<Text>comments</Text>
-		let tab;
-		if(this.state.num===0){
-			tab=<Line/>;
-		}else if(this.state.num===1){
-			tab=<Channel/>;
-		}else{
-			tab=<Channel/>;
-		}
+		this.anim=this.anim || new Animated.Value(0)
 		return (
 
 			<View style={{flex:1}}>
-				
-
-				{tab}
+				<Animated.View style={{flex:1,top:0,bottom:0,paddingLeft:3,
+					position:'absolute',left:this.anim.interpolate({inputRange:[0,1],outputRange:[0,320*k]})}}>
+					<Message color={'red'}/>
+					<Message color={'red'}/>
+					<Message color={'red'}/>
+					
+					<Message color={'red'}/>
+					<Message color={'red'}/>
+					<Message color={'red'}/>
+				</Animated.View>
+				<Animated.View style={{flex:1,
+					left:this.anim.interpolate({inputRange:[0,1],outputRange:[-320*k,0]})}}>
+					<Message color={'blue'}/>
+					<Message color={'blue'}/>
+					<Message color={'blue'}/>
+					
+					<Message color={'blue'}/>
+					<Message color={'blue'}/>
+					<Message color={'blue'}/>
+				</Animated.View>
 
 			</View>
 
@@ -42,3 +49,5 @@ export default class Switcher extends Component{
 
 };
 Object.assign(Switcher.prototype, TimerMixin);
+
+
