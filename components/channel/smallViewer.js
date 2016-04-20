@@ -22,26 +22,26 @@ let {
 } =React;
 
 export default class SmallViewer extends Component{
-	state={child:<View/>,height:500*k,top:35*k,width:294*k,marginLeft:14*k};
+	state={child:<View/>,height:500*k,top:35*k,width:294*k,marginLeft:14*k,borderHeight:1};
 	componentWillMount(){
 	  	this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
 	  		if(x.action==='close'){
 	  			this.closeSmallViewer()
 	  			return;
 	  		}else if(x.action==='add'){	
-	  			this.setState({child:<AddHooks/>,title:'Добавить',height:430*k,width:294*k,marginLeft:14*k,top:60*k})		
+	  			this.setState({child:<AddHooks/>,title:'Добавить',height:430*k,width:294*k,marginLeft:14*k,borderHeight:1,top:60*k})		
 	  			this.openSmallViewer(x)	
 	  		}else if (x.action==='messageActions'){
-	  			this.setState({child:<MessageActions color={x.props.color}/>,title:'I would like to',height:480*k,width:294*k,marginLeft:14*k,top:35*k})	
+	  			this.setState({child:<MessageActions color={x.props.color}/>,title:'I would like to',height:480*k,width:294*k,marginLeft:14*k,borderHeight:1,top:35*k})	
 	  			this.openSmallViewer(x)	
 	  		}else if(x.action==='plusTab'){
-	  			this.setState({child:<PlusOptions/>,title:'Я хочу',height:500*k,width:294*k,marginLeft:14*k,top:35*k})	
+	  			this.setState({child:<PlusOptions/>,title:'Я хочу',height:500*k,width:294*k,marginLeft:14*k,borderHeight:1,top:35*k})	
 	  			this.openSmallViewer(x)	
 	  		}else if (x.action==='channelOptions'){
-	  			this.setState({child:<ChannelOptions/>,title:'#'+x.info.title,height:500*k,width:294*k,marginLeft:14*k,top:35*k})	
+	  			this.setState({child:<ChannelOptions/>,title:'#'+x.info.title,height:500*k,width:294*k,marginLeft:14*k,borderHeight:0,top:35*k})	
 	  			this.openSmallViewer(x)	
 	  		}else if (x.action==='profileCard'){
-	  			this.setState({child:<ProfileCard profile={x.profile}/>,title:'Profile of',height:400*k,width:250*k,marginLeft:35*k,top:90*k})
+	  			this.setState({child:<ProfileCard profile={x.profile}/>,title:'Profile of',height:400*k,width:250*k,marginLeft:35*k,borderHeight:1,top:90*k})
 	  			this.openSmallViewer(x)
 	  		}
 	  		
@@ -94,7 +94,7 @@ export default class SmallViewer extends Component{
 				backgroundColor:'white',alignSelf:'center'}}>
 					<Text style={{fontSize:20,color:'rgb(120,120,120)',
 					margin:10*k,marginTop:20*k}}>{this.state.title}</Text>
-					<View style={{width:this.state.width-30*k,height:1,backgroundColor:'rgb(210,210,210)',margin:10*k,marginBottom:0}}/>
+					<View style={{width:this.state.width-30*k,height:this.state.borderHeight,backgroundColor:'rgb(210,210,210)',margin:10*k,marginBottom:0}}/>
 					{this.state.child}
 					<Animated.View style={{position:'absolute',borderRadius:20*k,right:5*k,alignSelf:'center',
 					height:this.anim.interpolate({inputRange:[0,1],outputRange:[0,40*k]}),...center,

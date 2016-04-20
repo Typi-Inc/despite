@@ -30,11 +30,7 @@ export default class ChatsTab extends Component{
 						<TouchableWithoutFeedback style={{padding:10,...center,flex:1}} onPress={this.switch.bind(this,0)}>
 
 							<Animated.View style={{flex:1,height:40,...center}}>
-							<Animated.View style={{
-								height:this.anim.interpolate({inputRange:[0,1],outputRange:[2,0]}),
-								width:this.anim.interpolate({inputRange:[0,1],outputRange:[60,0]}),
-								backgroundColor:'black'
-							}}/>
+							
 							<Animated.Text style={{//textDecorationLine:this.anim.interpolate({inputRange:[0,1],outputRange:['underline','none']}),
 								color:this.anim.interpolate({inputRange:[0,1],outputRange:['black','rgb(150,150,150)']}),
 								fontSize:18,fontWeight:'600',
@@ -47,11 +43,7 @@ export default class ChatsTab extends Component{
 					<View style={{height:50,width:1,backgroundColor:'rgb(215,215,215)',marginTop:5}}/>
 						<TouchableWithoutFeedback style={{flex:1,padding:10,...center}} onPress={this.switch.bind(this,1)}>
 					<Animated.View style={{flex:1,height:40,...center}}>
-					<Animated.View style={{
-								height:this.anim.interpolate({inputRange:[0,1],outputRange:[0,2]}),
-								width:this.anim.interpolate({inputRange:[0,1],outputRange:[0,80]}),
-								backgroundColor:'black'
-							}}/>
+					
 
 							<Animated.Text style={{//textDecorationLine:this.anim.interpolate({inputRange:[0,1],outputRange:['none','underline']}),
 								color:this.anim.interpolate({inputRange:[0,1],outputRange:['rgb(150,150,150)','black']}),
