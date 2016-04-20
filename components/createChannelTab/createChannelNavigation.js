@@ -57,7 +57,7 @@ export default class ChannelNavigation extends Component{
 			if(x.action==='navigation push' && x.nav==='channelNav'){
 				// this.setState({height:60})
 				// this.props.toggleTabs(true)
-				console.log(this.info,'this.info')
+				// console.log(this.info,'this.info')
 				this.nav&&this.nav.push({name:x.name,routeInfo:x.info})
 			}
 		})

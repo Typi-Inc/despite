@@ -13,7 +13,7 @@ let {
 
 } =React;
 import dismissKeyboard from 'dismissKeyboard'
-
+import PhoneEnter from './login/phoneEnter'
 var RCTStatusBarManager = require('NativeModules').StatusBarManager;
 import BlackScreen from './searchTab/blackScreen'
 // import Tube from './tube'
@@ -46,7 +46,7 @@ export default class App extends Component{
 		return (
 			<View style={{flex:1}}>
 			<Navigator ref={el=>this.nav=el}
-				initialRoute={{name:'message'}}
+				initialRoute={{name:'jk'}}
 				configureScene={(route,routeStack)=>{
 					if(route.name==='createChannel') return Navigator.SceneConfigs.FloatFromBottom
 					return Navigator.SceneConfigs.PushFromRight
@@ -67,6 +67,7 @@ export default class App extends Component{
 		else if(route.name==='createChannel') return <View style={{flex:1,backgroundColor:'white'}}>
 			<CreateChannelNavigation routeInfo={route.routeInfo} topNav={navigator}/>
 			</View>
+		else if (route.name==='login') return <PhoneEnter/>
 		return <Tabs/>
 	}
 

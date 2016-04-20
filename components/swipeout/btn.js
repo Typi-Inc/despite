@@ -69,3 +69,37 @@ var styles = StyleSheet.create({
 });
 
 module.exports = Btn;
+
+//<Animated.View 
+                // style={{flexDirection:'row',}}>
+                //   <TouchableOpacity onPress={()=>{
+                //     Animated.timing(this.anim,{toValue:1,duration:150}).start()
+                //     // this.setState({haveIRated:true,karma:this.state.karma+1})
+                //   }} style={{padding:8,...center,marginRight:5*k}}><Animated.Image source={{uri:'up',isStatic:true,}} 
+                //     style={{
+                //       height:this.anim.interpolate({inputRange:[0,1],outputRange:[25*k,0]}),
+                //     left:this.anim.interpolate({inputRange:[0,1],outputRange:[0,10]}),
+                //     top:this.anim.interpolate({inputRange:[0,1],outputRange:[0,10]}),
+                //     width:this.anim.interpolate({inputRange:[0,1],outputRange:[25*k,0]}),}}/></TouchableOpacity>
+
+                // <Animated.Text style={{color:'green',
+                // marginRight:this.anim.interpolate({inputRange:[0,1],outputRange:[0.1,10*k]}),
+                // fontSize:this.anim.interpolate({inputRange:[0,1],outputRange:[0.1,18]})}}>+{this.state.karma}</Animated.Text>
+                //   <TouchableOpacity onPress={()=>{
+                //     Animated.timing(this.anim,{toValue:1,duration:150}).start()
+                //     this.setState({haveIRated:true,karma:this.state.karma-1})
+                //   }} style={{padding:8,...center,
+                //     marginRight:5*k}}>
+                //   <Animated.Image source={{uri:'up',isStatic:true}} 
+                //     style={{height:this.anim.interpolate({inputRange:[0,1],outputRange:[25*k,0]}),
+                //     right:this.anim.interpolate({inputRange:[0,1],outputRange:[0,10]}),
+                //     top:this.anim.interpolate({inputRange:[0,1],outputRange:[0,10]}),
+                //     width:this.anim.interpolate({inputRange:[0,1],outputRange:[25*k,0]}),
+                //       transform:[{rotate:'180deg'}]}}/></TouchableOpacity></Animated.View>
+
+
+
+
+
+
+

@@ -9,11 +9,13 @@ let {
   Image,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  LayoutAnimation,
   View
 } =React;
+import {veryFast} from '../animations'
 import {buttonClicks} from '../../actions/buttonClicks'
 export default class Message extends Component{
-	state={};
+	state={karma:120,haveIRated:false};
 	render(){
 		return (
 
@@ -37,9 +39,23 @@ export default class Message extends Component{
 							</TouchableWithoutFeedback>
 
 							<View style={{flexDirection:'row',...center}}>
-								<Text style={{color:'green',marginRight:5*k,fontSize:16}}>+120</Text>
-								<TouchableOpacity onPress={()=>buttonClicks({action:'messageActions',props:this.props})}>
-									<View style={{width:40*k,marginLeft:5*k,paddingRight:5*k,height:40*k,justifyContent:'center',alignItems:'flex-end',}}>
+								
+								{this.state.haveIRated?<Text style={{fontWeight:'500',color:'green',marginRight:33*k,fontSize:17,alignSelf:'center'}}>+{this.state.karma}</Text>:<View style={{flexDirection:'row'}}>
+									<TouchableOpacity onPress={()=>{
+										LayoutAnimation.configureNext(veryFast)
+										this.setState({haveIRated:true,karma:this.state.karma+1})
+									}} style={{padding:8,...center,marginRight:5*k}}><Image source={{uri:'up',isStatic:true,}} style={{height:25*k,width:25*k,}}/></TouchableOpacity>
+									<TouchableOpacity onPress={()=>{
+										LayoutAnimation.configureNext(veryFast)
+										this.setState({haveIRated:true,karma:this.state.karma-1})
+									}} style={{padding:8,...center,marginRight:5*k}}>
+									<Image source={{uri:'up',isStatic:true}} 
+										style={{height:25*k,width:25*k,transform:[{rotate:'180deg'}]}}/></TouchableOpacity></View>
+
+								}
+								
+								<TouchableOpacity  onPress={()=>buttonClicks({action:'messageActions',props:this.props})}>
+									<View style={{width:30*k,marginLeft:5*k,paddingRight:5*k,height:40*k,justifyContent:'center',alignItems:'flex-end',}}>
 										<Image source={{uri:'menu',isStatic:true,}} style={s.menuImage}/>
 									</View>
 								</TouchableOpacity>
