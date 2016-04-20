@@ -32,7 +32,7 @@ export default class SmallViewer extends Component{
 	  			this.setState({child:<AddHooks/>,title:'Добавить',height:430*k,width:294*k,marginLeft:14*k,borderHeight:1,top:60*k})		
 	  			this.openSmallViewer(x)	
 	  		}else if (x.action==='messageActions'){
-	  			this.setState({child:<MessageActions color={x.props.color}/>,title:'I would like to',height:480*k,width:294*k,marginLeft:14*k,borderHeight:1,top:35*k})	
+	  			this.setState({child:<MessageActions color={x.props.color}/>,title:'I would like to',height:480*k,width:294*k,marginLeft:14*k,borderHeight:0,top:35*k})	
 	  			this.openSmallViewer(x)	
 	  		}else if(x.action==='plusTab'){
 	  			this.setState({child:<PlusOptions/>,title:'Я хочу',height:500*k,width:294*k,marginLeft:14*k,borderHeight:1,top:35*k})	
@@ -90,7 +90,7 @@ export default class SmallViewer extends Component{
 					left:this.bAnim.interpolate({inputRange:[0,1],outputRange:[600*k,0]}),
 					top:0,height:600*k,width:600*k,backgroundColor:'rgb(0,0,0)',opacity:0.7}}/></TouchableWithoutFeedback>
 				<View ref={el=>this.smallViewer=el} style={{position:'absolute',borderRadius:5,
-				height:this.state.height,width:this.state.width,marginLeft:this.state.marginLeft,top:600*k,paddingLeft:6*k,
+				height:this.state.height,width:this.state.width,marginLeft:this.state.marginLeft,top:600*k,paddingLeft:0,
 				backgroundColor:'white',alignSelf:'center'}}>
 					<Text style={{fontSize:20,color:'rgb(120,120,120)',
 					margin:10*k,marginTop:20*k}}>{this.state.title}</Text>

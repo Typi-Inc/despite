@@ -18,7 +18,7 @@ export default class ChannelOptions extends Component{
 	render(){
 		return (
 			<View style={{flex:1,backgroundColor:'rgb(245,245,245)'}}>
-			<ScrollView contentContainerStyle={{marginTop:20,marginBottom:20}}>
+			<ScrollView contentContainerStyle={{marginTop:10,marginBottom:20}}>
 				<Text style={{margin:10,color:'rgb(80,80,80)',fontSize:16,fontWeight:'600'}}>Options</Text>
 
 				<View style={{height:1,width:300*k,backgroundColor:'rgb(230,230,230)',}}/>
@@ -40,6 +40,13 @@ export default class ChannelOptions extends Component{
 					<View style={{backgroundColor:'white',alignItems:'center',paddingLeft:15,
 							flexDirection:'row',height:50*k,width:300*k}}>
 						<Text style={{fontSize:16}}>Notificaiton settings</Text>
+					</View>
+				</TouchableOpacity>
+				<View style={{height:1,width:300*k,backgroundColor:'rgb(230,230,230)',}}/>
+				<TouchableOpacity>
+					<View style={{backgroundColor:'white',alignItems:'center',paddingLeft:15,
+							flexDirection:'row',height:50*k,width:300*k}}>
+						<Text style={{fontSize:16,color:'red'}}>Remove channel</Text>
 					</View>
 				</TouchableOpacity>
 				<View style={{height:1,width:300*k,backgroundColor:'rgb(230,230,230)',marginBottom:20}}/>
