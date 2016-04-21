@@ -6,14 +6,12 @@ let {
   View,
   Navigator,
 } =React;
-import Channel from './channel'
-import BackButton from './backButton'
+import BackButton from '../channel/backButton'
 import dismissKeyboard from 'dismissKeyboard'
 import {buttonClicks$,buttonClicks} from '../../actions/buttonClicks'
 var RCTStatusBarManager = require('NativeModules').StatusBarManager;
-import ChannelSearchInput from './channelSearchInput'
-import Line from './line'
-import ChannelMenuButton from './channelMenuButton'
+import Images from './images'
+import ImageViewer from './imageViewer'
 let NavigationBarRouteMapper={
 		LeftButton(route, navigator, index, navState){
 			if(route.name==='channel'){
@@ -22,19 +20,17 @@ let NavigationBarRouteMapper={
 			return <BackButton index={index} route={route} navigator={navigator}/>
 		},
 		RightButton(route, navigator, index, navState){
-			return <ChannelMenuButton route={route}/>
+			return null
 		},
 		Title(route, navigator, index, navState){
-			if(route.name==='line') return <ChannelSearchInput info={{title:'inline'}} index={index}/>
-			else if(route.name==='channel') return <ChannelSearchInput info={route.info} index={index}/>
 			return null
 		}
 	}
-export default class ChannelNavigation extends Component{
+export default class ImageViewerNavigation extends Component{
 	state={height:0,statusBarHeight:20};
 	componentWillMount(){
 		this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
-			if(x.action==='navigation push' && x.nav==='channelNav'){
+			if(x.action==='navigation push' && x.nav==='imageViewerNav'){
 				this.nav&&this.nav.push({name:x.name,routeInfo:x.info})
 			}
 		})
@@ -44,10 +40,10 @@ export default class ChannelNavigation extends Component{
 		this.buttonClicksSubscription.unsubscribe()
 	}
 	renderChannel(route,navigator){
-		if(route.name==='channel'){
-			return <Channel navigator={navigator}/>
-		}else if(route.name==='line'){
-			return <Line color={route.routeInfo.color}/>
+		if(route.name==='imageViewer'){
+			return <ImageViewer navigator={navigator}/>
+		}else if(route.name==='images'){
+			return <Images navigator={navigator}/>
 		}
 	}
 	setHeightOfNavigation(height){
@@ -56,20 +52,19 @@ export default class ChannelNavigation extends Component{
 	render(){
 		return (
 			<Navigator 
-				style={{paddingTop:65}}
+				
 				ref={el=>this.nav=el}
 				navigator={this.props.navigator}
-				initialRoute={{name:'channel',info:this.props.routeInfo}}
+				initialRoute={{name:'imageViewer',info:this.props.routeInfo}}
 				renderScene={this.renderChannel.bind(this)}
-				navigationBar={
-					<Navigator.NavigationBar
-						ref={el=>this.navBar=el}
-			            routeMapper={NavigationBarRouteMapper}
-			            style={{height:65,backgroundColor:'white',borderBottomWidth:.5,borderColor:'rgb(215,215,215)'}}
-			          />
-				}
+				configureScene={(route,routeStack)=>{
+					if(route.name==='edit') return Navigator.SceneConfigs.FloatFromBottom
+					else if (route.name=='imageViewer') return Navigator.SceneConfigs.FadeAndroid
+					return Navigator.SceneConfigs.FloatFromRight
+				}}
+				
 			/>
 			)
 	}
 };
-Object.assign(ChannelNavigation.prototype, TimerMixin);
+Object.assign(ImageViewerNavigation.prototype, TimerMixin);

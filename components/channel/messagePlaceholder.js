@@ -31,7 +31,7 @@ export default class MessagePlaceholder extends Component{
 						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
 						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
 						<View style={{backgroundColor:gray,borderRadius:4*k,width:290*k,height:5*k,margin:5}}/>
-						<View style={{backgroundColor:gray,borderRadius:4*k,width:50*k,height:3*k,margin:5}}/>
+						<View style={{backgroundColor:gray,borderRadius:4*k,width:150*k,height:3*k,margin:5}}/>
 					</View>
 				</View>
 				<View style={{margin:8,marginRight:0,marginLeft:7,

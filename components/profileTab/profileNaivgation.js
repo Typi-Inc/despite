@@ -40,6 +40,8 @@ export default class ProfileNavigation extends Component{
 		this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
 			if(x.action==='navigation push' && x.nav==='profileNav'){
 				this.nav&&this.nav.push({name:x.name,routeInfo:x.info,title:x.title})
+			}else if(x.action==='navigation push' && x.nav==='profileNav' && x.name==='edit'){
+				this.nav && this.nav.replace({name:x.name,routeInfo:x.info,title:x.title})
 			}
 		})
 	  	RCTStatusBarManager.getHeight((e)=>this.setState({statusBarHeight:e.height}))
@@ -69,6 +71,7 @@ export default class ProfileNavigation extends Component{
 				renderScene={this.renderChannel.bind(this)}
 				configureScene={(route,routeStack)=>{
 					if(route.name==='edit') return Navigator.SceneConfigs.FloatFromBottom
+					else if (route.name=='settings') return Navigator.SceneConfigs.HorizontalSwipeJump
 					return Navigator.SceneConfigs.PushFromRight
 				}}
 				navigationBar={

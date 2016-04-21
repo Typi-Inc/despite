@@ -31,6 +31,7 @@
 		987971FD1CC7C1C0003BF34A /* tap-muted.aif in Resources */ = {isa = PBXBuildFile; fileRef = 987971F61CC7C1C0003BF34A /* tap-muted.aif */; };
 		987971FE1CC7C1C0003BF34A /* tap-warm.aif in Resources */ = {isa = PBXBuildFile; fileRef = 987971F71CC7C1C0003BF34A /* tap-warm.aif */; };
 		987972051CC7E17C003BF34A /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 987972041CC7E174003BF34A /* libRNImagePicker.a */; };
+		9879720E1CC8D778003BF34A /* libRNSpinkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9879720D1CC8D771003BF34A /* libRNSpinkit.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,13 @@
 			remoteGlobalIDString = 014A3B5C1C6CF33500B6D375;
 			remoteInfo = RNImagePicker;
 		};
+		9879720C1CC8D771003BF34A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 987972081CC8D770003BF34A /* RNSpinkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D42CB3511B2538DE00FD0AE2;
+			remoteInfo = RNSpinkit;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -158,6 +166,7 @@
 		987971F61CC7C1C0003BF34A /* tap-muted.aif */ = {isa = PBXFileReference; lastKnownFileType = file; name = "tap-muted.aif"; path = "../../../Downloads/octave-master/Octave-Sounds/taps/tap-muted.aif"; sourceTree = "<group>"; };
 		987971F71CC7C1C0003BF34A /* tap-warm.aif */ = {isa = PBXFileReference; lastKnownFileType = file; name = "tap-warm.aif"; path = "../../../Downloads/octave-master/Octave-Sounds/taps/tap-warm.aif"; sourceTree = "<group>"; };
 		987971FF1CC7E174003BF34A /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
+		987972081CC8D770003BF34A /* RNSpinkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSpinkit.xcodeproj; path = "../node_modules/react-native-spinkit/ios/RNSpinkit.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +181,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9879720E1CC8D778003BF34A /* libRNSpinkit.a in Frameworks */,
 				987972051CC7E17C003BF34A /* libRNImagePicker.a in Frameworks */,
 				987971F01CC7C18D003BF34A /* libRNSound.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -296,6 +306,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				987972081CC8D770003BF34A /* RNSpinkit.xcodeproj */,
 				987971FF1CC7E174003BF34A /* RNImagePicker.xcodeproj */,
 				987971EA1CC7C17E003BF34A /* RNSound.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -360,6 +371,14 @@
 			isa = PBXGroup;
 			children = (
 				987972041CC7E174003BF34A /* libRNImagePicker.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		987972091CC8D770003BF34A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9879720D1CC8D771003BF34A /* libRNSpinkit.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -478,6 +497,10 @@
 					ProductGroup = 987971EB1CC7C17E003BF34A /* Products */;
 					ProjectRef = 987971EA1CC7C17E003BF34A /* RNSound.xcodeproj */;
 				},
+				{
+					ProductGroup = 987972091CC8D770003BF34A /* Products */;
+					ProjectRef = 987972081CC8D770003BF34A /* RNSpinkit.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -570,6 +593,13 @@
 			fileType = archive.ar;
 			path = libRNImagePicker.a;
 			remoteRef = 987972031CC7E174003BF34A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9879720D1CC8D771003BF34A /* libRNSpinkit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNSpinkit.a;
+			remoteRef = 9879720C1CC8D771003BF34A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

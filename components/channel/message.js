@@ -11,32 +11,23 @@ let {
   TouchableWithoutFeedback,
   LayoutAnimation,
   TouchableHighlight,
-  View
+  View,Animated
 } =React;
-import Sound from 'react-native-sound'
-	var whoosh = new Sound('tap-warm.aif', Sound.MAIN_BUNDLE, (error) => {
-			  if (error) {
-			    console.log('failed to load the sound', error);
-			  } else { // loaded successfully
-			    console.log('duration in seconds: ' + whoosh.getDuration() +
-			        'number of channels: ' + whoosh.getNumberOfChannels());
-			  }
-			});
-
-	var cok= new Sound('tap-muted.aif', Sound.MAIN_BUNDLE, (error) => {
-			  if (error) {
-			    console.log('failed to load the sound', error);
-			  } else { // loaded successfully
-			    console.log('duration in seconds: ' + whoosh.getDuration() +
-			        'number of channels: ' + whoosh.getNumberOfChannels());
-			  }
-			});
+var Lightbox = require('react-native-lightbox');
+import MessageProfile from './messageProfile'
+import MessageButtons from './messageButtons'
 
 import {veryFast} from '../animations'
 import {buttonClicks} from '../../actions/buttonClicks'
 export default class Message extends Component{
-	state={karma:120,haveIRated:false,isSaved:false};
+	state={karma:Math.floor(Math.random()*1000),haveIRated:false,isSaved:false,lineCount:Math.floor(Math.random()*100)};
+	navigateToImageViewer(){
+		// buttonClicks({action:'navigation push', nav:'topNav',name:'imageViewer'})
+		Animated.spring(this.anim,{toValue:this.anim._value>0?0:1}).start()
+		// this.image.setNativeProps({style:{position:'absolute',top:0,lef}})
+	}
 	render(){
+		this.anim=this.anim || new Animated.Value(0)
 		return (
 
 			<View style={s.container}>					
@@ -45,65 +36,36 @@ export default class Message extends Component{
 						paddingLeft:5,paddingBottom:0,paddingTop:0}}>
 
 						<View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:5*k,width:300*k}}>
-							<TouchableWithoutFeedback style={{backgroundColor:'red'}} onPress={()=>buttonClicks({action:'profileCard',profile:{name:'Johnnrdino',karma:1232,image:'http://www.binarytradingforum.com/core/image.php?userid=27&dateline=1355305878'}})}>
-							
-								<View style={{flexDirection:'row',...center,}}> 
-										<Image source={{uri:'http://www.binarytradingforum.com/core/image.php?userid=27&dateline=1355305878'}} 
-										style={{borderRadius:5*k,width:35*k,height:35*k}}/>
-										<View style={{margin:5}}>	
-											<Text style={{fontSize:16,fontWeight:'bold',color:'rgb(80,80,80)'}}>Johnnrdino</Text>
-											<Text style={s.smallGreyText}>12:54</Text>
-
-										</View>
-								</View>
-							</TouchableWithoutFeedback>
-
-							<View style={{flexDirection:'row',...center}}>
-								
-								{this.state.haveIRated?<View style={{flexDirection:'row'}}>
-									<Text style={{fontWeight:'500',
-									color:'green',marginRight:17*k,fontSize:17,alignSelf:'center'}}>+{this.state.karma}</Text>
-									<TouchableHighlight underlayColor={'transparent'} onPress={()=>{
-										LayoutAnimation.configureNext(veryFast)
-										this.setState({isSaved:!this.state.isSaved})
-									}} style={{padding:8,...center,marginRight:10*k}}>
-										{this.state.isSaved?<Image source={{uri:'saved',isStatic:true,}} style={{height:17*k,width:15*k,}}/>:
-										<Image source={{uri:'save',isStatic:true,}} style={{height:17*k,width:15*k,}}/>}
-									</TouchableHighlight>	
-								</View>:<View style={{flexDirection:'row'}}>
-									<TouchableOpacity onPress={()=>{
-										whoosh.setVolume(0.8)
-										whoosh.play()
-										LayoutAnimation.configureNext(veryFast)
-										this.setState({haveIRated:true,karma:this.state.karma+1})
-									}} style={{padding:8,...center,marginRight:5*k}}><Image source={{uri:'up',isStatic:true,}} style={{height:25*k,width:25*k,}}/></TouchableOpacity>
-									<TouchableOpacity onPress={()=>{
-										cok.play()
-										LayoutAnimation.configureNext(veryFast)
-										this.setState({haveIRated:true,karma:this.state.karma-1})
-									}} style={{padding:8,...center,marginRight:5*k}}>
-									<Image source={{uri:'up',isStatic:true}} 
-										style={{height:25*k,width:25*k,transform:[{rotate:'180deg'}]}}/></TouchableOpacity></View>
-
-								}
-								
-								<TouchableOpacity onPress={()=>buttonClicks({action:'messageActions',props:this.props})}>
-									<View style={{width:27*k,marginLeft:5*k,paddingRight:5*k,height:40*k,justifyContent:'center',alignItems:'flex-end',}}>
-										<Image source={{uri:'menu',isStatic:true,}} style={s.menuImage}/>
-									</View>
-								</TouchableOpacity>
-							</View>
+							<MessageProfile/>
+							<MessageButtons karma={this.state.carma} haveIRated={this.state.haveIRated} isSaved={this.state.isSaved}/>
 						</View>
-						<Text style={{width:300*k,marginLeft:3*k,fontSize:16}}> 
+						<Text style={{width:300*k,marginLeft:3*k,fontSize:16,marginBottom:5}}> 
 							I guess it would be awesome if they finally decide to do it,
 							who is going? what are your ideas on politics in western europe. do your
 								agreement on the brexit issue fully subsidized yes inedeed true
 						</Text>
+					      <TouchableWithoutFeedback onPress={()=>this.navigateToImageViewer()}>
+								<Animated.Image ref={el=>this.image=el}
+						          style={{ height:this.anim.interpolate({inputRange:[0,1],outputRange:[200,280*k]}),
+						          	width:this.anim.interpolate({inputRange:[0,1],outputRange:[200,280*k]}),
+						          	margin:this.anim.interpolate({inputRange:[0,1],outputRange:[15,0]}),
+						          	marginBottom:5,
+						          	left:0,
+						          	borderRadius:this.anim.interpolate({inputRange:[0,1],outputRange:[20,0]}),}}
+						          source={{ uri: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTRHDbRipz7fkuVc3f7OoZT0fSlEdjimXMYEeQI39lKrRhpFYLV' }}
+						        />
+					        </TouchableWithoutFeedback>
+
 
 						<View style={{flexDirection:'row',marginLeft:3*k,marginBottom:0}}>
-							<TouchableOpacity onPress={()=>buttonClicks({action:'reply pressed',to:'Johnnrdino'})} style={{height:24,width:54,justifyContent:'flex-end'}}><Text style={s.smallGreyText}>Reply</Text></TouchableOpacity>
+							<TouchableHighlight underlayColor={'rgb(120,120,120'} onPress={()=>buttonClicks({action:'reply pressed',to:'Johnnrdino'})} style={{height:24,width:70,justifyContent:'flex-end'}}><Text style={s.smallGreyText}>Ответить</Text></TouchableHighlight>
 
-							<TouchableOpacity style={{height:24,width:80,justifyContent:'flex-end'}} onPress={()=>buttonClicks({action:'navigation push',name:'line',nav:'channelNav',info:this.props})}><Text style={s.smallGreyText}>View line</Text></TouchableOpacity>
+							<TouchableHighlight underlayColor={'rgb(120,120,120'} 
+								style={{height:24,width:130,justifyContent:'flex-end',marginLeft:10}}
+								 onPress={()=>buttonClicks({action:'navigation push',name:'line',nav:'channelNav',info:this.props})}>
+								<Text style={s.smallGreyText}>Разговор ({this.state.lineCount})</Text>
+							</TouchableHighlight>
+
 						</View>
 					</View>
 

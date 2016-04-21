@@ -12,6 +12,7 @@ let {
   Text,
   TextInput,
   Animated,
+  ScrollView,
   DeviceEventEmitter,
   Dimensions,
   LayoutAnimation,
@@ -50,9 +51,11 @@ export default class SlideUpInput extends Component{
 		if(this.t){
 			LayoutAnimation.configureNext(keyboard);
 			this.t && this.t.setNativeProps({style:{bottom:e.endCoordinates.height}})
+      
 		}
 		 // this.props.setBottom(this.addHeight)
  	 }
+
  	hide(){
       if(this.state.disable) return
  	  	if(this.t){
@@ -61,6 +64,14 @@ export default class SlideUpInput extends Component{
  	  	}
  	  	this.props.setBottom(this.addHeight)
 	  }
+  showMentions(){
+    LayoutAnimation.configureNext(keyboard);
+    this.mentions && this.mentions.setNativeProps({style:{height:150}})
+  }
+  hideMenitions(){
+    LayoutAnimation.configureNext(keyboard);
+    this.mentions && this.mentions.setNativeProps({style:{height:0}})
+  }
 	getAddHeight(){
 		return this.addHeight
 	}
@@ -130,6 +141,22 @@ export default class SlideUpInput extends Component{
 		return (
           <View ref={el=>this.t=el} style={{position:'absolute',
           justifyContent:'flex-end',alignItems:'flex-end',bottom:0,left:0,width:320*k}}>
+            <View ref={el=>this.mentions=el} style={{width:320*k,height:0,backgroundColor:'black'}}>
+              <ScrollView>
+                <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>hello</Text>
+                <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>hello</Text>
+                <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>hello</Text>
+                <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>hello</Text>
+                <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>hello</Text>
+                <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>hello</Text>
+                <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>buy</Text>
+                <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>buy</Text>
+                <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>buy</Text>
+                <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>bslk</Text>
+                <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>hello</Text>
+                <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>ds</Text>
+              </ScrollView>
+            </View>
               <View ref={el=>this.main=el} 
               style={{backgroundColor:'white',marginBottom:0,
              	 height:Math.max(43*k, (12*k+this.state.height)),borderTopWidth:.5,
@@ -151,6 +178,8 @@ export default class SlideUpInput extends Component{
                           replyAction:false,
                           height: Math.min(event.nativeEvent.contentSize.height,129*k)
                         });
+                        if(this.state.text[this.state.text.length-1]==='@') this.showMentions()
+                        else this.hideMenitions()
                        	this.addHeight=this.state.height<35*k?0:this.state.height-30*k
                         this.props.setBottom(this.addHeight)
                       }}

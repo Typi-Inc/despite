@@ -14,7 +14,7 @@ import ChannelsPlaceholder from './channelsPlaceholder'
 import {openAnimation} from '../animations'
 import {channelList} from '../mock'
 import ChannelItem from './channelItem'
-
+var Spinner = require('react-native-spinkit');
 export default class ChannelsByTopic extends Component{
 	state={loading:true}
 	componentDidMount(){
@@ -23,7 +23,10 @@ export default class ChannelsByTopic extends Component{
 			})
 	}
 	render(){
-		if(this.state.loading) return <ChannelsPlaceholder/>
+		if(this.state.loading) return  <View style={{flex:1,...center,backgroundColor:'white'}}><Spinner 
+			style={{marginBottom:75}} isVisible={true} 
+				size={55} type={'ArcAlt'} color={'#969696'}/></View>
+
 		LayoutAnimation.configureNext(openAnimation)
 		return (
 			<View style={{flex:1,backgroundColor:'white'}}>

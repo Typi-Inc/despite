@@ -8,6 +8,7 @@ let {
   Text,
   View
 } =React;
+import DelayRendering from './delayRendering'
 import ChannelsByTopic from './channelsByTopic'
 import Channel from '../channel/channel'
 import Topics from './topics'
@@ -24,9 +25,9 @@ export default class TopicPager extends Component{
 			}}
 			 renderTabBar={() => <Topics ref={el=>this.topics=el}/>}>
 			<ChannelsByTopic tabLabel='For you'/>
-   			<Channel tabLabel={'Top rated messages'}/>
-   			<ChannelsByTopic tabLabel='Trending'/>
-   			<ChannelsByTopic tabLabel='Nearby'/>
+   			<DelayRendering tabLabel={'Top rated messages'} delay={300}><Channel /></DelayRendering>
+   			<DelayRendering tabLabel='Trending' delay={500}><ChannelsByTopic /></DelayRendering>
+   			<DelayRendering tabLabel='Nearby' delay={600}><ChannelsByTopic /></DelayRendering>
 			
    
       </ScrollableTabView>

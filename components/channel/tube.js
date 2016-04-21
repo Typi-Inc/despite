@@ -14,6 +14,7 @@ let {
   InteractionManager,
   Animated
 } =React;
+import Spinner from 'react-native-spinkit'
 import {buttonClicks$} from '../../actions/buttonClicks'
 const Incremental = require('Incremental');
 import Message from './message'
@@ -82,10 +83,12 @@ export default class Tube extends Component{
 	render(){
 		this.keyboardHeight=this.keyboardHeight || 0
 		if(this.state.loading){
-			return <View style={{flex:1}}><MessagePlaceholder/>
+			return <View style={{flex:1,...center,backgroundColor:'white'}}><Spinner 
+			style={{marginBottom:75}} isVisible={true} 
+				size={55} type={'ArcAlt'} color={'#969696'}/>
+				<SlideUpInput ref={(e)=>this.input=e} setBottom={this.setBottom.bind(this)}/>
 
-
-			</View>
+				</View>
 		}
 		// LayoutAnimation.configureNext(openAnimation)
 		return (
@@ -112,9 +115,15 @@ export default class Tube extends Component{
 					<Message color={'#F5A623'}/>
 					<Message color={'#BD10E0'}/>
 					<Message color={'#4A90E2'}/>
+					<Message color={'#F5A623'}/>
+					<Message color={'#BD10E0'}/>
+					<Message color={'#D0021B'}/>
+					<Message color={'#F5A623'}/>
+					<Message color={'#BD10E0'}/>
+					<Message color={'#4A90E2'}/>
+					<Message color={'#F5A623'}/>
+					<Message color={'#BD10E0'}/>
 		
-
-
 					<View ref={(el)=>this.t=el} style={{height:50*k}}/>
 
 				</ScrollView>

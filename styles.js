@@ -14,13 +14,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   smallGreyText:{
-    color:'gray',
+    color:'rgb(120,120,120)',
     fontWeight:'500',
     fontSize:13,
   },
   menuImage:{
-    height:20*k,
-    width:5*k,
+    height:21*k,
+    width:6*k,
     marginLeft:3*k,
     marginRight:3*k
   },

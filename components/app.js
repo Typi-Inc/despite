@@ -26,7 +26,7 @@ import Tabs from './tabs'
 let Sound = require('react-native-sound');
 
 import CreateChannelNavigation from './createChannelTab/createChannelNavigation'
-
+import ImageViewerNavigation from './imageViewer/imageViewerNavigation'
 export default class App extends Component{
 	state={};
 	componentWillMount(){
@@ -86,9 +86,11 @@ export default class App extends Component{
 		return (
 			<View style={{flex:1}}>
 			<Navigator ref={el=>this.nav=el}
-				initialRoute={{name:'jk'}}
+				initialRoute={{name:'ksl'}}
 				configureScene={(route,routeStack)=>{
 					if(route.name==='createChannel') return Navigator.SceneConfigs.FloatFromBottom
+					else if (route.name==='channel') return Navigator.SceneConfigs.FloatFromRight
+					else if (route.name=='imageViewer') return Navigator.SceneConfigs.FadeAndroid
 					return Navigator.SceneConfigs.PushFromRight
 				}}
 				onWillFocus={(e)=>dismissKeyboard()}
@@ -108,6 +110,7 @@ export default class App extends Component{
 			<CreateChannelNavigation routeInfo={route.routeInfo} topNav={navigator}/>
 			</View>
 		else if (route.name==='login') return <PhoneEnter/>
+		else if (route.name==='imageViewer') return <ImageViewerNavigation/>
 		return <Tabs/>
 	}
 
