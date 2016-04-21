@@ -43,13 +43,7 @@ export default class MessageActions extends Component{
 				</TouchableOpacity>
 					<View style={{width:265*k,height:1,backgroundColor:'rgb(210,210,210)',marginLeft:15*k,marginBottom:0}}/>
 
-				<TouchableOpacity style={{...center,width:265*k,height:60*k,marginLeft:15*k,}}>
-					<View style={{flexDirection:'row',...center}}>
-					<Image source={{uri:'save',isStatic:true}} style={{width:15*k,height:20*k}}/>
-					<Text style={{fontSize:18,marginLeft:10*k}}>Save Message</Text></View>
-				</TouchableOpacity>
-					<View style={{width:265*k,height:1,backgroundColor:'rgb(210,210,210)',marginLeft:15*k,marginBottom:0}}/>
-
+		
 				<TouchableOpacity style={{...center,width:265*k,height:60*k,marginLeft:15*k,}}>
 					<View style={{flexDirection:'row',...center}}>
 					<Image source={{uri:'copy',isStatic:true}} style={{width:15*k,height:20*k}}/>

@@ -10,12 +10,32 @@ let {
   TouchableOpacity,
   TouchableWithoutFeedback,
   LayoutAnimation,
+  TouchableHighlight,
   View
 } =React;
+import Sound from 'react-native-sound'
+	var whoosh = new Sound('tap-warm.aif', Sound.MAIN_BUNDLE, (error) => {
+			  if (error) {
+			    console.log('failed to load the sound', error);
+			  } else { // loaded successfully
+			    console.log('duration in seconds: ' + whoosh.getDuration() +
+			        'number of channels: ' + whoosh.getNumberOfChannels());
+			  }
+			});
+
+	var cok= new Sound('tap-muted.aif', Sound.MAIN_BUNDLE, (error) => {
+			  if (error) {
+			    console.log('failed to load the sound', error);
+			  } else { // loaded successfully
+			    console.log('duration in seconds: ' + whoosh.getDuration() +
+			        'number of channels: ' + whoosh.getNumberOfChannels());
+			  }
+			});
+
 import {veryFast} from '../animations'
 import {buttonClicks} from '../../actions/buttonClicks'
 export default class Message extends Component{
-	state={karma:120,haveIRated:false};
+	state={karma:120,haveIRated:false,isSaved:false};
 	render(){
 		return (
 
@@ -40,12 +60,25 @@ export default class Message extends Component{
 
 							<View style={{flexDirection:'row',...center}}>
 								
-								{this.state.haveIRated?<Text style={{fontWeight:'500',color:'green',marginRight:33*k,fontSize:17,alignSelf:'center'}}>+{this.state.karma}</Text>:<View style={{flexDirection:'row'}}>
+								{this.state.haveIRated?<View style={{flexDirection:'row'}}>
+									<Text style={{fontWeight:'500',
+									color:'green',marginRight:17*k,fontSize:17,alignSelf:'center'}}>+{this.state.karma}</Text>
+									<TouchableHighlight underlayColor={'transparent'} onPress={()=>{
+										LayoutAnimation.configureNext(veryFast)
+										this.setState({isSaved:!this.state.isSaved})
+									}} style={{padding:8,...center,marginRight:10*k}}>
+										{this.state.isSaved?<Image source={{uri:'saved',isStatic:true,}} style={{height:17*k,width:15*k,}}/>:
+										<Image source={{uri:'save',isStatic:true,}} style={{height:17*k,width:15*k,}}/>}
+									</TouchableHighlight>	
+								</View>:<View style={{flexDirection:'row'}}>
 									<TouchableOpacity onPress={()=>{
+										whoosh.setVolume(0.8)
+										whoosh.play()
 										LayoutAnimation.configureNext(veryFast)
 										this.setState({haveIRated:true,karma:this.state.karma+1})
 									}} style={{padding:8,...center,marginRight:5*k}}><Image source={{uri:'up',isStatic:true,}} style={{height:25*k,width:25*k,}}/></TouchableOpacity>
 									<TouchableOpacity onPress={()=>{
+										cok.play()
 										LayoutAnimation.configureNext(veryFast)
 										this.setState({haveIRated:true,karma:this.state.karma-1})
 									}} style={{padding:8,...center,marginRight:5*k}}>
@@ -54,8 +87,8 @@ export default class Message extends Component{
 
 								}
 								
-								<TouchableOpacity  onPress={()=>buttonClicks({action:'messageActions',props:this.props})}>
-									<View style={{width:30*k,marginLeft:5*k,paddingRight:5*k,height:40*k,justifyContent:'center',alignItems:'flex-end',}}>
+								<TouchableOpacity onPress={()=>buttonClicks({action:'messageActions',props:this.props})}>
+									<View style={{width:27*k,marginLeft:5*k,paddingRight:5*k,height:40*k,justifyContent:'center',alignItems:'flex-end',}}>
 										<Image source={{uri:'menu',isStatic:true,}} style={s.menuImage}/>
 									</View>
 								</TouchableOpacity>
@@ -63,9 +96,8 @@ export default class Message extends Component{
 						</View>
 						<Text style={{width:300*k,marginLeft:3*k,fontSize:16}}> 
 							I guess it would be awesome if they finally decide to do it,
-
 							who is going? what are your ideas on politics in western europe. do your
-								agreement on the brexit issue fully subsidized
+								agreement on the brexit issue fully subsidized yes inedeed true
 						</Text>
 
 						<View style={{flexDirection:'row',marginLeft:3*k,marginBottom:0}}>

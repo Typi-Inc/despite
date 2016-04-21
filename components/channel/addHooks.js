@@ -17,7 +17,7 @@ export default class AddHooks extends Component{
 		return (
 
 			<ScrollView contentInset={{top:10}}>
-				<View style={{flexDirection:'row',  flexWrap: 'wrap'}}>
+				<View style={{flexDirection:'row',  flexWrap: 'wrap',marginLeft:6*k}}>
 					<TouchableOpacity onPress={()=>buttonClicks({action:'close'})}><View style={{margin:10*k,width:120*k,height:120*k,borderRadius:12*k,...center,borderWidth:2,borderColor:'rgb(220,220,220)'}}>
 						<Image source={{uri:'camera',isStatic:true}} style={{width:35*k,height:26*k,margin:15*k}}/>
 						<Text>Camera</Text>

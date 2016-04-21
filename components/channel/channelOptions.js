@@ -17,31 +17,43 @@ export default class ChannelOptions extends Component{
 	state={};
 	render(){
 		return (
-			<View style={{flex:1,backgroundColor:'rgb(245,245,245)'}}>
+			<View style={{flex:1,backgroundColor:'rgb(245,245,245)',borderTopWidth:1,borderColor:'rgb(230,230,230)'}}>
 			<ScrollView contentContainerStyle={{marginTop:10,marginBottom:20}}>
 				<Text style={{margin:10,color:'rgb(80,80,80)',fontSize:16,fontWeight:'600'}}>Options</Text>
+				<View style={{height:1,width:300*k,backgroundColor:'rgb(230,230,230)',}}/>
 
-				<View style={{height:1,width:300*k,backgroundColor:'rgb(230,230,230)',}}/>
-				<TouchableOpacity>
-					<View style={{backgroundColor:'white',alignItems:'center',paddingLeft:15,
-							flexDirection:'row',height:50*k,width:300*k}}>
-						<Text style={{fontSize:16}}>Channel's media</Text>
-					</View>
-				</TouchableOpacity>
-				<View style={{height:1,width:300*k,backgroundColor:'rgb(230,230,230)',}}/>
-				<TouchableOpacity>
-					<View style={{backgroundColor:'white',alignItems:'center',paddingLeft:15,
-							flexDirection:'row',height:50*k,width:300*k}}>
-						<Text style={{fontSize:16}}>Mentions</Text>
-					</View>
-				</TouchableOpacity>
-				<View style={{height:1,width:300*k,backgroundColor:'rgb(230,230,230)',}}/>
-				<TouchableOpacity>
-					<View style={{backgroundColor:'white',alignItems:'center',paddingLeft:15,
-							flexDirection:'row',height:50*k,width:300*k}}>
-						<Text style={{fontSize:16}}>Notificaiton settings</Text>
-					</View>
-				</TouchableOpacity>
+				<View style={{flexDirection:'row'}}>
+					<TouchableOpacity>
+						<View style={{//borderRightWidth:1,borderColor:'rgb(230,230,230)',
+								backgroundColor:'white',...center,
+								height:100*k,width:100*k}}>
+								<View style={{...center,padding:10*k,marginBottom:10,borderRadius:30,borderWidth:2,borderColor:'rgb(220,220,220)'}}>
+								<Image source={{uri:'media',isStatic:true}} style={{height:20,width:20}}/>
+								</View>
+							<Text style={{color:'rgb(80,80,80)',fontWeight:'500',fontSize:13}}>Media</Text>
+						</View>
+					</TouchableOpacity>
+					<TouchableOpacity>
+						<View style={{//borderRightWidth:1,borderColor:'rgb(230,230,230)',
+								backgroundColor:'white',...center,
+								height:100*k,width:100*k}}>
+								<View style={{...center,padding:10*k,marginBottom:10,borderRadius:30,borderWidth:2,borderColor:'rgb(220,220,220)'}}>
+								<Image source={{uri:'mentions',isStatic:true}} style={{height:20,width:20}}/>
+								</View>
+							<Text style={{color:'rgb(80,80,80)',fontWeight:'500',fontSize:13}}>Mentions</Text>
+							
+						</View>
+					</TouchableOpacity>
+					<TouchableOpacity>
+						<View style={{backgroundColor:'white',...center,
+								height:100*k,width:100*k}}>
+								<View style={{...center,padding:10*k,marginBottom:10,borderRadius:30,borderWidth:2,borderColor:'rgb(220,220,220)'}}>
+							<Image source={{uri:'settings',isStatic:true}} style={{height:20,width:20}}/>
+							</View>
+							<Text style={{color:'rgb(80,80,80)',fontWeight:'500',fontSize:13}}>Settings</Text>
+						</View>
+					</TouchableOpacity>
+				</View>
 				<View style={{height:1,width:300*k,backgroundColor:'rgb(230,230,230)',}}/>
 				<TouchableOpacity>
 					<View style={{backgroundColor:'white',alignItems:'center',paddingLeft:15,

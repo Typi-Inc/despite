@@ -4,6 +4,8 @@ import s from '../../styles'
 import React from 'react-native'; 
 import {veryFast,fast,keyboard} from '../animations'
 import {buttonClicks,buttonClicks$} from '../../actions/buttonClicks'
+var ImagePickerManager = require('NativeModules').ImagePickerManager;
+
 let {
   AppRegistry,
   Component,
@@ -18,6 +20,28 @@ let {
   TouchableOpacity,
   StatusBarIOS
 } =React;
+var options = {
+  title: null, // specify null or empty string to remove the title
+  cancelButtonTitle: 'Cancel',
+  takePhotoButtonTitle: 'Take Photo...', // specify null or empty string to remove this button
+  chooseFromLibraryButtonTitle: 'Choose from Library...', // specify null or empty string to remove this button
+  cameraType: 'back', // 'front' or 'back'
+  mediaType: 'photo', // 'photo' or 'video'
+  videoQuality: 'high', // 'low', 'medium', or 'high'
+  durationLimit: 10, // video recording max time in seconds
+  maxWidth: 100, // photos only
+  maxHeight: 100, // photos only
+  aspectX: 2, // android only - aspectX:aspectY, the cropping image's ratio of width to height
+  aspectY: 1, // android only - aspectX:aspectY, the cropping image's ratio of width to height
+  quality: 0.2, // 0 to 1, photos only
+  angle: 0, // android only, photos only
+  allowsEditing: false, // Built in functionality to resize/reposition the image after selection
+  noData: true, // photos only - disables the base64 `data` field from being generated (greatly improves performance on large photos)
+  storageOptions: { // if this key is provided, the image will get saved in the documents directory on ios, and the pictures directory on android (rather than a temporary directory)
+    skipBackup: true, // ios only - image will NOT be backed up to icloud
+    path: 'images' // ios only - will save image at /Documents/images rather than the root
+  }
+};
 var RCTStatusBarManager = require('NativeModules').StatusBarManager;
 export default class SlideUpInput extends Component{
 	state={height:0*k,replyAction:false,statusBarHeight:0,text:'',disable:false};
@@ -67,6 +91,38 @@ export default class SlideUpInput extends Component{
     this.setState({text:'@'+to+':',replyAction:true})
     this.textInput && this.textInput.focus()
    }
+   showPicker(){
+     // buttonClicks({action:'add',component:'hooks'})
+    ImagePickerManager.showImagePicker(options, (response) => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      }
+      else if (response.error) {
+        console.log('ImagePickerManager Error: ', response.error);
+      }
+      else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      }
+      else {
+
+        // You can display the image using either data:
+        // const source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true};
+
+        // uri (on iOS)
+        const source = {uri: response.uri.replace('file://', ''), isStatic: true};
+        // uri (on android)
+        // const source = {uri: response.uri, isStatic: true};
+
+        this.setState({
+          avatarSource: source
+        });
+
+      }
+    });
+
+   }
 	render(){
 		this.windowHeight=this.windowHeight || 568
 		this.addHeight=this.addHeight || 0
@@ -106,7 +162,7 @@ export default class SlideUpInput extends Component{
                     {/\S/.test(this.state.text) && !this.state.replyAction?<Text onPress={()=>this.textInput.blur()} style={[s.blueText,{
                     	color:'#BD10E0',fontWeight:'600',flex:1,marginRight:5,//alignSelf:'center',
                     	fontSize:17,marginBottom:11*k,marginLeft:5*k}]}>Send</Text>:
-                    	<TouchableOpacity style={{width:30,}} onPress={()=>buttonClicks({action:'add',component:'hooks'})}><Text
+                    	<TouchableOpacity style={{width:30,}} onPress={()=>this.showPicker()}><Text
                     	style={{
                     		color:'#BD10E0',fontWeight:'400',
                     		marginRight:10*k,fontSize:30*k,marginBottom:5*k,
@@ -128,4 +184,5 @@ export default class SlideUpInput extends Component{
 	}
 
 };
+// buttonClicks({action:'add',component:'hooks'})
 Object.assign(SlideUpInput.prototype, TimerMixin);
