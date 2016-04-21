@@ -8,28 +8,74 @@ let {
   Text,
   Image,
   TouchableOpacity,
+  InteractionManager,
   TouchableWithoutFeedback,
   LayoutAnimation,
   TouchableHighlight,
   View,Animated
 } =React;
+const Incremental = require('Incremental');
+const IncrementalGroup = require('IncrementalGroup');
+const IncrementalPresenter = require('IncrementalPresenter');
+
 var Lightbox = require('react-native-lightbox');
 import MessageProfile from './messageProfile'
 import MessageButtons from './messageButtons'
 
-import {veryFast} from '../animations'
+import {veryFast,openAnimation} from '../animations'
 import {buttonClicks} from '../../actions/buttonClicks'
 export default class Message extends Component{
-	state={karma:Math.floor(Math.random()*1000),haveIRated:false,isSaved:false,lineCount:Math.floor(Math.random()*100)};
+	state={loading:this.props.index>1?true:false,karma:Math.floor(Math.random()*1000),haveIRated:false,isSaved:false,lineCount:Math.floor(Math.random()*100)};
 	navigateToImageViewer(){
 		// buttonClicks({action:'navigation push', nav:'topNav',name:'imageViewer'})
-		Animated.spring(this.anim,{toValue:this.anim._value>0?0:1}).start()
+		// Animated.spring(this.anim,{toValue:this.anim._value>0?0:1}).start()
 		// this.image.setNativeProps({style:{position:'absolute',top:0,lef}})
+	}
+	componentDidMount(){
+		if(this.props.index>1){
+			if(this.props.index>5 && this.props.index<11){
+				this.setTimeout(()=>{
+					InteractionManager.runAfterInteractions(()=>{
+						this.setState({loading:false})
+					})
+				},500)
+			}else if(this.props.index>10 && this.props.index<15){
+				this.setTimeout(()=>{
+					InteractionManager.runAfterInteractions(()=>{
+						this.setState({loading:false})
+					})
+				},800)
+			}else if(this.props.index>14 && this.props.index<24){
+				this.setTimeout(()=>{
+					InteractionManager.runAfterInteractions(()=>{
+						this.setState({loading:false})
+					})
+				},1100)
+			}else if(this.props.index>23 && this.props.index<34){
+				this.setTimeout(()=>{
+					InteractionManager.runAfterInteractions(()=>{
+						this.setState({loading:false})
+					})
+				},1300)
+			}else if(this.props.index>33){
+				this.setTimeout(()=>{
+					InteractionManager.runAfterInteractions(()=>{
+						this.setState({loading:false})
+					})
+				},1600)
+			}
+			else{
+				InteractionManager.runAfterInteractions(()=>{
+					this.setState({loading:false})
+				})
+			}
+			
+		}
 	}
 	render(){
 		this.anim=this.anim || new Animated.Value(0)
+		if(this.state.loading) return null
 		return (
-
 			<View style={s.container}>					
 					<View style={{margin:8,marginRight:0,marginLeft:4,
 						borderColor:this.props.color,borderLeftWidth:2,

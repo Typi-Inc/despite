@@ -14,14 +14,17 @@ let {
   InteractionManager,
   Animated
 } =React;
+const IncrementalGroup = require('IncrementalGroup');
+const IncrementalPresenter = require('IncrementalPresenter');
+
 import Spinner from 'react-native-spinkit'
 import {buttonClicks$} from '../../actions/buttonClicks'
-const Incremental = require('Incremental');
 import Message from './message'
 import MessagePlaceholder from './messagePlaceholder'
 import SlideUpInput from './slideUpInput'
+import InvertibleScrollView from 'react-native-invertible-scroll-view';
 export default class Tube extends Component{
-	state={loading:true,disable:false};
+	state={loading:false,disable:false};
 	show(e){
 		if(this.state.disable) return;
 		LayoutAnimation.configureNext(keyboard);
@@ -58,6 +61,7 @@ export default class Tube extends Component{
 	 
 	  }
 	componentDidMount(){
+		this.scroll && this.scroll.scrollTo({x:0,y:0,animated:false})
 		InteractionManager.runAfterInteractions(()=>{
 			LayoutAnimation.configureNext(openAnimation)
 				this.setState({loading:false})
@@ -92,41 +96,31 @@ export default class Tube extends Component{
 		}
 		// LayoutAnimation.configureNext(openAnimation)
 		return (
+
 			<View style={{flex:1}}>
 				
-				<ScrollView  automaticallyAdjustContentInsets={true}
+				<InvertibleScrollView inverted  automaticallyAdjustContentInsets={true}
 				//keyboardDismissMode='interactive'
 				indicatorStyle={'black'} 
 					scrollEventThrottle={500}
 					onScroll={this.handleScroll.bind(this)} 
 					ref={el=>this.scroll=el}
 				>	
-					<Message color={'#F5A623'}/>
-					<Message color={'#BD10E0'}/>
-					<Message color={'#4A90E2'}/>
-					<Message color={'#4A90E2'}/>
-					<Message color={'#4A90E2'}/>
-					<Message color={'#D0021B'}/>
-					<Message color={'#F5A623'}/>
-					<Message color={'#BD10E0'}/>
-					<Message color={'#4A90E2'}/>
-					<Message color={'#4A90E2'}/>
-					<Message color={'#D0021B'}/>
-					<Message color={'#F5A623'}/>
-					<Message color={'#BD10E0'}/>
-					<Message color={'#4A90E2'}/>
-					<Message color={'#F5A623'}/>
-					<Message color={'#BD10E0'}/>
-					<Message color={'#D0021B'}/>
-					<Message color={'#F5A623'}/>
-					<Message color={'#BD10E0'}/>
-					<Message color={'#4A90E2'}/>
-					<Message color={'#F5A623'}/>
-					<Message color={'#BD10E0'}/>
+				<View ref={(el)=>this.t=el} style={{height:50*k}}/>
+				{['#F5A623','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				'#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				'#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				'#F5A623','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				'#F5A623','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				'#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				'#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				'#F5A623','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				].map((color,i)=><Message key={i} index={i} color={color}/>)}
+					
 		
-					<View ref={(el)=>this.t=el} style={{height:50*k}}/>
+					
 
-				</ScrollView>
+				</InvertibleScrollView>
 
 				<SlideUpInput ref={(e)=>this.input=e} setBottom={this.setBottom.bind(this)}/>
 			</View>

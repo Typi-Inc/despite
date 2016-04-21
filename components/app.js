@@ -34,7 +34,7 @@ export default class App extends Component{
 			if(x.action==='navigation push'&&x.nav==='topNav'){
 				this.nav&&this.nav.push({name:x.name,routeInfo:x.info})
 			}else if (x.action==='go back to chats'&&x.nav==='topNav'){
-				this.nav&&this.nav.jumpBack()
+				this.nav&&this.nav.pop()
 			}	
 	  	})
 	  	RCTStatusBarManager.getHeight((e)=>this.setState({statusBarHeight:e.height}))

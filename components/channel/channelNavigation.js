@@ -45,7 +45,7 @@ export default class ChannelNavigation extends Component{
 	}
 	renderChannel(route,navigator){
 		if(route.name==='channel'){
-			return <Channel navigator={navigator}/>
+			return <Channel index={route.index} navigator={navigator}/>
 		}else if(route.name==='line'){
 			return <Line color={route.routeInfo.color}/>
 		}
@@ -59,7 +59,7 @@ export default class ChannelNavigation extends Component{
 				style={{paddingTop:65}}
 				ref={el=>this.nav=el}
 				navigator={this.props.navigator}
-				initialRoute={{name:'channel',info:this.props.routeInfo}}
+				initialRoute={{name:'channel',info:this.props.routeInfo,index:0}}
 				renderScene={this.renderChannel.bind(this)}
 				navigationBar={
 					<Navigator.NavigationBar

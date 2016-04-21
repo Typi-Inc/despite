@@ -79,13 +79,7 @@ export default class Tube extends Component{
 					onScroll={this.handleScroll.bind(this)} 
 					ref={el=>this.scroll=el}
 				>	
-					<Message color={this.props.color}/>
-					<Message color={this.props.color}/>
-					<Message color={this.props.color}/>
-					
-					<Message color={this.props.color}/>
-					<Message color={this.props.color}/>
-					<Message color={this.props.color}/>
+					{[1,2,3,4,5,6].map((color,i)=><Message index={i} key={i} color={this.props.color}/>)}
 					<View ref={(el)=>this.t=el} style={{height:50*k}}/>
 
 				</ScrollView>
