@@ -25,15 +25,15 @@ export default class Topics extends Component{
 
 		return (
 
-			<View style={{width:320*k,height:65,borderBottomWidth:.5,borderColor:'rgb(215,215,215)',justifyContent:'center'}}>
-						<ScrollView ref={el=>this.scroll=el} contentContainerStyle={{...center,paddingTop:10}} horizontal={true} 
+			<View style={{width:320*k,height:75,borderBottomWidth:.5,borderColor:'rgb(215,215,215)',justifyContent:'center'}}>
+						<ScrollView ref={el=>this.scroll=el} contentContainerStyle={{...center,paddingTop:17}} horizontal={true} 
 							showsHorizontalScrollIndicator={false}>
 					{this.props.tabs.map((tab, i) => {
 				          return <TouchableWithoutFeedback key={tab} onPress={() => {
 				          	this.scroll.scrollTo({x: i*25, y:0, animated: true})
 				          	this.props.goToPage(i)}} >
 								<Text  name={tab} style={{height:40,
-									paddingTop:20,fontSize:15,fontWeight:this.props.activeTab===i?'500':'400',
+									paddingTop:20,fontSize:16,fontWeight:this.props.activeTab===i?'500':'400',
 									color:this.props.activeTab===i?'black':'rgb(160,160,160)',
 									marginLeft:5*k,marginRight:5*k,alignSelf:'center'}}> {tab}</Text>
 							</TouchableWithoutFeedback>

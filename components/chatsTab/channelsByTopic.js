@@ -10,6 +10,8 @@ let {
   LayoutAnimation,
   View
 } =React;
+const IncrementalGroup = require('IncrementalGroup');
+const IncrementalPresenter = require('IncrementalPresenter');
 import ChannelsPlaceholder from './channelsPlaceholder'
 import {openAnimation} from '../animations'
 import {channelList} from '../mock'
@@ -19,6 +21,7 @@ export default class ChannelsByTopic extends Component{
 	state={loading:true}
 	componentDidMount(){
 		InteractionManager.runAfterInteractions(()=>{
+			LayoutAnimation.configureNext(openAnimation)
 				this.setState({loading:false})
 			})
 	}

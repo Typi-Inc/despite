@@ -12,6 +12,7 @@ let {
   Navigator,
 
 } =React;
+import Test from './test'
 import dismissKeyboard from 'dismissKeyboard'
 import PhoneEnter from './login/phoneEnter'
 var RCTStatusBarManager = require('NativeModules').StatusBarManager;
@@ -86,7 +87,7 @@ export default class App extends Component{
 		return (
 			<View style={{flex:1}}>
 			<Navigator ref={el=>this.nav=el}
-				initialRoute={{name:'ksl'}}
+				initialRoute={{name:'testa'}}
 				configureScene={(route,routeStack)=>{
 					if(route.name==='createChannel') return Navigator.SceneConfigs.FloatFromBottom
 					else if (route.name==='channel') return Navigator.SceneConfigs.FloatFromRight
@@ -111,6 +112,7 @@ export default class App extends Component{
 			</View>
 		else if (route.name==='login') return <PhoneEnter/>
 		else if (route.name==='imageViewer') return <ImageViewerNavigation/>
+		else if (route.name==='test') return <Test/>
 		return <Tabs/>
 	}
 

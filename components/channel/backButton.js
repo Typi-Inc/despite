@@ -13,16 +13,14 @@ import {buttonClicks} from '../../actions/buttonClicks'
 export default class BackButton extends Component{
 	state={};
 	render(){
-		console.log(this.props.index)
 		return (
 
 			<TouchableOpacity style={{height:45,width:45,justifyContent:'center',alignItems:'flex-start'}} onPress={()=>{
 					dismissKeyboard()
-					if(this.props.route.name==='line'){
-						this.props.navigator.pop()
-					}else{
-						
+					if(this.props.index===0){
 						buttonClicks({action:'go back to chats',nav:'topNav'})
+					}else{
+						this.props.navigator.pop()
 					}
 					
 				}}>

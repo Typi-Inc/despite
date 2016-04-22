@@ -57,7 +57,7 @@ export default class BlackScreen extends Component{
 			<View style={{position:'absolute',top:0,left:0,width:320*k,paddingTop:20,...center}}>
 				<Animated.View  ref={el=>this.background=el} style={{position:'absolute',
 					top:75,left:this.anim.interpolate({inputRange:[0,1],outputRange:[600*k,0]}),
-					height:400*k,width:320*k,backgroundColor:'rgb(0,0,0)'}}>
+					height:400*k,width:320*k,backgroundColor:'rgb(80,80,80)'}}>
 					<ScrollView ref={el=>this.scroll=el} keyboardShouldPersistTaps={true} contentContainerStyle={{paddingTop:10,paddingBottom:140*k}}>
 							{topics.map((topic)=>{
 

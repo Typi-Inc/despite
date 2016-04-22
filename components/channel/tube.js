@@ -14,6 +14,7 @@ let {
   InteractionManager,
   Animated
 } =React;
+
 const IncrementalGroup = require('IncrementalGroup');
 const IncrementalPresenter = require('IncrementalPresenter');
 
@@ -29,7 +30,7 @@ export default class Tube extends Component{
 		if(this.state.disable) return;
 		LayoutAnimation.configureNext(keyboard);
 		this.keyboardHeight=e.endCoordinates.height
-		this.scroll && this.scroll.setNativeProps({style:{bottom:e.endCoordinates.height+this.input.getAddHeight()},contentInset:{top:e.endCoordinates.height+this.input.getAddHeight()}})
+		this.scroll && this.scroll.setNativeProps({style:{bottom:e.endCoordinates.height+this.input.getAddHeight()},contentInset:{bottom:e.endCoordinates.height+this.input.getAddHeight()}})
  	}
 
  	hide(){
@@ -39,7 +40,7 @@ export default class Tube extends Component{
   		if(this.contentOffset===0){
   			this.scroll&&this.scroll.setNativeProps({contentOffset:{y:0}})
   		}
-		this.scroll && this.scroll.setNativeProps({contentInset:{top:this.input.getAddHeight()}})
+		this.scroll && this.scroll.setNativeProps({contentInset:{bottom:this.input.getAddHeight()}})
   	
 	 
 	}
@@ -83,7 +84,10 @@ export default class Tube extends Component{
 	generateRandomColor(){
 		return `rgb(${Math.rand()*255},${Math.rand()*255},${Math.rand()*255})`
 	}
-	
+	_onDone(){
+		// this.setState({loading:false})
+		// console.log('here')
+	}
 	render(){
 		this.keyboardHeight=this.keyboardHeight || 0
 		if(this.state.loading){
@@ -97,7 +101,7 @@ export default class Tube extends Component{
 		// LayoutAnimation.configureNext(openAnimation)
 		return (
 
-			<View style={{flex:1}}>
+			<IncrementalGroup onDone={this._onDone.bind(this)} disabled={true}><View style={{flex:1}}>
 				
 				<InvertibleScrollView inverted  automaticallyAdjustContentInsets={true}
 				//keyboardDismissMode='interactive'
@@ -108,14 +112,16 @@ export default class Tube extends Component{
 				>	
 				<View ref={(el)=>this.t=el} style={{height:50*k}}/>
 				{['#F5A623','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
-				'#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
-				'#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
-				'#F5A623','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
-				'#F5A623','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
-				'#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
-				'#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
-				'#F5A623','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
-				].map((color,i)=><Message key={i} index={i} color={color}/>)}
+				// '#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				// '#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				// '#F5A623','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				// '#F5A623','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				// '#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				// '#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				// '#F5A623','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				].map((color,i)=>{
+					if(i>2) return  <IncrementalGroup disabled={false}><Message key={i} index={i} color={color}/></IncrementalGroup>
+					return <Message key={i} index={i} color={color}/>})}
 					
 		
 					
@@ -124,6 +130,7 @@ export default class Tube extends Component{
 
 				<SlideUpInput ref={(e)=>this.input=e} setBottom={this.setBottom.bind(this)}/>
 			</View>
+		</IncrementalGroup>
 			)
 	}
 
