@@ -28,6 +28,9 @@ export default class TopicPager extends Component{
    			<DelayRendering tabLabel={'Top rated messages'} delay={300}><Channel /></DelayRendering>
    			<DelayRendering tabLabel='Trending' delay={500}><ChannelsByTopic /></DelayRendering>
    			<DelayRendering tabLabel='Nearby' delay={600}><ChannelsByTopic /></DelayRendering>
+   			<DelayRendering tabLabel={'funny messages'} delay={900}><Channel /></DelayRendering>
+   			<DelayRendering tabLabel='great day' delay={1200}><ChannelsByTopic /></DelayRendering>
+   			<DelayRendering tabLabel='good' delay={1500}><ChannelsByTopic /></DelayRendering>
 			
    
       </ScrollableTabView>

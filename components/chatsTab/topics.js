@@ -17,7 +17,8 @@ export default class Topics extends Component{
 		buttonClicks({action:'choose topic', topic:topic})
 	}
 	scrollToTab(i){
-		if(i>4) this.scroll.scrollTo({x:i*25, y:0, animated: true})
+		if(i>3 && i<5) this.scroll.scrollTo({x:i*50, y:0, animated: true})
+		else if(i>4)  this.scroll.scrollTo({x:i*60, y:0, animated: true})
 		else this.scroll.scrollTo({x:i*25, y:0, animated: true})
 	}
 	render(){
@@ -30,7 +31,7 @@ export default class Topics extends Component{
 							showsHorizontalScrollIndicator={false}>
 					{this.props.tabs.map((tab, i) => {
 				          return <TouchableWithoutFeedback key={tab} onPress={() => {
-				          	this.scroll.scrollTo({x: i*25, y:0, animated: true})
+				          	// this.scroll.scrollTo({x: i*25, y:0, animated: true})
 				          	this.props.goToPage(i)}} >
 								<Text  name={tab} style={{height:40,
 									paddingTop:20,fontSize:16,fontWeight:this.props.activeTab===i?'500':'400',
