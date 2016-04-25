@@ -30,7 +30,7 @@ export default class ChannelOptions extends Component{
 								<View style={{...center,padding:10*k,marginBottom:10,borderRadius:30,borderWidth:2,borderColor:'rgb(220,220,220)'}}>
 								<Image source={{uri:'media',isStatic:true}} style={{height:20,width:20}}/>
 								</View>
-							<Text style={{color:'rgb(80,80,80)',fontWeight:'500',fontSize:13}}>Media</Text>
+							<Text style={{color:'rgb(80,80,80)',fontWeight:'500',fontSize:13}}>Members</Text>
 						</View>
 					</TouchableOpacity>
 					<TouchableOpacity>
@@ -79,79 +79,7 @@ export default class ChannelOptions extends Component{
 					</View>
 				</TouchableWithoutFeedback>
 				<View style={{height:1,width:300*k,backgroundColor:'rgb(230,230,230)',marginBottom:20}}/>
-				<Text style={{margin:10,color:'rgb(80,80,80)',fontSize:16,fontWeight:'600'}}>Joined</Text>
-				<View style={{height:1,width:300*k,backgroundColor:'rgb(230,230,230)',}}/>
-				<TouchableWithoutFeedback>
-					<View style={{flexDirection:'row',height:65*k,padding:10,alignItems:'center',justifyContent:'space-between',backgroundColor:'white'}}>
-						<View style={{flexDirection:'row',...center}}>
-							<Image source={{uri:'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQc364GqLLnhfFllhF91hAGVCyJ-MO3JZuA6DN3uZtbQi4KWCgv'}} 
-									style={{borderRadius:5*k,width:45*k,height:45*k}}/>
-							<View style={{margin:10,marginTop:0}}>
-								<Text style={{fontSize:18,fontWeight:'bold',color:'rgb(80,80,80)',marginTop:5}}>Joseph</Text>
-								<Text style={{fontSize:14,fontWeight:'500',color:'rgb(80,80,80)',marginTop:5}}>Karma: 800</Text>
-							</View>
-						</View>
-						<View style={{height:9,width:9,borderRadius:5,backgroundColor:'green',marginRight:5}}/>
-					</View>
-				</TouchableWithoutFeedback>
-				<View style={{height:1,width:300*k,backgroundColor:'rgb(230,230,230)',}}/>
-				<TouchableWithoutFeedback>
-					<View style={{flexDirection:'row',height:65*k,padding:10,alignItems:'center',justifyContent:'space-between',backgroundColor:'white'}}>
-						<View style={{flexDirection:'row',...center}}>
-							<Image source={{uri:'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQc364GqLLnhfFllhF91hAGVCyJ-MO3JZuA6DN3uZtbQi4KWCgv'}} 
-									style={{borderRadius:5*k,width:45*k,height:45*k}}/>
-							<View style={{margin:10,marginTop:0}}>
-								<Text style={{fontSize:18,fontWeight:'bold',color:'rgb(80,80,80)',marginTop:5}}>Joseph</Text>
-								<Text style={{fontSize:14,fontWeight:'500',color:'rgb(80,80,80)',marginTop:5}}>Karma: 800</Text>
-							</View>
-						</View>
-						<View style={{height:9,width:9,borderRadius:5,backgroundColor:'green',marginRight:5}}/>
-					</View>
-				</TouchableWithoutFeedback>
-				<View style={{height:1,width:300*k,backgroundColor:'rgb(230,230,230)',}}/>
-				<TouchableWithoutFeedback>
-					<View style={{flexDirection:'row',height:65*k,padding:10,alignItems:'center',justifyContent:'space-between',backgroundColor:'white'}}>
-						<View style={{flexDirection:'row',...center}}>
-							<Image source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqtoCVUpVbxMyTwuExep1uQP83F9IhpAMF9Opez7WXICXZMi12Ag'}} 
-									style={{borderRadius:5*k,width:45*k,height:45*k}}/>
-							<View style={{margin:10,marginTop:0}}>
-								<Text style={{fontSize:18,fontWeight:'bold',color:'rgb(80,80,80)',marginTop:5}}>Joseph</Text>
-								<Text style={{fontSize:14,fontWeight:'500',color:'rgb(80,80,80)',marginTop:5}}>Karma: 800</Text>
-							</View>
-						</View>
-						<View style={{height:9,width:9,borderRadius:5,backgroundColor:'green',marginRight:5}}/>
-					</View>
-				</TouchableWithoutFeedback>
-				<View style={{height:1,width:300*k,backgroundColor:'rgb(230,230,230)',}}/>
-				<TouchableWithoutFeedback>
-					<View style={{flexDirection:'row',height:65*k,padding:10,alignItems:'center',justifyContent:'space-between',backgroundColor:'white'}}>
-						<View style={{flexDirection:'row',...center}}>
-							<Image source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqtoCVUpVbxMyTwuExep1uQP83F9IhpAMF9Opez7WXICXZMi12Ag'}} 
-									style={{borderRadius:5*k,width:45*k,height:45*k}}/>
-							<View style={{margin:10,marginTop:0}}>
-								<Text style={{fontSize:18,fontWeight:'bold',color:'rgb(80,80,80)',marginTop:5}}>Joseph</Text>
-								<Text style={{fontSize:14,fontWeight:'500',color:'rgb(80,80,80)',marginTop:5}}>Karma: 800</Text>
-							</View>
-						</View>
-						<View style={{height:9,width:9,borderRadius:5,backgroundColor:'green',marginRight:5}}/>
-					</View>
-				</TouchableWithoutFeedback>
-				<View style={{height:1,width:300*k,backgroundColor:'rgb(230,230,230)',}}/>
-				<TouchableWithoutFeedback>
-					<View style={{flexDirection:'row',height:65*k,padding:10,alignItems:'center',justifyContent:'space-between',backgroundColor:'white'}}>
-						<View style={{flexDirection:'row',...center}}>
-							<Image source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqtoCVUpVbxMyTwuExep1uQP83F9IhpAMF9Opez7WXICXZMi12Ag'}} 
-									style={{borderRadius:5*k,width:45*k,height:45*k}}/>
-							<View style={{margin:10,marginTop:0}}>
-								<Text style={{fontSize:18,fontWeight:'bold',color:'rgb(80,80,80)',marginTop:5}}>Joseph</Text>
-								<Text style={{fontSize:14,fontWeight:'500',color:'rgb(80,80,80)',marginTop:5}}>Karma: 800</Text>
-							</View>
-						</View>
-						<View style={{height:9,width:9,borderRadius:5,backgroundColor:'green',marginRight:5}}/>
-					</View>
-				</TouchableWithoutFeedback>
-				<View style={{height:1,width:300*k,backgroundColor:'rgb(230,230,230)',}}/>
-
+				
 
 			</ScrollView>
 			</View>

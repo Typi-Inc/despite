@@ -66,7 +66,7 @@ export default class SlideUpInput extends Component{
 	  }
   showMentions(){
     LayoutAnimation.configureNext(keyboard);
-    this.mentions && this.mentions.setNativeProps({style:{height:150}})
+    this.mentions && this.mentions.setNativeProps({style:{height:220-this.state.height}})
   }
   hideMenitions(){
     LayoutAnimation.configureNext(keyboard);
@@ -163,23 +163,26 @@ export default class SlideUpInput extends Component{
               	flexDirection:'row',justifyContent:'flex-start',alignItems:'flex-end',
                 borderColor:'rgb(170,170,170)',width:320*k,}}>
                   <TextInput
+                  keyboardType={'twitter'}
+                  // keyboardAppearance={'dark'}
                     ref={el=>this.textInput=el}
                     style={{height: Math.max(30*k, this.state.height),marginLeft:7,flex:5,
                     fontSize:17,alignItems:'flex-end',
-                      borderColor: '#BD10E0', borderLeftWidth:2,justifyContent:'flex-start',
-                      alignSelf:'center',width:240*k,paddingLeft:10*k,paddingBottom:4*k}}
+                      // borderColor: '#BD10E0', borderLeftWidth:2,
+                      justifyContent:'flex-start',
+                      alignSelf:'center',width:240*k,paddingLeft:2*k,paddingBottom:4*k}}
                     value={this.state.text}
                     // onFocus={()=>{console.log('focus')}}
                     onChange={(event) => {
                       // event.nativeEvent.text.length===0?this.submit.setNativeProps({style:{backgroundColor:'gray'}}):this.submit.setNativeProps({style:{backgroundColor:'#0084b4'}})
-                      LayoutAnimation.configureNext(veryFast)
+                      // LayoutAnimation.configureNext(veryFast)
                         this.setState({
                           text: event.nativeEvent.text,
                           replyAction:false,
                           height: Math.min(event.nativeEvent.contentSize.height,129*k)
                         });
-                        if(this.state.text[this.state.text.length-1]==='@') this.showMentions()
-                        else this.hideMenitions()
+                        if(/@[a-zA-Z0-9]*$/.test(this.state.text)) this.showMentions()
+                        else if(this.state.text[this.state.text.length-1]||this.state.text.length===0) this.hideMenitions()
                        	this.addHeight=this.state.height<35*k?0:this.state.height-30*k
                         this.props.setBottom(this.addHeight)
                       }}
@@ -188,18 +191,12 @@ export default class SlideUpInput extends Component{
                     placeholder={'Начать разговор'}
                     placeholderTextColor={'rgb(160,160,160)'}
                     />
-                    {/\S/.test(this.state.text) && !this.state.replyAction?<Text onPress={()=>this.textInput.blur()} style={[s.blueText,{
-                    	color:'#BD10E0',fontWeight:'600',flex:1,marginRight:5,//alignSelf:'center',
-                    	fontSize:17,marginBottom:11*k,marginLeft:5*k}]}>Send</Text>:
-                    	<TouchableOpacity style={{width:30,}} onPress={()=>this.showPicker()}><Text
-                    	style={{
-                    		color:'#BD10E0',fontWeight:'400',
-                    		marginRight:10*k,fontSize:30*k,marginBottom:5*k,
-                    	}}
-
-                    	>+</Text></TouchableOpacity>
-
-                    }
+                    <TouchableOpacity style={{marginLeft:10}} onPress={()=>this.textInput.blur()} >
+                        <Text style={{
+                    	color:/\S/.test(this.state.text) && !this.state.replyAction?'rgb(14,122,254)':'rgb(160,160,160)',fontWeight:'600',flex:1,marginRight:5,//alignSelf:'center',
+                    	fontSize:17,marginBottom:11*k,marginLeft:10*k}}>Send</Text></TouchableOpacity>
+                    	
+                    
                   
                 
               </View> 

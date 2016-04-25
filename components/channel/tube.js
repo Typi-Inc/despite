@@ -103,7 +103,8 @@ export default class Tube extends Component{
 
 			<IncrementalGroup onDone={this._onDone.bind(this)} disabled={true}><View style={{flex:1}}>
 				
-				<InvertibleScrollView inverted  automaticallyAdjustContentInsets={true}
+				<InvertibleScrollView keyboardDismissMode={'interactive'}
+				inverted  automaticallyAdjustContentInsets={true}
 				//keyboardDismissMode='interactive'
 				indicatorStyle={'black'} 
 					scrollEventThrottle={500}
@@ -111,9 +112,9 @@ export default class Tube extends Component{
 					ref={el=>this.scroll=el}
 				>	
 				<View ref={(el)=>this.t=el} style={{height:50*k}}/>
-				{['#F5A623','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
-				// '#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
-				// '#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				{['#F5A623','#BD10E0',//'#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				'#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				'#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
 				// '#F5A623','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
 				// '#F5A623','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
 				// '#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',

@@ -21,8 +21,8 @@ const IncrementalPresenter = require('IncrementalPresenter');
 var Lightbox = require('react-native-lightbox');
 import MessageProfile from './messageProfile'
 import MessageButtons from './messageButtons'
-var WithProgress = require('react-native-image-progress');
-var ProgressBar = require('react-native-progress/Bar');
+// var WithProgress = require('react-native-image-progress');
+// var ProgressBar = require('react-native-progress/Bar');
 import {veryFast,openAnimation} from '../animations'
 import {buttonClicks} from '../../actions/buttonClicks'
 export default class Message extends Component{
@@ -87,31 +87,18 @@ export default class Message extends Component{
 							<MessageProfile/>
 							<MessageButtons karma={this.state.carma} haveIRated={this.state.haveIRated} isSaved={this.state.isSaved}/>
 						</View></Incremental>
-						<Incremental><Text style={{width:300*k,marginLeft:3*k,fontSize:16,marginBottom:5}}> 
+						<Incremental><Text style={{width:300*k,marginLeft:3*k,fontSize:16,marginBottom:2}}> 
 							I guess it would be awesome if they finally decide to do it,
 							who is going? what are your ideas on politics in western europe. do your
-								agreement on the brexit issue fully subsidized yes inedeed true
+								agreement on the brexit issue fully subsidised for me
 						</Text></Incremental>
-						<TouchableWithoutFeedback onPress={()=>this.navigateToImageViewer()}>
-							<Incremental><Animated.Image ref={el=>this.image=el}
-								// onLoad={(e)=>this.props.index===0&&console.log(e,'there')}
-						      style={{ height:this.anim.interpolate({inputRange:[0,1],outputRange:[200,280*k]}),
-						      	width:this.anim.interpolate({inputRange:[0,1],outputRange:[200,280*k]}),
-						      	margin:this.anim.interpolate({inputRange:[0,1],outputRange:[15,0]}),
-						      	marginBottom:5,
-						      	left:0,
-						      	borderRadius:this.anim.interpolate({inputRange:[0,1],outputRange:[20,0]}),}}
-						      source={{ uri: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTRHDbRipz7fkuVc3f7OoZT0fSlEdjimXMYEeQI39lKrRhpFYLV' }}
-						    /></Incremental>
-						</TouchableWithoutFeedback>
-
-
-
 						<View style={{flexDirection:'row',marginLeft:3*k,marginBottom:0}}>
-							<TouchableHighlight underlayColor={'rgb(120,120,120'} onPress={()=>buttonClicks({action:'reply pressed',to:'Johnnrdino'})} style={{height:24,width:70,justifyContent:'flex-end'}}><Text style={s.smallGreyText}>Ответить</Text></TouchableHighlight>
+							<TouchableHighlight underlayColor={'rgb(120,120,120'} 
+							onPress={()=>buttonClicks({action:'reply pressed',to:'Johnnrdino'})} style={{height:20,width:70,justifyContent:'flex-end'}}>
+							<Text style={s.smallGreyText}>Ответить</Text></TouchableHighlight>
 
 							<TouchableHighlight underlayColor={'rgb(120,120,120'} 
-								style={{height:24,width:130,justifyContent:'flex-end',marginLeft:10}}
+								style={{height:20,width:130,justifyContent:'flex-end',marginLeft:10}}
 								 onPress={()=>buttonClicks({action:'navigation push',name:'line',nav:'channelNav',info:this.props})}>
 								<Text style={s.smallGreyText}>Разговор ({this.state.lineCount})</Text>
 							</TouchableHighlight>

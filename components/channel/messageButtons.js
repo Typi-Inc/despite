@@ -15,7 +15,7 @@ let {
 } =React;
 import {buttonClicks} from '../../actions/buttonClicks'
 import Sound from 'react-native-sound'
-	var whoosh = new Sound('tap-warm.aif', Sound.MAIN_BUNDLE, (error) => {
+	var whoosh = new Sound('tap-mellow.aif', Sound.MAIN_BUNDLE, (error) => {
 			  if (error) {
 			    // console.log('failed to load the sound', error);
 			  } else { // loaded successfully
@@ -53,12 +53,13 @@ export default class MessageButtons extends Component{
 									</TouchableHighlight>	
 								</View>:<View style={{flexDirection:'row'}}>
 									<TouchableOpacity onPress={()=>{
-										whoosh.setVolume(0.8)
+										whoosh.setVolume(3)
 										whoosh.play()
 										LayoutAnimation.configureNext(veryFast)
 										this.setState({haveIRated:true,karma:this.state.karma+1})
 									}} style={{padding:8,...center,marginRight:7*k}}><Image source={{uri:'up',isStatic:true,}} style={{height:25*k,width:25*k,}}/></TouchableOpacity>
 									<TouchableOpacity onPress={()=>{
+										cok.setVolume(0.7)
 										cok.play()
 										LayoutAnimation.configureNext(veryFast)
 										this.setState({haveIRated:true,karma:this.state.karma-1})

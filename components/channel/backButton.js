@@ -19,6 +19,7 @@ export default class BackButton extends Component{
 					dismissKeyboard()
 					if(this.props.index===0){
 						buttonClicks({action:'go back to chats',nav:'topNav'})
+						return;
 					}else{
 						this.props.navigator.pop()
 					}
