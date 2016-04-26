@@ -10,6 +10,7 @@ let {
   TouchableOpacity,
   Image,
   Navigator,
+  AppStateIOS
 
 } =React;
 import Test from './test'
@@ -38,11 +39,20 @@ export default class App extends Component{
 				this.nav&&this.nav.pop()
 			}	
 	  	})
+ 	 AppStateIOS.addEventListener('change', this._handleAppStateChange);
+
 	  	RCTStatusBarManager.getHeight((e)=>this.setState({statusBarHeight:e.height}))
 	  
 
 	}
+
+
+	_handleAppStateChange(currentAppState) {
+		// console.log(currentAppState)
+	}
 	componentWillUnmount(){
+ 	 AppStateIOS.removeEventListener('change', this._handleAppStateChange);
+
 		this.buttonClicksSubscription.unsubscribe()
 	}
 

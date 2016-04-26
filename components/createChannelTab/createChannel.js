@@ -19,6 +19,9 @@ export default class CreateChannel extends Component{
 	componentWillUnmount(){
 		// StatusBarIOS.setStyle('default')
 	}
+	componentDidMount(){
+		this.input.focus()
+	}
 	render(){
 		return (
 
@@ -28,7 +31,8 @@ export default class CreateChannel extends Component{
 					<View style={{backgroundColor:'white',flexDirection:'row',height:80*k,width:320*k,marginBottom:20,padding:10,alignItems:'center'}}>
 						<View 
 								style={{borderRadius:5*k,width:60*k,height:60*k,backgroundColor:'gray'}}/>
-						 <TextInput autoFocus={true} ref={el=>this.input=el} autoCorrect={false}
+						 <TextInput //autoFocus={true}
+						  ref={el=>this.input=el} autoCorrect={false}
 						 multiline={true} 
 					        style={{paddingLeft:10,fontSize:17,
 					          width:245*k,height:60*k,borderRadius:5}}
