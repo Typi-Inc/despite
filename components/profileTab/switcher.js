@@ -4,43 +4,48 @@ let {
   AppRegistry,
   Component,
   Text,
-  Animated,
   LayoutAnimation,
   View
 } =React;
-import Line from '../channel/line'
+import IncrementalGroup from 'IncrementalGroup'
+import ChannelsByTopic from '../chatsTab/channelsByTopic'
+import Channel from '../channel/channel'
 import Message from '../channel/message'
 import {openAnimation} from '../animations'
 export default class Switcher extends Component{
-	state={};
-	switch(val){
-		Animated.timing(this.anim,{toValue:val,duration:1}).start()
+	state={num:0};
+	changeNum(num){
+		LayoutAnimation.configureNext(openAnimation)
+		this.setState({num:num})
 	}
 	render(){
-		this.anim=this.anim || new Animated.Value(0)
+		let buy=<Text>buy</Text>
+		let author=<Text>author</Text>
+		let comments=<Text>comments</Text>
+		let tab;
+		if(this.state.num===0){
+			tab=<ChannelsByTopic/>;
+		}else if(this.state.num===1){
+			tab=['#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				'#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				].map((color,i)=>{
+					if(i>2) return  <IncrementalGroup disabled={false}><Message key={i} index={i} color={color}/></IncrementalGroup>
+					return <Message key={i} index={i} color={color}/>})
+		}else{
+			tab=['#F5A623','#BD10E0','#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+		
+				].map((color,i)=>{
+					if(i>2) return  <IncrementalGroup disabled={false}><Message key={i} index={i} color={color}/></IncrementalGroup>
+					return <Message key={i} index={i} color={color}/>})
+
+			
+		}
 		return (
 
 			<View style={{flex:1}}>
-				<Animated.View style={{flex:1,top:0,bottom:0,paddingLeft:3,
-					position:'absolute',left:this.anim.interpolate({inputRange:[0,1],outputRange:[0,320*k]})}}>
-					<Message color={'red'}/>
-					<Message color={'red'}/>
-					<Message color={'red'}/>
-					
-					<Message color={'red'}/>
-					<Message color={'red'}/>
-					<Message color={'red'}/>
-				</Animated.View>
-				<Animated.View style={{flex:1,
-					left:this.anim.interpolate({inputRange:[0,1],outputRange:[-320*k,0]})}}>
-					<Message color={'blue'}/>
-					<Message color={'blue'}/>
-					<Message color={'blue'}/>
-					
-					<Message color={'blue'}/>
-					<Message color={'blue'}/>
-					<Message color={'blue'}/>
-				</Animated.View>
+				
+
+				{tab}
 
 			</View>
 
@@ -49,5 +54,3 @@ export default class Switcher extends Component{
 
 };
 Object.assign(Switcher.prototype, TimerMixin);
-
-

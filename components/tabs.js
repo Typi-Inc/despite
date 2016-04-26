@@ -24,7 +24,7 @@ import ChatsTab from './chatsTab/chatsTab'
 import ProfileNavigation from './profileTab/profileNaivgation'
 import SearchNavigation from './searchTab/searchNavigation'
 export default class Tabs extends Component{
-	state={height:52,overflow:'visible',selectedTab:'activity'};
+	state={height:47,overflow:'visible',selectedTab:'activity'};
 	// static childContextTypes={toggleTabs:React.PropTypes.func,tabsHidden:React.PropTypes.func};
 	tabsHidden(){
 		return this.state.height===0
@@ -68,32 +68,32 @@ export default class Tabs extends Component{
 				<TabNavigator.Item
 					selected={this.state.selectedTab === 'chats'}
 					onPress={() =>this.setState({ selectedTab: 'chats' })}
-					renderIcon={()=><Image source={{uri:'home',isStatic:true}} style={{height:22,width:21}}/>}
-					renderSelectedIcon={()=><Image source={{uri:'homeA',isStatic:true}} style={{height:22,width:21}}/>}
+					renderIcon={()=><Image source={{uri:'home',isStatic:true}} style={{height:20,width:19}}/>}
+					renderSelectedIcon={()=><Image source={{uri:'homeA',isStatic:true}} style={{height:20,width:19}}/>}
 				>
 					<TopicPager/>
 				</TabNavigator.Item>
 				<TabNavigator.Item
 					selected={this.state.selectedTab === 'search'}
 					onPress={() =>this.setState({ selectedTab: 'search' })}
-					renderIcon={()=><Image source={{uri:'searchTab',isStatic:true}} style={{height:21,width:21}}/>}
-					renderSelectedIcon={()=><Image source={{uri:'searchTabA',isStatic:true}} style={{height:21,width:21}}/>}
+					renderIcon={()=><Image source={{uri:'searchTab',isStatic:true}} style={{height:19,width:19}}/>}
+					renderSelectedIcon={()=><Image source={{uri:'searchTabA',isStatic:true}} style={{height:19,width:19}}/>}
 				>
 					<SearchNavigation/>
 				</TabNavigator.Item>
 				<TabNavigator.Item
 					selected={this.state.selectedTab === 'create'}
 					onPress={() =>this.createChannel()}
-					renderIcon={()=><Image source={{uri:'addChannel',isStatic:true}} style={{height:23,width:23}}/>}
-					renderSelectedIcon={()=><Image source={{uri:'addChannelA',isStatic:true}} style={{height:23,width:23}}/>}
+					renderIcon={()=><Image source={{uri:'addChannel',isStatic:true}} style={{height:21,width:21}}/>}
+					renderSelectedIcon={()=><Image source={{uri:'addChannelA',isStatic:true}} style={{height:21,width:21}}/>}
 				>
 					<View/>
 				</TabNavigator.Item>
 				<TabNavigator.Item
 					selected={this.state.selectedTab === 'activity'}
 					onPress={() =>this.notificationPress()}
-					renderIcon={()=><Image source={{uri:'doubleChats',isStatic:true}} style={{height:21,width:25}}/>}
-					renderSelectedIcon={()=><Image source={{uri:'dobuleChatsA',isStatic:true}} style={{height:21,width:25}}/>}
+					renderIcon={()=><Image source={{uri:'doubleChats',isStatic:true}} style={{height:19,width:23}}/>}
+					renderSelectedIcon={()=><Image source={{uri:'dobuleChatsA',isStatic:true}} style={{height:19,width:23}}/>}
 					renderBadge={this.state.hideBadge?this.hideNotificationBadge:this.renderNotificationBadge.bind(this)}
 				>
 					<ChatsTab/>
@@ -101,8 +101,8 @@ export default class Tabs extends Component{
 				<TabNavigator.Item
 					selected={this.state.selectedTab === 'profile'}
 					onPress={() =>this.setState({ selectedTab: 'profile' })}
-					renderIcon={()=><Image source={{uri:'me',isStatic:true}} style={{height:22,width:15}}/>}
-					renderSelectedIcon={()=><Image source={{uri:'meA',isStatic:true}} style={{height:22,width:15}}/>}
+					renderIcon={()=><Image source={{uri:'me',isStatic:true}} style={{height:20,width:13}}/>}
+					renderSelectedIcon={()=><Image source={{uri:'meA',isStatic:true}} style={{height:20,width:13}}/>}
 				>
 					<ProfileNavigation/>
 				</TabNavigator.Item>

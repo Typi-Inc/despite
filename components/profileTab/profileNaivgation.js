@@ -25,7 +25,7 @@ let NavigationBarRouteMapper={
 			return <BackButton index={index} route={route} navigator={navigator}/>
 		},
 		RightButton(route, navigator, index, navState){
-			// if(route.name==='profileTab') return <SettingsButton/>
+			if(route.name==='profileTab') return <SettingsButton/>
 			return null
 		},
 		Title(route, navigator, index, navState){
@@ -42,6 +42,10 @@ export default class ProfileNavigation extends Component{
 				this.nav&&this.nav.push({name:x.name,routeInfo:x.info,title:x.title})
 			}else if(x.action==='navigation push' && x.nav==='profileNav' && x.name==='edit'){
 				this.nav && this.nav.replace({name:x.name,routeInfo:x.info,title:x.title})
+			}else if(x.action==='create border'){
+				this.setState({width:0.5})
+			}else if(x.action==='delete border'){
+				this.setState({width:0})
 			}
 		})
 	  	RCTStatusBarManager.getHeight((e)=>this.setState({statusBarHeight:e.height}))
@@ -65,7 +69,7 @@ export default class ProfileNavigation extends Component{
 	render(){
 		return (
 			<Navigator 
-				style={{paddingTop:65,backgroundColor:'white'}}
+				style={{paddingTop:70,backgroundColor:'white'}}
 				ref={el=>this.nav=el}
 				initialRoute={{name:'profileTab',info:this.props.routeInfo,title:'Profile'}}
 				renderScene={this.renderChannel.bind(this)}
@@ -78,7 +82,7 @@ export default class ProfileNavigation extends Component{
 					<Navigator.NavigationBar
 						ref={el=>this.navBar=el}
 			            routeMapper={NavigationBarRouteMapper}
-			            style={{height:65,backgroundColor:'white',borderBottomWidth:this.state.width,borderColor:'rgb(215,215,215)'}}
+			            style={{height:70,backgroundColor:'white',borderBottomWidth:this.state.width,borderColor:'rgb(215,215,215)'}}
 			          />
 				}
 			/>

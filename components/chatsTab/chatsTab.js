@@ -34,7 +34,7 @@ export default class ChatsTab extends Component{
 		return (
 			<View style={{flex:1}}>
 
-					<View style={{width:320*k,flexDirection:'row',height:75,borderBottomWidth:.5,borderColor:'rgb(215,215,215)',
+					<View style={{width:320*k,flexDirection:'row',height:70,borderBottomWidth:.5,borderColor:'rgb(215,215,215)',
 						...center,paddingTop:14,}}>
 
 						<TouchableWithoutFeedback style={{padding:10,...center,flex:1}} onPress={this.switch.bind(this,0)}>
@@ -68,7 +68,7 @@ export default class ChatsTab extends Component{
 
 
 
-				<Animated.View style={{flex:1,top:75,bottom:0,position:'absolute',left:this.anim.interpolate({inputRange:[0,1],outputRange:[0,320*k]})}}>
+				<Animated.View style={{flex:1,top:70,bottom:0,position:'absolute',left:this.anim.interpolate({inputRange:[0,1],outputRange:[0,320*k]})}}>
 					<ScrollView>
 					
 						{directs.map((direct,i)=><View><Direct key={i}  direct={direct}/></View>

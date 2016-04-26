@@ -9,13 +9,13 @@ let {
 } =React;
 import {buttonClicks$} from '../../actions/buttonClicks'
 export default class NavigationTitle extends Component{
-	state={title:'Profile'};
+	state={title:'Profile',fontSize:0.1};
 	componentWillMount(){
 		this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
 			if(x.action==='create border'){
-				this.setState({title:'Profile'})
+				this.setState({title:'Profile',fontSize:0.1})
 			}else if(x.action==='delete border'){
-				this.setState({title:'Johnnrdino'})
+				this.setState({title:'Johnnrdino',fontSize:11})
 			}
 		})
 	}
@@ -29,7 +29,10 @@ export default class NavigationTitle extends Component{
 	render(){
 		return (
 
-			<View style={{paddingTop:10}}><Text style={s.viewTitle}>{this.state.title}</Text></View>
+			<View style={{paddingTop:10,...center}}><Text style={s.viewTitle}>{this.state.title}</Text>
+				<Text style={{fontSize:this.state.fontSize,marginTop:2}}>14 messages</Text>
+
+			</View>
 
 			)
 	}

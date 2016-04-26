@@ -20,7 +20,7 @@ export default class SettingsButton extends Component{
 			<TouchableOpacity style={{padding:5,...center,margin:7,}} onPress={this.goToSettings.bind(this)}>
 				<Image
 					style={{height:20,width:20}}
-					source={{uri:'settings',isStatic:true}}
+					source={{uri:'settingsBlack',isStatic:true}}
 
 				/>
 			</TouchableOpacity>
