@@ -191,14 +191,11 @@ export default class SlideUpInput extends Component{
                     placeholder={'Начать разговор'}
                     placeholderTextColor={'rgb(160,160,160)'}
                     />
-                    <TouchableOpacity style={{marginLeft:10}} onPress={()=>this.textInput.blur()} >
+                    <TouchableOpacity style={{marginRight:5}} onPress={()=>this.textInput.blur()} >
                         <Text style={{
-                    	color:/\S/.test(this.state.text) && !this.state.replyAction?'rgb(14,122,254)':'rgb(160,160,160)',fontWeight:'600',flex:1,marginRight:5,//alignSelf:'center',
+                    	color:/\S/.test(this.state.text) && !this.state.replyAction?'rgb(14,122,254)':'rgb(160,160,160)',fontWeight:'500',flex:1,marginRight:5,//alignSelf:'center',
                     	fontSize:17,marginBottom:11*k,marginLeft:10*k}}>Send</Text></TouchableOpacity>
-                    	
-                    
-                  
-                
+                    	               
               </View> 
 
               <View style={{backgroundColor:'blue'}} ref={el=>this.slide=el}/>
