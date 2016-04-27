@@ -15,7 +15,7 @@ export default class Channel extends Component{
 		return (
 
 			
-				<Tube navigator={this.props.navigator}/>
+				<Tube messageId={this.props.messageId} navigator={this.props.navigator}/>
 	
 
 			)

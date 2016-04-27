@@ -25,7 +25,7 @@ import MessagePlaceholder from './messagePlaceholder'
 import SlideUpInput from './slideUpInput'
 import InvertibleScrollView from 'react-native-invertible-scroll-view';
 export default class Tube extends Component{
-	state={loading:false,disable:false};
+	state={loading:true,disable:false};
 	show(e){
 		if(this.state.disable) return;
 		LayoutAnimation.configureNext(keyboard);
@@ -37,8 +37,8 @@ export default class Tube extends Component{
  		if(this.state.disable) return;
   		LayoutAnimation.configureNext(keyboard);
   		this.keyboardHeight=0
-  		if(this.contentOffset===0){
-  			this.scroll&&this.scroll.setNativeProps({contentOffset:{y:0}})
+  		if(this.contentOffset>0){
+  			this.scroll&&this.scroll.scrollTo({y:2*this.contentOffset-this.contentSize+20,animated:false})
   		}
 		this.scroll && this.scroll.setNativeProps({contentInset:{bottom:this.input.getAddHeight()}})
   	
@@ -50,11 +50,13 @@ export default class Tube extends Component{
 
 
 	componentWillMount(){
+
 		this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
        		 if(x.action==='searchInput is focused') {
        		 	if(this.keyboardHeight>0) this.hide()
        		 	this.setState({disable:true})
        		 }
+       		 // else if(x.action==='measure position') this.measurePosition(x.index)
        		 else if(x.action==='searchInput is blurred') this.setState({disable:false})
     	})
 	  	this._keyboardWillShowSubscription= DeviceEventEmitter.addListener('keyboardWillShow', this.show.bind(this));
@@ -62,10 +64,13 @@ export default class Tube extends Component{
 	 
 	  }
 	componentDidMount(){
-		this.scroll && this.scroll.scrollTo({x:0,y:0,animated:false})
+		
 		InteractionManager.runAfterInteractions(()=>{
 			LayoutAnimation.configureNext(openAnimation)
-				this.setState({loading:false})
+				this.setState({loading:false},()=>{
+					 // this.scroll&&this.scroll.scrollTo({x:0,y:this.measurePosition(3),animated:false})
+					// else this.scroll && this.scroll.scrollTo({x:0,y:0,animated:false})
+				})
 			})
 	}
 	componentWillUnmount(){
@@ -75,11 +80,16 @@ export default class Tube extends Component{
 
 	 }
 	handleScroll(e){
-		if (e.nativeEvent.contentOffset.y<0){
-			this.contentOffset=0
+		if (e.nativeEvent.contentSize.height-e.nativeEvent.contentOffset.y<400){
+			this.contentOffset=e.nativeEvent.contentOffset.y
+			this.contentSize=e.nativeEvent.contentSize.height
 		}else{
-			this.contentOffset=1
+			this.contentOffset=0
+
 		}
+		// console.log(e.nativeEvent.contentOffset.y,e.nativeEvent)
+		// console.log(React.findNodeHandle(this['1']))
+
 	}
 	generateRandomColor(){
 		return `rgb(${Math.rand()*255},${Math.rand()*255},${Math.rand()*255})`
@@ -87,6 +97,15 @@ export default class Tube extends Component{
 	_onDone(){
 		// this.setState({loading:false})
 		// console.log('here')
+	}
+	measurePosition(i){
+		let handle = React.findNodeHandle(this[`${i}`]);
+		console.log(handle)
+		handle&&UIManager.measure(handle,(x,y,width,height,pagex,pagey)=>{
+			console.log(`pagey is ${-pagey}`,`x is ${height}`)
+			return -pagey
+		})
+
 	}
 	render(){
 		this.keyboardHeight=this.keyboardHeight || 0
@@ -114,15 +133,11 @@ export default class Tube extends Component{
 				<View ref={(el)=>this.t=el} style={{height:50*k}}/>
 				{['#F5A623','#BD10E0',//'#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
 				'#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
-				//'#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
-				// '#F5A623','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
-				// '#F5A623','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
-				// '#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
-				// '#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
-				// '#F5A623','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				'#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				'#F5A623','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
 				].map((color,i)=>{
-					if(i>2) return  <IncrementalGroup disabled={false}><Message key={i} index={i} color={color}/></IncrementalGroup>
-					return <Message key={i} index={i} color={color}/>})}
+					if(i>2) return  <IncrementalGroup disabled={false}><Message ref={el=>this[`${i}`]=el} key={i} index={i} color={color}/></IncrementalGroup>
+					return <Message ref={el=>this[`${i}`]=el} key={i} index={i} color={color}/>})}
 					
 		
 					

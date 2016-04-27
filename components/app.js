@@ -26,15 +26,16 @@ import {buttonClicks$} from '../actions/buttonClicks'
 import ChannelNavigation from './channel/channelNavigation'
 import Tabs from './tabs'
 let Sound = require('react-native-sound');
-
+import Viewer from './imageViewer/viewer'
 import CreateChannelNavigation from './createChannelTab/createChannelNavigation'
 import ImageViewerNavigation from './imageViewer/imageViewerNavigation'
 export default class App extends Component{
 	state={};
 	componentWillMount(){
 		this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
+
 			if(x.action==='navigation push'&&x.nav==='topNav'){
-				this.nav&&this.nav.push({name:x.name,routeInfo:x.info})
+				this.nav&&this.nav.push({name:x.name,routeInfo:x.info,messageId:x.messageId})
 			}else if (x.action==='go back to chats'&&x.nav==='topNav'){
 				this.nav&&this.nav.pop()
 			}	
@@ -75,12 +76,13 @@ export default class App extends Component{
 			/>
 			<SmallViewer/>
 			<BlackScreen/>
+			<Viewer/>
 			</View>
 			)
 	}
 	renderApp(route,navigator){
 		if(route.name==='channel') return <View style={{flex:1,backgroundColor:'white'}}>
-				<ChannelNavigation routeInfo={route.routeInfo} topNav={navigator}/></View>
+				<ChannelNavigation messageId={route.messageId} routeInfo={route.routeInfo} topNav={navigator}/></View>
 		else if(route.name==='createChannel') return <View style={{flex:1,backgroundColor:'white'}}>
 			<CreateChannelNavigation routeInfo={route.routeInfo} topNav={navigator}/>
 			</View>

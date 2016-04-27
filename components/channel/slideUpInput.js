@@ -159,9 +159,9 @@ export default class SlideUpInput extends Component{
             </View>
               <View ref={el=>this.main=el} 
               style={{backgroundColor:'white',marginBottom:0,
-             	 height:Math.max(43*k, (12*k+this.state.height)),borderTopWidth:.5,
+             	 height:Math.max(43*k, (12*k+this.state.height)),borderTopWidth:0.5,
               	flexDirection:'row',justifyContent:'flex-start',alignItems:'flex-end',
-                borderColor:'rgb(170,170,170)',width:320*k,}}>
+                borderColor:'rgb(150,150,150)',width:320*k,}}>
                   <TextInput
                   keyboardType={'twitter'}
                   // keyboardAppearance={'dark'}
@@ -194,7 +194,7 @@ export default class SlideUpInput extends Component{
                     <TouchableOpacity style={{marginRight:5}} onPress={()=>this.textInput.blur()} >
                         <Text style={{
                     	color:/\S/.test(this.state.text) && !this.state.replyAction?'rgb(14,122,254)':'rgb(160,160,160)',fontWeight:'500',flex:1,marginRight:5,//alignSelf:'center',
-                    	fontSize:17,marginBottom:11*k,marginLeft:10*k}}>Send</Text></TouchableOpacity>
+                    	fontSize:17,marginBottom:11*k,marginLeft:5*k}}>Send</Text></TouchableOpacity>
                     	               
               </View> 
 

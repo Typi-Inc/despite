@@ -12,7 +12,7 @@ import {buttonClicks} from '../../actions/buttonClicks'
 export default class ChannelItem extends Component{
 	state={};
 	goToChannel(channel){
-		buttonClicks({action:'navigation push',nav:'topNav',name:'channel',info:channel})
+		buttonClicks({action:'navigation push',nav:'topNav',name:'channel',info:channel,messageId:5})
 	}
 	render(){
 		return (
@@ -24,12 +24,12 @@ export default class ChannelItem extends Component{
 					<View style={{marginLeft:3*k,flexDirection:'row',flex:1}}>	
 						<View>
 							
-							<View style={{margin:3, flexDirection:'row',justifyContent:'space-between', alignItems:'center',width:240*k}}>
+							<View style={{margin:4, flexDirection:'row',justifyContent:'space-between', alignItems:'center',width:240*k}}>
 								<Text style={{fontSize:16,fontWeight:'600',color:'rgb(80,80,80)',flex:6}}>#{this.props.channel.title}</Text>
 								<Text style={{color:'rgb(140,140,140)',flex:1.6}}>{this.props.channel.lastTime}</Text>
 
 							</View>
-							<View style={{margin:3, flexDirection:'row',justifyContent:'space-between', alignItems:'center',width:240*k}}>
+							<View style={{margin:4, flexDirection:'row',justifyContent:'space-between', alignItems:'center',width:240*k}}>
 
 								<Text style={{fontSize:14,color:'rgb(140,140,140)',flex:6}}>{this.props.channel.memberCount} members</Text>
 								{this.props.channel.counter>0?<View style={{flex:.5,marginRight:15,...center,
@@ -37,7 +37,7 @@ export default class ChannelItem extends Component{
 										<Text style={{color:'white',fontWeight:'500'}}>{this.props.channel.counter}</Text>
 								</View>:null}
 							</View>
-							<Text style={{margin:3,fontSize:14,color:'rgb(80,80,80)'}}>{this.props.channel.currentlyOnline} online</Text>
+							<Text style={{margin:4,fontSize:14,color:'rgb(80,80,80)'}}>{this.props.channel.currentlyOnline} online</Text>
 						</View>
 					</View>
 					

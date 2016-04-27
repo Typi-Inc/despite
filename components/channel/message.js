@@ -85,16 +85,41 @@ export default class Message extends Component{
 
 						<Incremental><View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:5*k,width:300*k}}>
 							<MessageProfile/>
-							<MessageButtons karma={this.state.carma} haveIRated={this.state.haveIRated} isSaved={this.state.isSaved}/>
+							<MessageButtons index={this.props.index} karma={this.state.carma} haveIRated={this.state.haveIRated} isSaved={this.state.isSaved}/>
 						</View></Incremental>
 						<Incremental><Text style={{width:300*k,marginLeft:3*k,fontSize:16,marginBottom:2}}> 
 							I guess it would be awesome if they finally decide to do it,
 							who is going? what are your ideas on politics in western europe. do your
 								agreement on the brexit issue fully subsidised for me
 						</Text></Incremental>
+
+				<TouchableWithoutFeedback onPress={()=>{
+					let handle = React.findNodeHandle(this.image);
+					handle&&UIManager.measure(handle,(x,y,width,height,pagex,pagey)=>{
+						// Animated.timing(this.anim,{toValue:1,duration:100}).start()
+						buttonClicks({action:'show image viewer',pagey:pagey})
+					})
+
+
+					}}>
+					<Animated.Image ref={el=>this.image=el}
+				      style={{ height:this.anim.interpolate({inputRange:[0,1],outputRange:[200,280*k]}),
+				      	width:this.anim.interpolate({inputRange:[0,1],outputRange:[200,280*k]}),
+				      	margin:this.anim.interpolate({inputRange:[0,1],outputRange:[15,0]}),
+				      	marginBottom:5,
+				      	left:0,
+				      	opacity:this.anim.interpolate({inputRange:[0,1],outputRange:[1,0]}),
+				      	marginLeft:45*k,
+				      	borderRadius:this.anim.interpolate({inputRange:[0,1],outputRange:[20,0]}),}}
+				      source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcxvY5y5_BrPwLfkiS5hpnlHDmO-U8mbsjamCGQQqYwieXLHst' }}
+				    />
+				</TouchableWithoutFeedback>
 						<View style={{flexDirection:'row',marginLeft:3*k,marginBottom:0}}>
 							<TouchableHighlight underlayColor={'rgb(120,120,120'} 
-							onPress={()=>buttonClicks({action:'reply pressed',to:'Johnnrdino'})} style={{height:20,width:70,justifyContent:'flex-end'}}>
+							onPress={()=>{
+								buttonClicks({action:'show image viewer'})
+								// buttonClicks({action:'reply pressed',to:'Johnnrdino'})
+								}} style={{height:20,width:70,justifyContent:'flex-end'}}>
 							<Text style={s.smallGreyText}>Ответить</Text></TouchableHighlight>
 
 							<TouchableHighlight underlayColor={'rgb(120,120,120'} 
@@ -118,16 +143,16 @@ export default class Message extends Component{
 };
 Object.assign(Message.prototype, TimerMixin);
 
-//<TouchableWithoutFeedback onPress={()=>this.navigateToImageViewer()}>
-	// <Animated.Image ref={el=>this.image=el}
-      // style={{ height:this.anim.interpolate({inputRange:[0,1],outputRange:[200,280*k]}),
-      	// width:this.anim.interpolate({inputRange:[0,1],outputRange:[200,280*k]}),
-      	// margin:this.anim.interpolate({inputRange:[0,1],outputRange:[15,0]}),
-      	// marginBottom:5,
-      	// left:0,
-      	// borderRadius:this.anim.interpolate({inputRange:[0,1],outputRange:[20,0]}),}}
-      // source={{ uri: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTRHDbRipz7fkuVc3f7OoZT0fSlEdjimXMYEeQI39lKrRhpFYLV' }}
-    // />
+// <TouchableWithoutFeedback onPress={()=>this.navigateToImageViewer()}>
+// 	<Animated.Image ref={el=>this.image=el}
+//       style={{ height:this.anim.interpolate({inputRange:[0,1],outputRange:[200,280*k]}),
+//       	width:this.anim.interpolate({inputRange:[0,1],outputRange:[200,280*k]}),
+//       	margin:this.anim.interpolate({inputRange:[0,1],outputRange:[15,0]}),
+//       	marginBottom:5,
+//       	left:0,
+//       	borderRadius:this.anim.interpolate({inputRange:[0,1],outputRange:[20,0]}),}}
+//       source={{ uri: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTRHDbRipz7fkuVc3f7OoZT0fSlEdjimXMYEeQI39lKrRhpFYLV' }}
+//     />
 // </TouchableWithoutFeedback>
 
 
