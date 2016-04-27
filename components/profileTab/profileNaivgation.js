@@ -66,7 +66,13 @@ export default class ProfileNavigation extends Component{
 	setHeightOfNavigation(height){
 		this.setState({height:height})
 	}
+	shouldComponentUpdate(nextProps,nextState){
+		if(nextState.width!==this.state.width) return true
+		return nextState!==this.state
+	}
 	render(){
+		console.log('profile navigation is rerendering')
+
 		return (
 			<Navigator 
 				style={{paddingTop:70,backgroundColor:'white'}}

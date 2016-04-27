@@ -53,7 +53,12 @@ export default class ChannelNavigation extends Component{
 	setHeightOfNavigation(height){
 		this.setState({height:height})
 	}
+	shouldComponentUpdate(nextProps,nextState){
+		nextState!==this.state
+	}
 	render(){
+		console.log('channel Navigation is rerendering')
+
 		return (
 			<Navigator 
 				style={{paddingTop:65}}

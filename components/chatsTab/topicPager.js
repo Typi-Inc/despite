@@ -15,6 +15,9 @@ import Topics from './topics'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
 export default class TopicPager extends Component{
 	state={activeIndex:0}
+	shouldComponentUpdate(nextProps,nextState){
+		this.state!==nextState
+	}
 	render(){
 		return (
 		<ScrollableTabView 

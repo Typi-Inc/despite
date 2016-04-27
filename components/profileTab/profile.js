@@ -28,6 +28,7 @@ export default class Profile extends Component{
 		}
 	}
 	render(){
+		console.log('profile is rerendering')
 
 		this.py=this.py||0
 		return (

@@ -65,6 +65,7 @@ export default class Tube extends Component{
 	}
 	
 	render(){
+		console.log('line is rerendiring')
 		this.keyboardHeight=this.keyboardHeight || 0
 		// if(this.state.loading){
 		// 	return <View style={{flex:1,...center}}><Text>Loading...</Text></View>

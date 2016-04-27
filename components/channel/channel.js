@@ -11,7 +11,11 @@ let {
 } =React;
 export default class Channel extends Component{
 	state={};
+	shouldComponentUpdate(nextProps,nextState){
+		nextState!==this.state
+	}
 	render(){
+		console.log('channel is rerendirnig')
 		return (
 
 			

@@ -2,7 +2,7 @@ import TimerMixin from 'react-timer-mixin'
 let UIManager = require('NativeModules').UIManager;
 import s from '../../styles'
 import React from 'react-native'; 
-import {keyboard,verFast,openAnimation} from '../animations'
+import {keyboard,veryFast} from '../animations'
 let {
   AppRegistry,
   Component,
@@ -66,7 +66,7 @@ export default class Tube extends Component{
 	componentDidMount(){
 		
 		InteractionManager.runAfterInteractions(()=>{
-			LayoutAnimation.configureNext(openAnimation)
+			LayoutAnimation.configureNext(veryFast)
 				this.setState({loading:false},()=>{
 					 // this.scroll&&this.scroll.scrollTo({x:0,y:this.measurePosition(3),animated:false})
 					// else this.scroll && this.scroll.scrollTo({x:0,y:0,animated:false})
@@ -113,11 +113,10 @@ export default class Tube extends Component{
 			return <View style={{flex:1,...center,backgroundColor:'white'}}><Spinner 
 			style={{marginBottom:75}} isVisible={true} 
 				size={55} type={'ArcAlt'} color={'#969696'}/>
-				<SlideUpInput ref={(e)=>this.input=e} setBottom={this.setBottom.bind(this)}/>
 
 				</View>
 		}
-		// LayoutAnimation.configureNext(openAnimation)
+		// LayoutAnimation.configureNext(veryFast)
 		return (
 
 			<IncrementalGroup onDone={this._onDone.bind(this)} disabled={true}><View style={{flex:1}}>
@@ -133,8 +132,8 @@ export default class Tube extends Component{
 				<View ref={(el)=>this.t=el} style={{height:50*k}}/>
 				{['#F5A623','#BD10E0',//'#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
 				'#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
-				'#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
-				'#F5A623','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				// '#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
+				// '#F5A623','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
 				].map((color,i)=>{
 					if(i>2) return  <IncrementalGroup disabled={false}><Message ref={el=>this[`${i}`]=el} key={i} index={i} color={color}/></IncrementalGroup>
 					return <Message ref={el=>this[`${i}`]=el} key={i} index={i} color={color}/>})}
