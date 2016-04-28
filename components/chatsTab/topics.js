@@ -23,7 +23,6 @@ export default class Topics extends Component{
 		 this.scroll.scrollTo({x:i*25, y:0, animated: true})
 	}
 	render(){
-			// console.log('iam here ',this.props)
 
 		return (
 

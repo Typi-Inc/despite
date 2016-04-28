@@ -178,36 +178,7 @@ Joe was feeling great, when the salesman asked,  "How about some new underwear?"
 
 
 
-		{author:{name:'Arthur',
-		image:'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTOHYUwxK20Tmwj53Tcisraeqzk0wbrSq1_3GQY5ynkS2kdYU7L'},
-		text:`I danced with two people at my wedding. The one I married, and the other one I wish I married instead.`,
-		karma:123,
-		haveIRated:false
-	},
-	{author:{name:'James',
-		image:'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSdacSwK3wplm-ofVNK2aNigVDNNxH6EaIyXOh9ErZy2MY8StcjMQ'},
-		text:`I have been faithful to my wife for 8 years but I have thought about cheating every day of it.`,
-		karma:345,
-		haveIRated:false
-	},
-	{author:{name:'Abai',
-		image:'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS7m2Z9GXziUnq0HYrZSHW0oR0t7GmA50evKA07dW-u-pLxAz4oNw'},
-		text:`I am a guy and I'm secretly planning my wedding in Pinterest. I am single and nowhere near getting married.`,
-		karma:432,
-		haveIRated:false
-	},
-	{author:{name:'Aragorn',
-		image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZtkLkOpnlyOMnP0eUbOi8Vn-lG1xmkeiwBxudHXdcok07ALnL'},
-		text:`I go to church everyday but nobody knows I deal drugs to my friends and their friends.`,
-		karma:411,
-		haveIRated:true
-	},
-	{author:{name:'AJ',
-		image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPJtgpjSii_Ym7pat3hOcsB7DLGG4ZcAOCvTsCcAr88-GsTiQY'},
-		text:`I have been faking british accent for three years since I got into college.`,
-		karma:223,
-		haveIRated:false
-	},
+	
 
 
 ]

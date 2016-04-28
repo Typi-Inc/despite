@@ -15,7 +15,6 @@ import {messages,colors } from '../mock'
 export default class DiscoverList extends Component{
 	state={};
 	render(){
-		console.log(colors)
 		return (
 
 			<View style={{backgroundColor:'rgb(245,245,245)',flex:1}}>

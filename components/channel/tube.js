@@ -87,8 +87,6 @@ export default class Tube extends Component{
 			this.contentOffset=0
 
 		}
-		// console.log(e.nativeEvent.contentOffset.y,e.nativeEvent)
-		// console.log(React.findNodeHandle(this['1']))
 
 	}
 	generateRandomColor(){
@@ -96,13 +94,10 @@ export default class Tube extends Component{
 	}
 	_onDone(){
 		// this.setState({loading:false})
-		// console.log('here')
 	}
 	measurePosition(i){
 		let handle = React.findNodeHandle(this[`${i}`]);
-		console.log(handle)
 		handle&&UIManager.measure(handle,(x,y,width,height,pagex,pagey)=>{
-			console.log(`pagey is ${-pagey}`,`x is ${height}`)
 			return -pagey
 		})
 

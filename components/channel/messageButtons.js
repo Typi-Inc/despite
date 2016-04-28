@@ -17,18 +17,13 @@ import {buttonClicks} from '../../actions/buttonClicks'
 import Sound from 'react-native-sound'
 var whoosh = new Sound('tap-mellow.aif', Sound.MAIN_BUNDLE, (error) => {
   if (error) {
-    // console.log('failed to load the sound', error);
   } else { // loaded successfully
-    // console.log('duration in seconds: ' + whoosh.getDuration() +
-    //     'number of channels: ' + whoosh.getNumberOfChannels());
   }
 });
 
 var cok= new Sound('tap-muted.aif', Sound.MAIN_BUNDLE, (error) => {
   if (error) {
   } else { // loaded successfully
-    // console.log('duration in seconds: ' + whoosh.getDuration() +
-    //     'number of channels: ' + whoosh.getNumberOfChannels());
   }
 });
 
@@ -54,7 +49,6 @@ export default class MessageButtons extends Component{
 					</TouchableHighlight>	
 				</View>:<View style={{flexDirection:'row'}}>
 					<TouchableOpacity onPress={()=>{
-						// console.log(this.props.index)
 						[1,2,3,4,5,6,7,8].map(i=>buttonClicks({action:'measure position',index:i}))
 						// buttonClicks({action:'measure position',index:this.props.index})
 						whoosh.setVolume(3)

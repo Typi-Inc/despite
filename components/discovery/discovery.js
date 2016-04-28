@@ -52,7 +52,7 @@ export default class Discovery extends Component{
 					{this.props.message.text}
 				</Text>
 				<View style={{justifyContent:'flex-end',paddingTop:4}}>
-					<Text style={s.smallGreyText}>13 сообщений в разговоре</Text>
+					<Text style={s.smallGreyText}>{Math.floor(Math.random()*100)} сообщений в разговоре</Text>
 				</View>
 			</View>
 		</TouchableOpacity>

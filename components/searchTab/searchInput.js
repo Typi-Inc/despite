@@ -13,7 +13,6 @@ import {buttonClicks} from '../../actions/buttonClicks'
 export default class SearchInput extends Component{
   state={};
   _onFocus(){
-    console.log('focusing search')
     buttonClicks({action:'show black screen'})
     LayoutAnimation.configureNext(keyboard)
     this.input.setNativeProps({style:{width:245*k}})

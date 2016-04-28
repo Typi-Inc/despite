@@ -15,15 +15,7 @@ let {
 import {directs} from '../mock'
 import ChannelsByTopic from '../chatsTab/channelsByTopic'
 import Direct from './direct'
-import Swipeout from '../swipeout/swipeout'
-var swipeoutBtns = [
-  {
-    text: 'hello',type:'primary',props:{onPress:()=>console.log('hello')}
-  },
-  {
-    text: 'delete',type:'danger'
-  }
-]
+
 export default class ChatsTab extends Component{
 	state={};
 	switch(val){

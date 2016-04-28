@@ -172,7 +172,6 @@ export default class SlideUpInput extends Component{
                       justifyContent:'flex-start',
                       alignSelf:'center',width:240*k,paddingLeft:2*k,paddingBottom:4*k}}
                     value={this.state.text}
-                    // onFocus={()=>{console.log('focus')}}
                     onChange={(event) => {
                       // event.nativeEvent.text.length===0?this.submit.setNativeProps({style:{backgroundColor:'gray'}}):this.submit.setNativeProps({style:{backgroundColor:'#0084b4'}})
                       // LayoutAnimation.configureNext(veryFast)

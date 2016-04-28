@@ -12,6 +12,7 @@ import ChannelsByTopic from '../chatsTab/channelsByTopic'
 import Channel from '../channel/channel'
 import Message from '../channel/message'
 import {openAnimation} from '../animations'
+import DiscoveryList from '../discovery/discoveryList'
 export default class Switcher extends Component{
 	state={num:0};
 	changeNum(num){
@@ -32,11 +33,7 @@ export default class Switcher extends Component{
 					if(i>2) return  <IncrementalGroup disabled={false}><Message key={i} index={i} color={color}/></IncrementalGroup>
 					return <Message key={i} index={i} color={color}/>})
 		}else{
-			tab=['#F5A623','#BD10E0','#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
-		
-				].map((color,i)=>{
-					if(i>2) return  <IncrementalGroup disabled={false}><Message key={i} index={i} color={color}/></IncrementalGroup>
-					return <Message key={i} index={i} color={color}/>})
+			tab=<DiscoveryList/>
 
 			
 		}

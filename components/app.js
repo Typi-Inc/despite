@@ -49,7 +49,6 @@ export default class App extends Component{
 
 
 	_handleAppStateChange(currentAppState) {
-		// console.log(currentAppState)
 	}
 	componentWillUnmount(){
  	 AppStateIOS.removeEventListener('change', this._handleAppStateChange);
