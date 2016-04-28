@@ -26,7 +26,10 @@ import MessageButtons from './messageButtons'
 import {veryFast,openAnimation} from '../animations'
 import {buttonClicks} from '../../actions/buttonClicks'
 export default class Message extends Component{
-	state={loading:this.props.index>2?true:false,karma:Math.floor(Math.random()*1000),haveIRated:false,isSaved:false,lineCount:Math.floor(Math.random()*100)};
+	state={loading:this.props.index>2?true:false,
+		karma:Math.floor(Math.random()*1000),
+		haveIRated:false,isSaved:false,
+		lineCount:Math.floor(Math.random()*100)};
 	navigateToImageViewer(){
 		// buttonClicks({action:'navigation push', nav:'topNav',name:'imageViewer'})
 		// Animated.spring(this.anim,{toValue:this.anim._value>0?0:1}).start()
@@ -87,7 +90,7 @@ export default class Message extends Component{
 							<MessageProfile/>
 							<MessageButtons index={this.props.index} karma={this.state.carma} haveIRated={this.state.haveIRated} isSaved={this.state.isSaved}/>
 						</View></Incremental>
-						<Incremental><Text style={{width:300*k,marginLeft:3*k,fontSize:16,marginBottom:2}}> 
+						<Incremental><Text style={{width:300*k,marginLeft:3*k,fontSize:17,marginBottom:2,lineHeight:23}}> 
 							I guess it would be awesome if they finally decide to do it,
 							who is going? what are your ideas on politics in western europe. do your
 								agreement on the brexit issue fully subsidised for me

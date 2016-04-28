@@ -62,11 +62,164 @@ export let directs=[{
 	toWhom:{name:'Brent',image:'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQc364GqLLnhfFllhF91hAGVCyJ-MO3JZuA6DN3uZtbQi4KWCgv',
 	karma:123},lastTime:'09:45',counter:0
 },
+]
 
+export let messages = [
+	{author:{name:'Arthur',
+		image:'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTOHYUwxK20Tmwj53Tcisraeqzk0wbrSq1_3GQY5ynkS2kdYU7L'},
+		text:`I danced with two people at my wedding. The one I married, and the other one I wish I married instead.`,
+		karma:123,
+		haveIRated:false
+	},
+	{author:{name:'Loren',
+		image:'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQqDuSd87qONim1PYPyVVpMVewVEIGOBUu8h3s4D2deyshRohDw'},
+		text:`Son: "Daddy, I fell in love & want to date this awesome girl!"
+Father: "That's great son. Who is she?"
+Son: "It's Sandra, the neighbor's daughter".
+Father: "Oh hoo, I wish you hadn't said that.
+I have to tell you something son, but you must
+promise not to tell your mother.
+Sandra is actually your sister."
+
+The boy is naturally bummed out, but a couple of months later
+Son: "Daddy, I fell in love again and she is even
+hotter!"
+Father: "That's great son. Who is she?"
+Son: "It's Angela, the other neighbor's daughter."
+Father: "Oh ho, I wish you hadn't said that.
+Angela is also your sister." 
+This went on couple of times and the son was so
+mad,
+he went straight to his mother crying.
+Son: "Mum I am so mad at dad! I fell in love with
+six girls but I can't date any of them because daddy is their father!"
+The mother hugs him affectionately and says:
+"My love, you can date whoever you want.
+Don't listen to him. He is not your Father."!!!
+Son  Fainted... :p`,
+		karma:223,
+		haveIRated:false
+	},
+	{author:{name:'James',
+		image:'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSdacSwK3wplm-ofVNK2aNigVDNNxH6EaIyXOh9ErZy2MY8StcjMQ'},
+		text:`I have been faithful to my wife for 8 years but I have thought about cheating every day of it.`,
+		karma:345,
+		haveIRated:false
+	},
+	{author:{name:'Abai',
+		image:'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS7m2Z9GXziUnq0HYrZSHW0oR0t7GmA50evKA07dW-u-pLxAz4oNw'},
+		text:`I am a guy and I'm secretly planning my wedding in Pinterest. I am single and nowhere near getting married.`,
+		karma:432,
+		haveIRated:false
+	},
+	{author:{name:'Aragorn',
+		image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZtkLkOpnlyOMnP0eUbOi8Vn-lG1xmkeiwBxudHXdcok07ALnL'},
+		text:`I go to church everyday but nobody knows I deal drugs to my friends and their friends.`,
+		karma:411,
+		haveIRated:true
+	},
+	{author:{name:'AJ',
+		image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPJtgpjSii_Ym7pat3hOcsB7DLGG4ZcAOCvTsCcAr88-GsTiQY'},
+		text:`I have been faking british accent for three years since I got into college.`,
+		karma:223,
+		haveIRated:false
+	},
+	{author:{name:'Evis',
+		image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMjEQDTWsqxDvXqdl3V_H3LtlZhYhjRNAYupULKdDNQGK0RICKBQ'},
+		text:`A Professor was traveling by boat. On his way he asked the sailor:
+
+“Do you know Biology, Ecology, Zoology, Geography, physiology?
+
+The sailor said no to all his questions.
+
+Professor: What the hell do you know on earth. You will die of illiteracy.
+
+After a while the boat started sinking. The Sailor asked the Professor, do you know swiminology & escapology from sharkology?
+
+The professor said no.
+
+Sailor: “Well, sharkology & crocodilogy will eat your assology, headology & you will dieology because of your mouthology.`,
+		karma:433,
+		haveIRated:false
+	},
+	{author:{name:'Vanessa',
+		image:'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS1aJ3Tr74jlRbsF63ZJ5E_EEVJmL5hNnqac-OIs0YEBsbAWddYIg'},
+		text:`I am going to a wedding and I have slept with all six groomsmen and the groom...`,
+		karma:414,
+		haveIRated:true
+	},
+	{author:{name:'Fisk',
+		image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVf2tYlx_oRYI2w0hG_Vqnm2yiLAFG97hP-8VjOXtVNYFKMf6J'},
+		text:`A guy came to my hotel weekly to cheat on his wife. So I mailed a card to his home addressed to her, thanking the two of them for being such loyal customers`,
+		karma:542,
+		haveIRated:false
+	},
+	{author:{name:'Humoto',
+		image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU7QXVMOMykZLGjowx0KwP0I7Az9_nJnfsaOTYdAXSznFOtjKMUQ'},
+		text:`I work in the hotel, the blankets only get washed once a year`,
+		karma:43,
+		haveIRated:false
+	},
+	{author:{name:'Alan',
+		image:'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQcULXY5kOnD3YE5l1X8p7yt7DvybbeNd_o0A2rhDenRSSzP5wywA'},
+		text:`Joe was moderately successful in his career, but as he got older,  he was increasingly hampered by excruciatingly painful headaches.  When his personal hygiene and love life began to suffer, he  sought medical help.
+After being referred from one specialist to  another, he finally came across a doctor who solved the problem. 
+
+The doctor said, "I have good news, and I have bad news. The  good news is that I can cure your headaches, the bad news is  that it will require castration.  You have a very rare condition  which causes your testicles to press up against the base of your  spine. The pressure creates one hell of a headache. The only way to relieve the pressure is to remove the testicles." 
+
+Joe was, of course, both shocked and depressed. He indeed  wondered if he even had anything to live for after castration.  Yet, he immediately decided he had no choice but to go under  the knife; his headaches just had to cease.   When he left the hospital his mind was at long last clear, but  naturally he felt like he was missing an important part of himself.  As he walked down the street, he felt like an entirely different person.
+
+He walked past a men's clothing store and thought, "I'll buy a new  suit.  Maybe that will cheer me up!"  He entered the shop and told the salesman, "I'd like a new suit."  The salesman eyed him briefly and said, "Let's see...size 44 long."  Joe laughed, "Yeah, that's right, how did you know?"  "It's my job to know," said the salesman. Joe tried on the suit,  and it fit perfectly.  As Joe admired himself in the mirror, the salesman asked,  "How about a new shirt?"    Joe thought for a moment and then said, "Okay, sure."  The salesman eyed Joe and said, "Let's see...34 sleeve, and... 16 neck."  Joe was once again surprised, "That's exactly right.  How did you know?"  "It's my job to know," said the salesman, very matter of factly.  Joe tried on the shirt, and it fit perfectly. 
+
+Joe was feeling great, when the salesman asked,  "How about some new underwear?"    Joe hesitated for a second and said, "Sure..."  The salesman stepped back, eyed Joe's waist and said,  "Let's see...size 36."  Joe laughed, "No, I've worn size 34 since I was 18 years old."  The salesman shook his head, "No, no, you can't wear a size 34.  It would press your testicles up against the base of your spine  and give you one hell of a headache!"`,
+		karma:542,
+		haveIRated:false
+	},
+
+
+
+		{author:{name:'Arthur',
+		image:'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTOHYUwxK20Tmwj53Tcisraeqzk0wbrSq1_3GQY5ynkS2kdYU7L'},
+		text:`I danced with two people at my wedding. The one I married, and the other one I wish I married instead.`,
+		karma:123,
+		haveIRated:false
+	},
+	{author:{name:'James',
+		image:'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSdacSwK3wplm-ofVNK2aNigVDNNxH6EaIyXOh9ErZy2MY8StcjMQ'},
+		text:`I have been faithful to my wife for 8 years but I have thought about cheating every day of it.`,
+		karma:345,
+		haveIRated:false
+	},
+	{author:{name:'Abai',
+		image:'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS7m2Z9GXziUnq0HYrZSHW0oR0t7GmA50evKA07dW-u-pLxAz4oNw'},
+		text:`I am a guy and I'm secretly planning my wedding in Pinterest. I am single and nowhere near getting married.`,
+		karma:432,
+		haveIRated:false
+	},
+	{author:{name:'Aragorn',
+		image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZtkLkOpnlyOMnP0eUbOi8Vn-lG1xmkeiwBxudHXdcok07ALnL'},
+		text:`I go to church everyday but nobody knows I deal drugs to my friends and their friends.`,
+		karma:411,
+		haveIRated:true
+	},
+	{author:{name:'AJ',
+		image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPJtgpjSii_Ym7pat3hOcsB7DLGG4ZcAOCvTsCcAr88-GsTiQY'},
+		text:`I have been faking british accent for three years since I got into college.`,
+		karma:223,
+		haveIRated:false
+	},
 
 
 ]
-
+export let colors=[
+	'#F27935','#26A65B','#4183D7',
+	'#F4B350','#EC644B','#16A085',
+	'#1F3A93','#9013FE','#CF000F',
+	'#4DAF7C','#446CB3','#D35400',
+	'#1E824C','#96281B','#336E7B',
+	'#22313F','#049372','#BD10E0',
+	'#67809F','#19B5FE','#D24D57',
+]
 // export let messages=[
 // 	{author:{name:'Arthur',image:''},
 // 	content:{type:,body:},

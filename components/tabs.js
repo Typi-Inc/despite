@@ -24,7 +24,7 @@ import ChatsTab from './chatsTab/chatsTab'
 import ProfileNavigation from './profileTab/profileNaivgation'
 import SearchNavigation from './searchTab/searchNavigation'
 export default class Tabs extends Component{
-	state={height:47,overflow:'visible',selectedTab:'activity'};
+	state={height:47,overflow:'visible',selectedTab:'home'};
 	// static childContextTypes={toggleTabs:React.PropTypes.func,tabsHidden:React.PropTypes.func};
 	tabsHidden(){
 		return this.state.height===0
@@ -48,7 +48,7 @@ export default class Tabs extends Component{
 		return <View/>
 	}
 	notificationPress(){
-		this.setState({ selectedTab: 'activity',hideBadge:true })
+		this.setState({ selectedTab: 'chats',hideBadge:true })
 		this.setTimeout(()=>{
 			if(this.state.selectedTab!=='activity') this.setState({hideBadge:false})
 			
@@ -66,8 +66,8 @@ export default class Tabs extends Component{
 			>
 				
 				<TabNavigator.Item
-					selected={this.state.selectedTab === 'chats'}
-					onPress={() =>this.setState({ selectedTab: 'chats' })}
+					selected={this.state.selectedTab === 'home'}
+					onPress={() =>this.setState({ selectedTab: 'home' })}
 					renderIcon={()=><Image source={{uri:'home',isStatic:true}} style={{height:20,width:19}}/>}
 					renderSelectedIcon={()=><Image source={{uri:'homeA',isStatic:true}} style={{height:20,width:19}}/>}
 				>
@@ -90,7 +90,7 @@ export default class Tabs extends Component{
 					<View/>
 				</TabNavigator.Item>
 				<TabNavigator.Item
-					selected={this.state.selectedTab === 'activity'}
+					selected={this.state.selectedTab === 'chats'}
 					onPress={() =>this.notificationPress()}
 					renderIcon={()=><Image source={{uri:'doubleChats',isStatic:true}} style={{height:19,width:23}}/>}
 					renderSelectedIcon={()=><Image source={{uri:'dobuleChatsA',isStatic:true}} style={{height:19,width:23}}/>}
