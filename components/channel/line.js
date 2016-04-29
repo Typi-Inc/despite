@@ -2,7 +2,7 @@ import TimerMixin from 'react-timer-mixin'
 let UIManager = require('NativeModules').UIManager;
 import s from '../../styles'
 import React from 'react-native'; 
-import {keyboard,verFast} from '../animations'
+import {keyboard,veryFast} from '../animations'
 let {
   AppRegistry,
   Component,
@@ -14,11 +14,23 @@ let {
   InteractionManager,
   Animated
 } =React;
+import Spinner from 'react-native-spinkit'
+
 const Incremental = require('Incremental');
 import Message from './message'
 import SlideUpInput from './slideUpInput'
 export default class Tube extends Component{
 	state={loading:true};
+	componentDidMount(){
+		
+		InteractionManager.runAfterInteractions(()=>{
+			LayoutAnimation.configureNext(veryFast)
+				this.setState({loading:false},()=>{
+					 // this.scroll&&this.scroll.scrollTo({x:0,y:this.measurePosition(3),animated:false})
+					// else this.scroll && this.scroll.scrollTo({x:0,y:0,animated:false})
+				})
+			})
+	}
 	show(e){
 		LayoutAnimation.configureNext(keyboard);
 		this.keyboardHeight=e.endCoordinates.height
@@ -46,11 +58,7 @@ export default class Tube extends Component{
 	    this._keyboardWillHideSubscription= DeviceEventEmitter.addListener('keyboardWillHide', this.hide.bind(this));
 	 
 	  }
-	componentDidMount(){
-		// InteractionManager.runAfterInteractions(()=>{
-		// 		this.setState({loading:false})
-		// 	})
-	}
+	
 	componentWillUnmount(){
 	  	this._keyboardWillShowSubscription.remove()
 	  	this._keyboardWillHideSubscription.remove()
@@ -70,6 +78,13 @@ export default class Tube extends Component{
 		// if(this.state.loading){
 		// 	return <View style={{flex:1,...center}}><Text>Loading...</Text></View>
 		// }
+		if(this.state.loading){
+			return <View style={{flex:1,...center,backgroundColor:'white'}}><Spinner 
+			style={{marginBottom:75}} isVisible={true} 
+				size={55} type={'ArcAlt'} color={'#969696'}/>
+
+				</View>
+		}
 		return (
 			<View style={{flex:1,paddingLeft:3}}>
 				

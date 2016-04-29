@@ -17,11 +17,12 @@ import ScrollableTabView from 'react-native-scrollable-tab-view'
 export default class TopicPager extends Component{
 	state={activeIndex:0}
 	shouldComponentUpdate(nextProps,nextState){
-		this.state!==nextState
+		return this.state!==nextState
 	}
 	render(){
 		return (
 		<ScrollableTabView 
+		tabBarPosition={'top'}
 			onScroll={(f)=>{
 				if(Math.abs(f - parseInt(f, 10))<0.16){
 					this.topics.scrollToTab(f)

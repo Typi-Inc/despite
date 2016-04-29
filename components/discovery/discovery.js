@@ -26,6 +26,7 @@ export default class Discovery extends Component{
 		buttonClicks({action:'navigation push',nav:'topNav',name:'channel',info:{name:'random'},messageId:5})
 	}
 	render(){
+    let count=Math.floor(Math.random()*100)
 		return (
 		<TouchableOpacity onPress={this.goToChannel.bind(this)}
 		style={[styles.container,
@@ -52,7 +53,7 @@ export default class Discovery extends Component{
 					{this.props.message.text}
 				</Text>
 				<View style={{justifyContent:'flex-end',paddingTop:4}}>
-					<Text style={s.smallGreyText}>{Math.floor(Math.random()*100)} сообщений в разговоре</Text>
+					<Text style={s.smallGreyText}>{count} сообщений в разговоре</Text>
 				</View>
 			</View>
 		</TouchableOpacity>

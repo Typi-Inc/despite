@@ -67,8 +67,8 @@ export default class ProfileNavigation extends Component{
 		this.setState({height:height})
 	}
 	shouldComponentUpdate(nextProps,nextState){
-		if(nextState.width!==this.state.width) return true
-		return nextState!==this.state
+		return nextState.width!==this.state.width
+		
 	}
 	render(){
 		console.log('profile navigation is rerendering')

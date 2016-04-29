@@ -14,6 +14,9 @@ let {
 import {messages,colors } from '../mock'
 export default class DiscoverList extends Component{
 	state={};
+	shouldComponentUpdate(nextProps,nextState){
+		return this.props!==nextProps
+	}
 	render(){
 		return (
 
