@@ -37,7 +37,9 @@ export default class Tabs extends Component{
   		// StatusBarIOS.setStyle('default')
   	}
 	renderNotificationBadge(){
-		return <View style={{height:7,width:7,borderRadius:7,top:-4,right:-2,backgroundColor:'rgb(14,122,254)'}}/>
+		return <View style={{...center,padding:5,paddingTop:1,paddingBottom:1,borderRadius:14,top:-13,right:-10,backgroundColor:'white'}}>
+				<Text style={{fontSize:13,fontWeight:'600',backgroundColor:'transparent'}}>8</Text>
+			</View>
 		// <View style={{
 		// 	backgroundColor:'rgb(235,0,0)',borderRadius:10,top:-17,left:8,...center,width:22}}>
 		// 		<Text style={{color:'white',fontSize:13,fontWeight:'500',margin:3}}>5</Text>

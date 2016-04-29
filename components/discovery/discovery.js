@@ -14,6 +14,7 @@ let {
   StyleSheet,
   Image,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View
 } =React;
 import MessageButtons from '../channel/messageButtons'
@@ -28,35 +29,38 @@ export default class Discovery extends Component{
 	render(){
     let count=Math.floor(Math.random()*100)
 		return (
-		<TouchableOpacity onPress={this.goToChannel.bind(this)}
-		style={[styles.container,
-		{marginTop:this.props.index>0?5:0,
-		borderTopWidth:this.props.index>0?1:.5,}]}>
-			<Text style={styles.post}>Was posted to 
-				<Text style={styles.nameOfChannel}>  #some channel name</Text>
-			</Text>
-			<View style={[styles.viewWithBorder,{borderColor:this.props.color}]}>
-				<View style={styles.spaceBetween}>
+		<TouchableWithoutFeedback onPress={this.goToChannel.bind(this)}
+		>
+      <View style={[styles.container,
+      {marginTop:this.props.index>0?5:0,
+      borderTopWidth:this.props.index>0?1:.5,}]}>
+  			<Text style={styles.post}>Was posted to 
+  				<Text style={styles.nameOfChannel}>  #some channel name</Text>
+  			</Text>
+  			<View style={[styles.viewWithBorder,{borderColor:this.props.color}]}>
+  				<View style={styles.spaceBetween}>
 
-					<View style={styles.centerRow}>
-						<Image source={{uri:this.props.message.author.image}}
-						style={styles.profileImage}/>
-						<View style={{marginLeft:5}}>
-							<Text style={styles.authorName}>{this.props.message.author.name}</Text>
-							<Text style={s.smallGreyText}>12:54</Text>
-						</View>
-					</View>
-					<MessageButtons index={this.props.index} karma={this.props.message.karma} haveIRated={this.props.message.haveIRated} isSaved={false}/>
-				</View>
+  					<View style={styles.centerRow}>
+  						<Image source={{uri:this.props.message.author.image}}
+  						style={styles.profileImage}/>
+  						<View style={{marginLeft:5}}>
+  							<Text style={styles.authorName}>{this.props.message.author.name}</Text>
+  							<Text style={s.smallGreyText}>12:54</Text>
+  						</View>
+  					</View>
+  					<MessageButtons index={this.props.index} karma={this.props.message.karma} haveIRated={this.props.message.haveIRated} isSaved={false}/>
+  				</View>
 
-				<Text style={styles.messageText}>
-					{this.props.message.text}
-				</Text>
-				<View style={{justifyContent:'flex-end',paddingTop:4}}>
-					<Text style={s.smallGreyText}>{count} сообщений в разговоре</Text>
-				</View>
-			</View>
-		</TouchableOpacity>
+  				<Text style={styles.messageText}>
+  					{this.props.message.text}
+  				</Text>
+  				<View style={{justifyContent:'flex-end',paddingTop:4}}>
+  					<Text style={s.smallGreyText}>{count} сообщений в разговоре</Text>
+  				</View>
+  			</View>
+        <View style={{height:5}}/>
+      </View>
+		</TouchableWithoutFeedback>
 
 			)
 	}

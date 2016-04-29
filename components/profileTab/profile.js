@@ -6,14 +6,16 @@ let {
   AppRegistry,
   Component,
   Text,
+  Animated,
   TouchableOpacity,
   ScrollView,
+  InteractionManager,
   Image,
   SegmentedControlIOS,
   View
 } =React;
 import Switcher from './switcher'
-import {buttonClicks} from '../../actions/buttonClicks'
+import {buttonClicks,buttonClicks$} from '../../actions/buttonClicks'
 export default class Profile extends Component{
 	state={};
 	showEdit(){
@@ -27,13 +29,30 @@ export default class Profile extends Component{
 			this.handle = React.findNodeHandle(this.segmentedControl);
 		}
 	}
+	componentWillMount(){
+		this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
+			if(x.action==='create border'){
+					Animated.timing(this.anim,{toValue:0,duration:200}).start()
+
+			}else if(x.action==='delete border'){
+					Animated.timing(this.anim,{toValue:1,duration:200}).start()
+
+			}
+		})
+	}
+	componentWillUnmount(){
+		this.buttonClicksSubscription.unsubscribe()
+	}
 	render(){
 		console.log('profile is rerendering')
-
+		this.anim=this.anim || new Animated.Value(0)
 		this.py=this.py||0
 		return (
 
-
+			<View style={{flex:1}}>
+				<Animated.View style={{
+					borderBottomWidth:this.anim.interpolate({inputRange:[0,1],outputRange:[0.5,0]}),
+					borderColor:'rgb(215,215,215)'}}/>
 				<ScrollView ref={el=>this.scroll=el} scrollEventThrottle={200} onScroll={(e)=>{
 						UIManager.measure(this.handle,(x,y,w,h,px,py)=>{
 							this.py=py
@@ -80,6 +99,8 @@ export default class Profile extends Component{
 
 
 				</ScrollView>
+
+			</View>
 
 			)
 	}

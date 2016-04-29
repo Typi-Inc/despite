@@ -42,10 +42,6 @@ export default class ProfileNavigation extends Component{
 				this.nav&&this.nav.push({name:x.name,routeInfo:x.info,title:x.title})
 			}else if(x.action==='navigation push' && x.nav==='profileNav' && x.name==='edit'){
 				this.nav && this.nav.replace({name:x.name,routeInfo:x.info,title:x.title})
-			}else if(x.action==='create border'){
-				this.setState({width:0.5})
-			}else if(x.action==='delete border'){
-				this.setState({width:0})
 			}
 		})
 	  	RCTStatusBarManager.getHeight((e)=>this.setState({statusBarHeight:e.height}))
@@ -88,7 +84,7 @@ export default class ProfileNavigation extends Component{
 					<Navigator.NavigationBar
 						ref={el=>this.navBar=el}
 			            routeMapper={NavigationBarRouteMapper}
-			            style={{height:70,backgroundColor:'white',borderBottomWidth:this.state.width,borderColor:'rgb(215,215,215)'}}
+			            style={{height:70,backgroundColor:'white'}}
 			          />
 				}
 			/>
