@@ -40,7 +40,7 @@ export default class MessageButtons extends Component{
 
 			<View style={{flexDirection:'row',...center}}>
 				
-				<View style={{flexDirection:'row',...center}}>
+				<View style={{flexDirection:'row',...center,height:40*k}}>
 					<Animated.Text style={{fontWeight:'500',
 					color:'#109440',marginRight:this.anim.interpolate({inputRange:[0,1],outputRange:[0,17*k]}),
 					fontSize:this.anim.interpolate({inputRange:[0,1],outputRange:[0.1,17]}),

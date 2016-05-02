@@ -83,6 +83,11 @@ export default class SlideUpInput extends Component{
           this.setState({disable:true})}
         else if(x.action==='searchInput is blurred') this.setState({disable:false})
         else if (x.action==='reply pressed') this.reply(x.to)
+        else if (x.action==='unsubscribe'){
+          this.buttonClicksSubscription && this.buttonClicksSubscription.unsubscribe()
+          this._keyboardWillShowSubscription&&this._keyboardWillShowSubscription.remove()
+        this._keyboardWillHideSubscription&&this._keyboardWillHideSubscription.remove()
+         }
       })
 	  	RCTStatusBarManager.getHeight(this.callMe.bind(this))
 	  	 this._keyboardWillShowSubscription= DeviceEventEmitter.addListener('keyboardWillShow', this.show.bind(this));

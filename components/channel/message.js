@@ -18,7 +18,6 @@ const Incremental = require('Incremental');
 const IncrementalGroup = require('IncrementalGroup');
 const IncrementalPresenter = require('IncrementalPresenter');
 
-var Lightbox = require('react-native-lightbox');
 import MessageProfile from './messageProfile'
 import MessageButtons from './messageButtons'
 // var WithProgress = require('react-native-image-progress');
@@ -35,62 +34,62 @@ export default class Message extends Component{
 		// Animated.spring(this.anim,{toValue:this.anim._value>0?0:1}).start()
 		// this.image.setNativeProps({style:{position:'absolute',top:0,lef}})
 	}
-	componentDidMount(){
-		if(this.props.index>2){
-			if(this.props.index>5 ){
-				this.setTimeout(()=>{
-					InteractionManager.runAfterInteractions(()=>{
-						this.setState({loading:false})
-					})
-				},200)
-			}else if(this.props.index>10 && this.props.index<15){
-				this.setTimeout(()=>{
-					InteractionManager.runAfterInteractions(()=>{
-						this.setState({loading:false})
-					})
-				},400)
-			}else if(this.props.index>14 && this.props.index<24){
-				this.setTimeout(()=>{
-					InteractionManager.runAfterInteractions(()=>{
-						this.setState({loading:false})
-					})
-				},600)
-			}else if(this.props.index>23 && this.props.index<34){
-				this.setTimeout(()=>{
-					InteractionManager.runAfterInteractions(()=>{
-						this.setState({loading:false})
-					})
-				},800)
-			}else if(this.props.index>33){
-				this.setTimeout(()=>{
-					InteractionManager.runAfterInteractions(()=>{
-						this.setState({loading:false})
-					})
-				},1000)
-			}
-			else{
-				InteractionManager.runAfterInteractions(()=>{
-					this.setState({loading:false})
-				})
-			}
+	// componentDidMount(){
+	// 	if(this.props.index>2){
+	// 		if(this.props.index>5 ){
+	// 			this.setTimeout(()=>{
+	// 				InteractionManager.runAfterInteractions(()=>{
+	// 					this.setState({loading:false})
+	// 				})
+	// 			},200)
+	// 		}else if(this.props.index>10 && this.props.index<15){
+	// 			this.setTimeout(()=>{
+	// 				InteractionManager.runAfterInteractions(()=>{
+	// 					this.setState({loading:false})
+	// 				})
+	// 			},400)
+	// 		}else if(this.props.index>14 && this.props.index<24){
+	// 			this.setTimeout(()=>{
+	// 				InteractionManager.runAfterInteractions(()=>{
+	// 					this.setState({loading:false})
+	// 				})
+	// 			},600)
+	// 		}else if(this.props.index>23 && this.props.index<34){
+	// 			this.setTimeout(()=>{
+	// 				InteractionManager.runAfterInteractions(()=>{
+	// 					this.setState({loading:false})
+	// 				})
+	// 			},800)
+	// 		}else if(this.props.index>33){
+	// 			this.setTimeout(()=>{
+	// 				InteractionManager.runAfterInteractions(()=>{
+	// 					this.setState({loading:false})
+	// 				})
+	// 			},1000)
+	// 		}
+	// 		else{
+	// 			InteractionManager.runAfterInteractions(()=>{
+	// 				this.setState({loading:false})
+	// 			})
+	// 		}
 			
-		}
-	}
+	// 	}
+	// }
 	render(){
 		this.anim=this.anim || new Animated.Value(0)
-		if(this.state.loading) return null
+		// if(this.state.loading) return null
 		return (
 			
 			<View style={s.container}>					
-					<View style={{margin:8,marginRight:0,marginLeft:4,
+					<View style={{margin:8,marginRight:0,marginLeft:4,marginBottom:12,
 						borderColor:this.props.color,borderLeftWidth:2,
 						paddingLeft:5,paddingBottom:0,paddingTop:0}}>
 
-						<Incremental><View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:5*k,width:300*k}}>
+						<Incremental key={this.props.index}><View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:5*k,width:300*k}}>
 							<MessageProfile/>
 							<MessageButtons index={this.props.index} karma={this.state.carma} haveIRated={this.state.haveIRated} isSaved={this.state.isSaved}/>
 						</View></Incremental>
-						<Incremental><Text style={{width:300*k,marginLeft:3*k,fontSize:17,marginBottom:2,lineHeight:23}}> 
+						<Incremental key={this.props.index+' '}><Text style={{width:300*k,marginLeft:3*k,fontSize:17,marginBottom:2,lineHeight:23}}> 
 							I guess it would be awesome if they finally decide to do it,
 							who is going? what are your ideas on politics in western europe. do your
 								agreement on the brexit issue fully subsidised for me

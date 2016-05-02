@@ -30,10 +30,10 @@ export default class TopicPager extends Component{
 			}}
 			 renderTabBar={() => <Topics ref={el=>this.topics=el}/>}>
 			<DiscoverList tabLabel='For you'/>
-   			<DelayRendering tabLabel={'Top rated messages'} delay={300}><Channel /></DelayRendering>
    			<DelayRendering tabLabel='Trending' delay={500}><ChannelsByTopic /></DelayRendering>
    			<DelayRendering tabLabel='Nearby' delay={600}><ChannelsByTopic /></DelayRendering>
-   		
+   			<DelayRendering tabLabel='Funny' delay={800}><ChannelsByTopic /></DelayRendering>
+   			<DiscoverList tabLabel='News'/>
 			
    
       </ScrollableTabView>

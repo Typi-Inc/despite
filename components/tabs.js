@@ -38,7 +38,7 @@ export default class Tabs extends Component{
   	}
 	renderNotificationBadge(){
 		return <View style={{...center,padding:5,paddingTop:1,paddingBottom:1,borderRadius:14,top:-13,right:-10,backgroundColor:'white'}}>
-				<Text style={{fontSize:13,fontWeight:'600',backgroundColor:'transparent'}}>8</Text>
+				<Text style={{fontSize:13,fontWeight:'500',backgroundColor:'transparent'}}>8</Text>
 			</View>
 		// <View style={{
 		// 	backgroundColor:'rgb(235,0,0)',borderRadius:10,top:-17,left:8,...center,width:22}}>
@@ -63,6 +63,7 @@ export default class Tabs extends Component{
 		LayoutAnimation.configureNext(openAnimation)
 		return (
 			<TabNavigator 
+			// hidesTabTouch={true}
 			    tabBarStyle={{height:this.state.height,overflow:this.state.overflow,backgroundColor:'black'}}
 				sceneStyle={{paddingBottom: this.state.height ,backgroundColor:'white'}}
 			>

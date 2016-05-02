@@ -8,6 +8,9 @@ let {
 } =React;
 export default class Settings extends Component{
 	state={};
+	componentWillUnmount(){
+		console.log('unmounting settings')
+	}
 	render(){
 		return (
 

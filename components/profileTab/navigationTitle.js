@@ -19,7 +19,7 @@ export default class NavigationTitle extends Component{
 				// this.setState({titlekey: "value", 'Profile',fontSize:0.1})
 				if (this.action && this.action!==x.action){
 					Animated.timing(this.anim,{toValue:0,duration:200}).start()
-					console.log('create border')
+					// console.log('--------------------------------------------------------------------------------------------create border')
 				}
 			}else if(x.action==='delete border'){
 				// this.setState({title:'Johnnrdino',fontSize:11})
@@ -27,6 +27,7 @@ export default class NavigationTitle extends Component{
 					Animated.timing(this.anim,{toValue:1,duration:200}).start()
 				}
 			}
+
 			this.action=x.action
 		})
 	}

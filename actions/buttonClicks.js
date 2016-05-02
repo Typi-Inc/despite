@@ -1,5 +1,5 @@
-import Rx from 'rx';
+import Rx from 'rxjs';
 
 export const buttonClicks$ = new Rx.ReplaySubject(1);
 
-export const buttonClicks = (args) => buttonClicks$.onNext(args);
+export const buttonClicks = (args) => buttonClicks$.next(args);

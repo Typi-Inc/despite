@@ -12,13 +12,17 @@ import {buttonClicks} from '../../actions/buttonClicks'
 export default class ChannelItem extends Component{
 	state={};
 	goToChannel(channel){
+		// console.log("==================", arguments)
+		console.log('here')
 		buttonClicks({action:'navigation push',nav:'topNav',name:'channel',info:channel,messageId:5})
+		buttonClicks({action:'measure position',index:5})
+
 	}
 	render(){
 		return (
 			<View>
 			<View style={{height:0.5,width:320*k,backgroundColor:'rgb(225,225,225)'}}/>
-			<TouchableOpacity onPress={this.goToChannel.bind(this,this.props.channel)}>
+			<TouchableOpacity onPress={()=>this.goToChannel(this.props.channel)}>
 				<View style={{flexDirection:'row',padding:5,alignItems:'center'}}>
 					<Image style={{width:70*k,height:70*k,marginRight:4*k,borderRadius:3*k,}} source={{uri:this.props.channel.image}}/>
 					<View style={{marginLeft:3*k,flexDirection:'row',flex:1}}>	

@@ -39,6 +39,7 @@ export default class ProfileNavigation extends Component{
 	componentWillMount(){
 		this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
 			if(x.action==='navigation push' && x.nav==='profileNav'){
+				
 				this.nav&&this.nav.push({name:x.name,routeInfo:x.info,title:x.title})
 			}else if(x.action==='navigation push' && x.nav==='profileNav' && x.name==='edit'){
 				this.nav && this.nav.replace({name:x.name,routeInfo:x.info,title:x.title})

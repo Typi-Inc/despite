@@ -19,13 +19,13 @@ const IncrementalGroup = require('IncrementalGroup');
 const IncrementalPresenter = require('IncrementalPresenter');
 
 import Spinner from 'react-native-spinkit'
-import {buttonClicks$} from '../../actions/buttonClicks'
+import {buttonClicks$,buttonClicks} from '../../actions/buttonClicks'
 import Message from './message'
 import MessagePlaceholder from './messagePlaceholder'
 import SlideUpInput from './slideUpInput'
 import InvertibleScrollView from 'react-native-invertible-scroll-view';
 export default class Tube extends Component{
-	state={loading:true,disable:false};
+	state={loading:true,disable:false,showSpinner:true};
 	show(e){
 		if(this.state.disable) return;
 		LayoutAnimation.configureNext(keyboard);
@@ -49,36 +49,61 @@ export default class Tube extends Component{
 	}
 
 
-	componentWillMount(){
+	// componentWillMount(){
+		
+    	// this.setTimeout(()=>this.buttonClicksSubscription.unsubscribe(),1000)
+	  
+	  // }
+	componentDidMount(){
+		
+		// InteractionManager.runAfterInteractions(()=>{
+		// 	LayoutAnimation.configureNext(veryFast)
+		// 		this.setState({loading:false},()=>{
+		// 			 // this.scroll&&this.scroll.scrollTo({x:0,y:this.measurePosition(3),animated:false})
+		// 			// else this.scroll && this.scroll.scrollTo({x:0,y:0,animated:false})
+		// 			buttonClicks({action:'measure now'})
+
+		// 		})
+		// 	})
 
 		this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
        		 if(x.action==='searchInput is focused') {
        		 	if(this.keyboardHeight>0) this.hide()
        		 	this.setState({disable:true})
+       		 }else if(x.action==='measure now'){
+       		 	this.setTimeout(()=>{
+       		 			let handle = React.findNodeHandle(this['7']);
+		            	let result;
+						if(handle){
+						    UIManager.measure(handle,(x,y,width,height,pagex,pagey)=>{
+								result=-pagey
+
+								this.scroll&&this.scroll.scrollTo({x:0,y:result+100,animated:false})
+								Animated.timing(this.anim1,{toValue:0,duration:300}).start()
+								Animated.timing(this.anim,{toValue:1,duration:1,delay:200}).start(()=>{
+									this.setTimeout(()=>this.setState({showSpinner:false}),3000)
+								})
+							 })
+						}
+       		 		},100)
+	            
        		 }
-       		 // else if(x.action==='measure position') this.measurePosition(x.index)
-       		 else if(x.action==='searchInput is blurred') this.setState({disable:false})
+       		 else if(x.action==='measure position') {
+       		 		
+       		 	
+       		 }else if (x.action==='unsubscribe'){
+       		 	this.buttonClicksSubscription && this.buttonClicksSubscription.unsubscribe()
+       		 	this._keyboardWillShowSubscription&&this._keyboardWillShowSubscription.remove()
+	  			this._keyboardWillHideSubscription&&this._keyboardWillHideSubscription.remove()
+       		 }
+       		 else if(x.action==='searchInput is blurred')  this.setState({disable:false})
+       		 this.currentAction=x.action
     	})
-	  	this._keyboardWillShowSubscription= DeviceEventEmitter.addListener('keyboardWillShow', this.show.bind(this));
+    	this._keyboardWillShowSubscription= DeviceEventEmitter.addListener('keyboardWillShow', this.show.bind(this));
 	    this._keyboardWillHideSubscription= DeviceEventEmitter.addListener('keyboardWillHide', this.hide.bind(this));
 	 
-	  }
-	componentDidMount(){
-		
-		InteractionManager.runAfterInteractions(()=>{
-			LayoutAnimation.configureNext(veryFast)
-				this.setState({loading:false},()=>{
-					 // this.scroll&&this.scroll.scrollTo({x:0,y:this.measurePosition(3),animated:false})
-					// else this.scroll && this.scroll.scrollTo({x:0,y:0,animated:false})
-				})
-			})
 	}
-	componentWillUnmount(){
-		this.buttonClicksSubscription.unsubscribe()
-	  	this._keyboardWillShowSubscription.remove()
-	  	this._keyboardWillHideSubscription.remove()
-
-	 }
+	
 	handleScroll(e){
 		if (e.nativeEvent.contentSize.height-e.nativeEvent.contentOffset.y<400){
 			this.contentOffset=e.nativeEvent.contentOffset.y
@@ -94,27 +119,30 @@ export default class Tube extends Component{
 	}
 	_onDone(){
 		// this.setState({loading:false})
-	}
-	measurePosition(i){
-		let handle = React.findNodeHandle(this[`${i}`]);
-		handle&&UIManager.measure(handle,(x,y,width,height,pagex,pagey)=>{
-			return -pagey
-		})
-
+		console.log('on done')
+		buttonClicks({action:'measure now'})
 	}
 	render(){
+		// console.log(this.buttonClicksSubscription)
+		this.anim1=this.anim1 || new Animated.Value(1)
+		this.anim=this.anim || new Animated.Value(0)
 		this.keyboardHeight=this.keyboardHeight || 0
-		if(this.state.loading){
-			return <View style={{flex:1,...center,backgroundColor:'white'}}><Spinner 
-			style={{marginBottom:75}} isVisible={true} 
-				size={55} type={'ArcAlt'} color={'#969696'}/>
+		// if(this.state.loading){
+		// 	return <Animated.View style={{...center,backgroundColor:'white',position:'absolute',
+		// 		top:this.anim.interpolate({inputRange:[0,1],outputRange:[0,600]}),
+		// 		left:0,width:320*k,height:568*h-70}}>
+		// 				<Spinner 
+		// 			style={{marginBottom:75}} isVisible={true} 
+		// 				size={55} type={'ArcAlt'} color={'#969696'}/>
 
-				</View>
-		}
+
+		// 		</Animated.View>
+		// }
 		// LayoutAnimation.configureNext(veryFast)
 		return (
-
-			<IncrementalGroup onDone={this._onDone.bind(this)} disabled={true}><View style={{flex:1}}>
+			<View style={{flex:1}}>
+			<IncrementalGroup onDone={this._onDone.bind(this)} disabled={false}>
+			<View style={{flex:1}}>
 				
 				<InvertibleScrollView keyboardDismissMode={'interactive'}
 				inverted  automaticallyAdjustContentInsets={true}
@@ -130,8 +158,8 @@ export default class Tube extends Component{
 				// '#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
 				// '#F5A623','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
 				].map((color,i)=>{
-					if(i>2) return  <IncrementalGroup disabled={false}><Message ref={el=>this[`${i}`]=el} key={i} index={i} color={color}/></IncrementalGroup>
-					return <Message ref={el=>this[`${i}`]=el} key={i} index={i} color={color}/>})}
+					return  <IncrementalGroup disabled={false}><Message ref={el=>this[`${i}`]=el} key={i} index={i} color={color}/></IncrementalGroup>
+				})}
 					
 		
 					
@@ -139,10 +167,31 @@ export default class Tube extends Component{
 				</InvertibleScrollView>
 
 				<SlideUpInput ref={(e)=>this.input=e} setBottom={this.setBottom.bind(this)}/>
+				
+
 			</View>
 		</IncrementalGroup>
+		<Animated.View style={{...center,backgroundColor:'white',position:'absolute',
+				top:this.anim.interpolate({inputRange:[0,1],outputRange:[0,600]}),
+				opacity:this.anim1,
+				left:0,width:320*k,height:568*h-70}}>
+						{this.state.showSpinner?<Spinner 
+					style={{marginBottom:75}} isVisible={true} 
+						size={55} type={'ArcAlt'} color={'#969696'}/>:null
+
+				}
+				</Animated.View>
+		</View>
 			)
 	}
+	componentWillUnmount(){
+		console.log('unmounting tube')
+
+		this.buttonClicksSubscription.unsubscribe()
+	  	this._keyboardWillShowSubscription.remove()
+	  	this._keyboardWillHideSubscription.remove()
+
+	 }
 
 };
 Object.assign(Tube.prototype, TimerMixin);
