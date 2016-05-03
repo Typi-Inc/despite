@@ -13,7 +13,7 @@ export default class ChannelSearchInput extends Component{
 	render(){
 		return (
 
-			<TextInput
+			<TextInput autoCorrect={false}
 				style={{paddingLeft:10,marginTop:5,marginLeft:35,backgroundColor:'rgb(240,240,240)',
 					width:250*k,height:33,borderRadius:5,}}
 			   	value={this.state.text}
@@ -27,6 +27,7 @@ export default class ChannelSearchInput extends Component{
                       text: event.nativeEvent.text,})
                     
                   }}
+      
 			/>
 
 			)

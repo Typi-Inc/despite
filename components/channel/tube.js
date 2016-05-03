@@ -14,6 +14,7 @@ let {
   InteractionManager,
   Animated
 } =React;
+import {messages,colors} from '../mock'
 
 const IncrementalGroup = require('IncrementalGroup');
 const IncrementalPresenter = require('IncrementalPresenter');
@@ -25,7 +26,7 @@ import MessagePlaceholder from './messagePlaceholder'
 import SlideUpInput from './slideUpInput'
 import InvertibleScrollView from 'react-native-invertible-scroll-view';
 export default class Tube extends Component{
-	state={loading:true,disable:false,showSpinner:true};
+	state={loading:true,disable:false,showSpinner:true,removeClippedSubviews:'false'};
 	show(e){
 		if(this.state.disable) return;
 		LayoutAnimation.configureNext(keyboard);
@@ -72,16 +73,16 @@ export default class Tube extends Component{
        		 	this.setState({disable:true})
        		 }else if(x.action==='measure now'){
        		 	this.setTimeout(()=>{
-       		 			let handle = React.findNodeHandle(this['7']);
+       		 			let handle = React.findNodeHandle(this['4']);
 		            	let result;
 						if(handle){
 						    UIManager.measure(handle,(x,y,width,height,pagex,pagey)=>{
 								result=-pagey
 
-								this.scroll&&this.scroll.scrollTo({x:0,y:result+100,animated:false})
-								Animated.timing(this.anim1,{toValue:0,duration:300}).start()
+								this.scroll&&this.scroll.scrollTo({x:0,y:pagey-70,animated:false})
+								Animated.timing(this.anim1,{toValue:0,duration:250}).start()
 								Animated.timing(this.anim,{toValue:1,duration:1,delay:200}).start(()=>{
-									this.setTimeout(()=>this.setState({showSpinner:false}),3000)
+									this.setTimeout(()=>this.setState({removeClippedSubviews:true}),1000)
 								})
 							 })
 						}
@@ -119,7 +120,7 @@ export default class Tube extends Component{
 	}
 	_onDone(){
 		// this.setState({loading:false})
-		console.log('on done')
+		// console.log('on done',this.props.index)
 		buttonClicks({action:'measure now'})
 	}
 	render(){
@@ -144,27 +145,24 @@ export default class Tube extends Component{
 			<IncrementalGroup onDone={this._onDone.bind(this)} disabled={false}>
 			<View style={{flex:1}}>
 				
-				<InvertibleScrollView keyboardDismissMode={'interactive'}
-				inverted  automaticallyAdjustContentInsets={true}
+				<ScrollView //keyboardDismissMode={'interactive'}
+				removeClippedSubviews={this.state.removeClippedSubviews}
+				  // automaticallyAdjustContentInsets={true}
 				//keyboardDismissMode='interactive'
-				indicatorStyle={'black'} 
+				// indicatorStyle={'black'} 
 					scrollEventThrottle={500}
 					onScroll={this.handleScroll.bind(this)} 
 					ref={el=>this.scroll=el}
 				>	
-				<View ref={(el)=>this.t=el} style={{height:50*k}}/>
-				{['#F5A623','#BD10E0',//'#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
-				'#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
-				// '#BD10E0','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
-				// '#F5A623','#BD10E0','#4A90E2','#4A90E2','#D0021B','#D0021B','#D0021B','#F5A623',
-				].map((color,i)=>{
-					return  <IncrementalGroup disabled={false}><Message ref={el=>this[`${i}`]=el} key={i} index={i} color={color}/></IncrementalGroup>
+				
+				{messages.map((message,i)=>{
+					return  <IncrementalGroup key={i} disabled={false}><Message message={message} ref={el=>this[`${i}`]=el} index={i} color={colors[`${i%21}`]} /></IncrementalGroup>
 				})}
 					
-		
+		<View ref={(el)=>this.t=el} style={{height:50*k}}/>
 					
 
-				</InvertibleScrollView>
+				</ScrollView>
 
 				<SlideUpInput ref={(e)=>this.input=e} setBottom={this.setBottom.bind(this)}/>
 				

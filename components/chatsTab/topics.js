@@ -20,14 +20,29 @@ export default class Topics extends Component{
 		// if(i>3 && i<5) this.scroll.scrollTo({x:i*50, y:0, animated: true})
 		// else if(i>4)  this.scroll.scrollTo({x:i*60, y:0, animated: true})
 		//else
-		 this.scroll.scrollTo({x:i*25, y:0, animated: true})
+		 let lengthOfTopicsBefore=0;
+		 this.props.tabs.map((topic,index)=>{
+		 	if(index>i) return;
+		 	else if(i<1) {
+		 		lengthOfTopicsBefore=0
+		 		return
+		 	}
+		 	lengthOfTopicsBefore+=topic.length
+		 })
+		 this.scroll.scrollTo({x:Math.min(lengthOfTopicsBefore*i*2,this.scrollWidth-315*k), y:0, animated: true})
 	}
 	render(){
+		this.scrollWidth=this.scrollWidth || 320*k
 
 		return (
 
 			<View style={{width:320*k,height:70,borderBottomWidth:.5,borderColor:'rgb(215,215,215)',justifyContent:'center'}}>
-						<ScrollView ref={el=>this.scroll=el} contentContainerStyle={{...center,paddingTop:14}} horizontal={true} 
+						<ScrollView ref={el=>this.scroll=el} contentContainerStyle={{...center,paddingTop:14}} 
+						scrollEventThrottle={1000}
+						onScroll={e=>{
+							this.scrollWidth=e.nativeEvent.contentSize.width
+						}}
+						horizontal={true} 
 							showsHorizontalScrollIndicator={false}>
 					{this.props.tabs.map((tab, i) => {
 				          return <TouchableWithoutFeedback key={tab} onPress={() => {

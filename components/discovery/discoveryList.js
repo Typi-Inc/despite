@@ -23,7 +23,7 @@ export default class DiscoverList extends Component{
 			<View style={{backgroundColor:'rgb(245,245,245)',flex:1}}>
 
 
-				<ScrollView contentContainerStyle={{backgroundColor:'rgb(245,245,245)'}}>
+				<ScrollView removeClippedSubviews={true} contentContainerStyle={{backgroundColor:'rgb(245,245,245)'}}>
 					{messages.map((message,i)=>{
 
 						return <Discovery color={colors[`${i%21}`]} key={i} message={message} index={i}/>

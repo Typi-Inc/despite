@@ -32,12 +32,18 @@ export default class Profile extends Component{
 	componentWillMount(){
 		this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
 			if(x.action==='create border'){
+				if (this.action && this.action!==x.action){
 					Animated.timing(this.anim,{toValue:0,duration:200}).start()
+				}
 
 			}else if(x.action==='delete border'){
-					Animated.timing(this.anim,{toValue:1,duration:200}).start()
+				if (this.action && this.action!==x.action){
+						Animated.timing(this.anim,{toValue:1,duration:200}).start()
+				}
+				
 
 			}
+			this.action=x.action
 		})
 	}
 	componentWillUnmount(){

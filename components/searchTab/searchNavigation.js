@@ -39,8 +39,9 @@ export default class SearchNavigation extends Component{
 		this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
 			if(x.action==='navigation push' && x.nav==='searchNav'){
 				this.nav&&this.nav.push({name:x.name,routeInfo:x.info,title:x.title})
-			}else if(x.action==='show black screen') this.setState({color:'rgb(240,240,240)'})
-			else if(x.action==='hide black screen')this.setState({color:'rgb(255,255,255)'})
+			}
+			// }else if(x.action==='show black screen') this.setState({color:'rgb(240,240,240)'})
+			// else if(x.action==='hide black screen')this.setState({color:'rgb(255,255,255)'})
 		})
 	  	RCTStatusBarManager.getHeight((e)=>this.setState({statusBarHeight:e.height}))
 	}
@@ -60,7 +61,7 @@ export default class SearchNavigation extends Component{
 	render(){
 		return (
 			<Navigator 
-				style={{paddingTop:75,backgroundColor:'white'}}
+				style={{paddingTop:70,backgroundColor:'white'}}
 				ref={el=>this.nav=el}
 				initialRoute={{name:'searchTab',info:this.props.routeInfo}}
 				renderScene={this.renderChannel.bind(this)}
@@ -72,7 +73,7 @@ export default class SearchNavigation extends Component{
 					<Navigator.NavigationBar
 						ref={el=>this.navBar=el}
 			            routeMapper={NavigationBarRouteMapper}
-			            style={{height:75,backgroundColor:this.state.color,borderBottomWidth:0.5,borderColor:'rgb(215,215,215)'}}
+			            style={{height:70,backgroundColor:this.state.color,borderBottomWidth:0.5,borderColor:'rgb(215,215,215)'}}
 			          />
 				}
 			/>

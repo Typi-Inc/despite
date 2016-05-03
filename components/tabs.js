@@ -24,7 +24,7 @@ import ChatsTab from './chatsTab/chatsTab'
 import ProfileNavigation from './profileTab/profileNaivgation'
 import SearchNavigation from './searchTab/searchNavigation'
 export default class Tabs extends Component{
-	state={height:47,overflow:'visible',selectedTab:'home'};
+	state={height:47,overflow:'visible',selectedTab:'search'};
 	// static childContextTypes={toggleTabs:React.PropTypes.func,tabsHidden:React.PropTypes.func};
 	tabsHidden(){
 		return this.state.height===0

@@ -80,19 +80,17 @@ export default class Message extends Component{
 		// if(this.state.loading) return null
 		return (
 			
-			<View style={s.container}>					
+			<View style={[s.container,{overflow:'hidden',}]}>					
 					<View style={{margin:8,marginRight:0,marginLeft:4,marginBottom:12,
 						borderColor:this.props.color,borderLeftWidth:2,
 						paddingLeft:5,paddingBottom:0,paddingTop:0}}>
 
 						<Incremental key={this.props.index}><View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:5*k,width:300*k}}>
-							<MessageProfile/>
+							<MessageProfile profile={this.props.message.author}/>
 							<MessageButtons index={this.props.index} karma={this.state.carma} haveIRated={this.state.haveIRated} isSaved={this.state.isSaved}/>
 						</View></Incremental>
-						<Incremental key={this.props.index+' '}><Text style={{width:300*k,marginLeft:3*k,fontSize:17,marginBottom:2,lineHeight:23}}> 
-							I guess it would be awesome if they finally decide to do it,
-							who is going? what are your ideas on politics in western europe. do your
-								agreement on the brexit issue fully subsidised for me
+						<Incremental key={this.props.index+' '}><Text style={{width:300*k,marginLeft:3*k,fontSize:17,marginBottom:5*k,lineHeight:23}}> 
+							{this.props.message.text}
 						</Text></Incremental>
 
 				

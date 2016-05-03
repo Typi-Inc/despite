@@ -25,7 +25,7 @@ export default class BackButton extends Component{
 					}
 					
 				}}>
-					<Image source={{uri:'arrow',isStatic:true}} style={{margin:8,height:19,width:11}}/>
+					<Image source={{uri:'arrow',isStatic:true}} style={{margin:8,height:17,width:10}}/>
 
 				</TouchableOpacity>
 

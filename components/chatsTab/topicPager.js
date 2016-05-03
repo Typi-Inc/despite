@@ -6,6 +6,7 @@ let {
   TouchableWithoutFeedback,
   ScrollView,
   Text,
+  Animated,
   View
 } =React;
 import DelayRendering from './delayRendering'
@@ -19,8 +20,18 @@ export default class TopicPager extends Component{
 	shouldComponentUpdate(nextProps,nextState){
 		return this.state!==nextState
 	}
+	componentWillMount(){
+
+	}
+	componentDidMount(){
+		// Animated.timing(this.anim1,{toValue:0.5,duration:100,delay:0}).start()
+		// Animated.timing(this.anim,{toValue:1,duration:1,delay:200}).start()
+	}
 	render(){
+		this.anim1=this.anim1 || new Animated.Value(1)
+		this.anim=this.anim || new Animated.Value(0)
 		return (
+			<View style={{flex:1}}>
 		<ScrollableTabView 
 		tabBarPosition={'top'}
 			onScroll={(f)=>{
@@ -29,14 +40,20 @@ export default class TopicPager extends Component{
 				}
 			}}
 			 renderTabBar={() => <Topics ref={el=>this.topics=el}/>}>
-			<DiscoverList tabLabel='For you'/>
-   			<DelayRendering tabLabel='Trending' delay={500}><ChannelsByTopic /></DelayRendering>
-   			<DelayRendering tabLabel='Nearby' delay={600}><ChannelsByTopic /></DelayRendering>
-   			<DelayRendering tabLabel='Funny' delay={800}><ChannelsByTopic /></DelayRendering>
-   			<DiscoverList tabLabel='News'/>
+			<DiscoverList tabLabel='Топ 20'/>
+   			<DelayRendering tabLabel='Рядом' delay={100}><DiscoverList /></DelayRendering>
+   			<DelayRendering tabLabel='Советы' delay={200}><DiscoverList /></DelayRendering>
+   			<DelayRendering tabLabel='Куда сходить?' delay={200}><DiscoverList /></DelayRendering>
+   			
 			
-   
+   				
       </ScrollableTabView>
+      <Animated.View style={{...center,backgroundColor:'white',position:'absolute',
+				top:this.anim.interpolate({inputRange:[0,1],outputRange:[600,600]}),
+				opacity:this.anim1,
+				left:0,width:320*k,height:568*h-70}}>
+				</Animated.View>
+      </View>
 			)
 	}
 };

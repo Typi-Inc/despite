@@ -18,14 +18,14 @@ export default class ControlPanel extends Component{
 
 			<TouchableWithoutFeedback style={{backgroundColor:'red'}} 
 				onPress={()=>buttonClicks({action:'profileCard',
-					profile:{name:'Johnnrdino',karma:1232,
-					image:'http://www.binarytradingforum.com/core/image.php?userid=27&dateline=1355305878'}})}>
+					profile:{name:this.props.profile.name,karma:1232,
+					image:this.props.profile.image}})}>
 							
 								<View style={{flexDirection:'row',...center,}}> 
-										<Image source={{uri:'http://www.binarytradingforum.com/core/image.php?userid=27&dateline=1355305878'}} 
+										<Image source={{uri:this.props.profile.image}} 
 										style={{borderRadius:5*k,width:35*k,height:35*k}}/>
 										<View style={{margin:5}}>	
-											<Text style={{fontSize:17,fontWeight:'bold',color:'rgb(80,80,80)'}}>Johnnrdino</Text>
+											<Text style={{fontSize:17,fontWeight:'bold',color:'rgb(80,80,80)'}}>{this.props.profile.name}</Text>
 											<Text style={s.smallGreyText}>12:54</Text>
 
 										</View>

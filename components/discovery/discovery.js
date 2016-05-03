@@ -32,7 +32,7 @@ export default class Discovery extends Component{
 		<TouchableWithoutFeedback onPress={this.goToChannel.bind(this)}
 		>
       <View style={[styles.container,
-      {marginTop:this.props.index>0?5:0,
+      {marginTop:this.props.index>0?5:0,overflow:'hidden',
       borderTopWidth:this.props.index>0?1:.5,}]}>
   			<Text style={styles.post}>Was posted to 
   				<Text style={styles.nameOfChannel}>  #some channel name</Text>
@@ -48,7 +48,7 @@ export default class Discovery extends Component{
   							<Text style={s.smallGreyText}>12:54</Text>
   						</View>
   					</View>
-  					<MessageButtons index={this.props.index} karma={this.props.message.karma} haveIRated={this.props.message.haveIRated} isSaved={false}/>
+  					<MessageButtons discovery={true} index={this.props.index} karma={this.props.message.karma} haveIRated={this.props.message.haveIRated} isSaved={false}/>
   				</View>
 
   				<Text style={styles.messageText}>

@@ -175,6 +175,12 @@ Joe was feeling great, when the salesman asked,  "How about some new underwear?"
 		karma:542,
 		haveIRated:false
 	},
+	{author:{name:'Alan',
+		image:'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQcULXY5kOnD3YE5l1X8p7yt7DvybbeNd_o0A2rhDenRSSzP5wywA'},
+		text:`Fucking nice`,
+		karma:542,
+		haveIRated:false
+	},
 
 
 
