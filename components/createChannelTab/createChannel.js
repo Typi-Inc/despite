@@ -11,6 +11,7 @@ let {
   TouchableOpacity,
   View
 } =React;
+import {buttonClicks} from '../../actions/buttonClicks'
 export default class CreateChannel extends Component{
 	state={};
 	componentWillMount(){
@@ -21,6 +22,9 @@ export default class CreateChannel extends Component{
 	}
 	componentDidMount(){
 		this.input.focus()
+	}
+	showMap(){
+		buttonClicks({action:'navigation push',nav:'createChannelNav',title:'Restrict Location',name:'restrictLocation'})
 	}
 	render(){
 		return (
@@ -57,7 +61,7 @@ export default class CreateChannel extends Component{
 
 					</View></TouchableOpacity>
 					<View style={{height:1,width:320*k,backgroundColor:'rgb(235,235,235)'}}/>
-					<TouchableOpacity><View style={{backgroundColor:'white',alignItems:'center',paddingLeft:15,flexDirection:'row',height:50*k,width:320*k}}>
+					<TouchableOpacity onPress={this.showMap.bind(this)}><View style={{backgroundColor:'white',alignItems:'center',paddingLeft:15,flexDirection:'row',height:50*k,width:320*k}}>
 						<Text style={{fontSize:16}}>Restrict location</Text>
 
 					</View></TouchableOpacity>

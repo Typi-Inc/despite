@@ -71,7 +71,7 @@ export default class App extends Component{
 			<Navigator ref={el=>this.nav=el}
 				initialRoute={{name:'testa'}}
 				configureScene={(route,routeStack)=>{
-					if(route.name==='createChannel') return Navigator.SceneConfigs.FloatFromBottom
+					if(route.name==='createChannel') return {...Navigator.SceneConfigs.FloatFromBottom, gestures: {}}
 					else if (route.name==='channel') return Navigator.SceneConfigs.FloatFromRight
 					else if (route.name=='imageViewer') return Navigator.SceneConfigs.FadeAndroid
 					return Navigator.SceneConfigs.PushFromRight

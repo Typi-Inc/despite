@@ -59,7 +59,9 @@ export default class Profile extends Component{
 				<Animated.View style={{
 					borderBottomWidth:this.anim.interpolate({inputRange:[0,1],outputRange:[0.5,0]}),
 					borderColor:'rgb(215,215,215)'}}/>
-				<ScrollView ref={el=>this.scroll=el} scrollEventThrottle={200} onScroll={(e)=>{
+				<ScrollView ref={el=>this.scroll=el} scrollEventThrottle={200}
+				removeClippedSubviews={true}
+				 onScroll={(e)=>{
 						UIManager.measure(this.handle,(x,y,w,h,px,py)=>{
 							this.py=py
 							if(py>78&&py<83){

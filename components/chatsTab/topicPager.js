@@ -31,7 +31,7 @@ export default class TopicPager extends Component{
 		this.anim1=this.anim1 || new Animated.Value(1)
 		this.anim=this.anim || new Animated.Value(0)
 		return (
-			<View style={{flex:1}}>
+			<View style={{flex:1,backgroundColor:'rgb(245,245,245)'}}>
 		<ScrollableTabView 
 		tabBarPosition={'top'}
 			onScroll={(f)=>{

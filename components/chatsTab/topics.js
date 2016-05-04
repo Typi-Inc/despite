@@ -36,7 +36,7 @@ export default class Topics extends Component{
 
 		return (
 
-			<View style={{width:320*k,height:70,borderBottomWidth:.5,borderColor:'rgb(215,215,215)',justifyContent:'center'}}>
+			<View style={{backgroundColor:'white',width:320*k,height:70,borderBottomWidth:.5,borderColor:'rgb(215,215,215)',justifyContent:'center'}}>
 						<ScrollView ref={el=>this.scroll=el} contentContainerStyle={{...center,paddingTop:14}} 
 						scrollEventThrottle={1000}
 						onScroll={e=>{

@@ -88,7 +88,7 @@ export default class MessageButtons extends Component{
 						</Animated.View>
 					</TouchableHighlight>
 					<TouchableOpacity onPress={()=>{
-						cok.setVolume(0.4)
+						cok.setVolume(0.3)
 						cok.play()
 						// LayoutAnimation.configureNext(veryFast)
 						// Animated.spring(this.anim,{toValue:1,tension:100,friction:12}).start()

@@ -16,6 +16,7 @@ import s from '../../styles'
 import CreateChannel from './createChannel'
 import AddTags from './addTags'
 import Invite from './invite'
+import RestrictLocation from './restrictLocation'
 import ChannelSettings from './channelSettings'
 import BackButton from '../channel/backButton'
 import dismissKeyboard from 'dismissKeyboard'
@@ -54,10 +55,10 @@ export default class ChannelNavigation extends Component{
 	// 	// 	}
 	// 	// })
 		this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
-			if(x.action==='navigation push' && x.nav==='channelNav'){
+			if(x.action==='navigation push' && x.nav==='createChannelNav'){
 				// this.setState({height:60})
 				// this.props.toggleTabs(true)
-				this.nav&&this.nav.push({name:x.name,routeInfo:x.info})
+				this.nav&&this.nav.push({name:x.name,routeInfo:x.info,title:x.title})
 			}
 		})
 	  	RCTStatusBarManager.getHeight((e)=>this.setState({statusBarHeight:e.height}))
@@ -75,6 +76,8 @@ export default class ChannelNavigation extends Component{
 			return <AddTags />
 		}else if(route.name==='channelSettings'){
 			return <ChannelSettings/>
+		}else if (route.name==='restrictLocation'){
+			return <RestrictLocation/>
 		}
 	}
 	setHeightOfNavigation(height){
@@ -85,6 +88,10 @@ export default class ChannelNavigation extends Component{
 			<Navigator 
 				style={{paddingTop:65}}
 				ref={el=>this.nav=el}
+				configureScene={(route,routeStack)=>{
+					if(route.name==='restrictLocation') return {...Navigator.SceneConfigs.PushFromRight, gestures: {}}
+					return Navigator.SceneConfigs.PushFromRight
+				}}
 				navigator={this.props.navigator}
 				initialRoute={{name:'createChannel',info:this.props.routeInfo,title:'Create channel'}}
 				renderScene={this.renderCreateChannel.bind(this)}

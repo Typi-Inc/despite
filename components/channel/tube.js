@@ -26,27 +26,27 @@ import MessagePlaceholder from './messagePlaceholder'
 import SlideUpInput from './slideUpInput'
 import InvertibleScrollView from 'react-native-invertible-scroll-view';
 export default class Tube extends Component{
-	state={loading:true,disable:false,showSpinner:true,removeClippedSubviews:'false'};
+	state={loading:true,disable:false,showSpinner:true,removeClippedSubviews:false};
 	show(e){
 		if(this.state.disable) return;
 		LayoutAnimation.configureNext(keyboard);
 		this.keyboardHeight=e.endCoordinates.height
-		this.scroll && this.scroll.setNativeProps({style:{bottom:e.endCoordinates.height+this.input.getAddHeight()},contentInset:{bottom:e.endCoordinates.height+this.input.getAddHeight()}})
+		this.scroll && this.scroll.setNativeProps({style:{bottom:e.endCoordinates.height+this.input.getAddHeight()},contentInset:{top:e.endCoordinates.height+this.input.getAddHeight()}})
  	}
 
  	hide(){
  		if(this.state.disable) return;
   		LayoutAnimation.configureNext(keyboard);
   		this.keyboardHeight=0
-  		if(this.contentOffset>0){
-  			this.scroll&&this.scroll.scrollTo({y:2*this.contentOffset-this.contentSize+20,animated:false})
+  		if(this.contentOffset===0){
+  			this.scroll&&this.scroll.setNativeProps({contentOffset:{y:-20}})
   		}
-		this.scroll && this.scroll.setNativeProps({contentInset:{bottom:this.input.getAddHeight()}})
+		this.scroll && this.scroll.setNativeProps({contentInset:{top:this.input.getAddHeight()}})
   	
 	 
 	}
 	setBottom(addHeight){
-		this.scroll && this.scroll.setNativeProps({style:{bottom:this.keyboardHeight+addHeight}})
+		this.scroll && this.scroll.setNativeProps({style:{bottom:this.keyboardHeight+addHeight}})	
 	}
 
 
@@ -73,7 +73,7 @@ export default class Tube extends Component{
        		 	this.setState({disable:true})
        		 }else if(x.action==='measure now'){
        		 	this.setTimeout(()=>{
-       		 			let handle = React.findNodeHandle(this['4']);
+       		 			let handle = React.findNodeHandle(this['5']);
 		            	let result;
 						if(handle){
 						    UIManager.measure(handle,(x,y,width,height,pagex,pagey)=>{
@@ -82,7 +82,7 @@ export default class Tube extends Component{
 								this.scroll&&this.scroll.scrollTo({x:0,y:pagey-70,animated:false})
 								Animated.timing(this.anim1,{toValue:0,duration:250}).start()
 								Animated.timing(this.anim,{toValue:1,duration:1,delay:200}).start(()=>{
-									this.setTimeout(()=>this.setState({removeClippedSubviews:true}),1000)
+									this.setTimeout(()=>this.setState({removeClippedSubviews:true,showSpinner:false}),200)
 								})
 							 })
 						}
@@ -106,12 +106,10 @@ export default class Tube extends Component{
 	}
 	
 	handleScroll(e){
-		if (e.nativeEvent.contentSize.height-e.nativeEvent.contentOffset.y<400){
-			this.contentOffset=e.nativeEvent.contentOffset.y
-			this.contentSize=e.nativeEvent.contentSize.height
-		}else{
+		if (e.nativeEvent.contentOffset.y<0){
 			this.contentOffset=0
-
+		}else{
+			this.contentOffset=1
 		}
 
 	}
@@ -146,8 +144,8 @@ export default class Tube extends Component{
 			<View style={{flex:1}}>
 				
 				<ScrollView //keyboardDismissMode={'interactive'}
+				automaticallyAdjustContentInsets={true}
 				removeClippedSubviews={this.state.removeClippedSubviews}
-				  // automaticallyAdjustContentInsets={true}
 				//keyboardDismissMode='interactive'
 				// indicatorStyle={'black'} 
 					scrollEventThrottle={500}
