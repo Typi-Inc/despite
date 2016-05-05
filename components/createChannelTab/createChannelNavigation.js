@@ -35,7 +35,8 @@ let NavigationBarRouteMapper={
 			return <BackButton index={index} route={route} navigator={navigator}/>
 		},
 		RightButton(route, navigator, index, navState){
-			if(route.name==='createChannel') return <BlackButton type={'create channel'}/>
+			if(route.name==='createChannel') return <BlackButton type={'Создать'}/>
+			else if(route.name==='restrictLocation') return <BlackButton type={'Готово'}/>
 			return null		
 		},
 		Title(route, navigator, index, navState){
@@ -89,7 +90,7 @@ export default class ChannelNavigation extends Component{
 				style={{paddingTop:65}}
 				ref={el=>this.nav=el}
 				configureScene={(route,routeStack)=>{
-					if(route.name==='restrictLocation') return {...Navigator.SceneConfigs.PushFromRight, gestures: {}}
+					if(route.name==='restrictLocation') return {...Navigator.SceneConfigs.VerticalDownSwipeJump, gestures: {}}
 					return Navigator.SceneConfigs.PushFromRight
 				}}
 				navigator={this.props.navigator}

@@ -73,18 +73,24 @@ export default class Tube extends Component{
        		 	this.setState({disable:true})
        		 }else if(x.action==='measure now'){
        		 	this.setTimeout(()=>{
-       		 			let handle = React.findNodeHandle(this['5']);
+       		 			let handle = React.findNodeHandle(this['1']);
 		            	let result;
 						if(handle){
 						    UIManager.measure(handle,(x,y,width,height,pagex,pagey)=>{
 								result=-pagey
 
-								this.scroll&&this.scroll.scrollTo({x:0,y:pagey-70,animated:false})
-								Animated.timing(this.anim1,{toValue:0,duration:250}).start()
+								this.scroll&&this.scroll.scrollTo({x:0,y:pagey-170,animated:false})
+								Animated.timing(this.anim1,{toValue:0,duration:150}).start()
 								Animated.timing(this.anim,{toValue:1,duration:1,delay:200}).start(()=>{
 									this.setTimeout(()=>this.setState({removeClippedSubviews:true,showSpinner:false}),200)
 								})
 							 })
+						}else{
+							Animated.timing(this.anim1,{toValue:0,duration:250}).start()
+								Animated.timing(this.anim,{toValue:1,duration:1,delay:200}).start(()=>{
+									this.setTimeout(()=>this.setState({removeClippedSubviews:true,showSpinner:false}),200)
+								})
+
 						}
        		 		},100)
 	            
@@ -154,6 +160,7 @@ export default class Tube extends Component{
 				>	
 				
 				{messages.map((message,i)=>{
+					if(i===1) return <Message backgroundColor={true} message={message} ref={el=>this[`${i}`]=el} index={i} color={colors[`${i%21}`]} />
 					return  <IncrementalGroup key={i} disabled={false}><Message message={message} ref={el=>this[`${i}`]=el} index={i} color={colors[`${i%21}`]} /></IncrementalGroup>
 				})}
 					

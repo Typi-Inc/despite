@@ -14,15 +14,7 @@ let {
 import {buttonClicks} from '../../actions/buttonClicks'
 export default class CreateChannel extends Component{
 	state={};
-	componentWillMount(){
-		// StatusBarIOS.setStyle('light-content')
-	}
-	componentWillUnmount(){
-		// StatusBarIOS.setStyle('default')
-	}
-	componentDidMount(){
-		this.input.focus()
-	}
+	
 	showMap(){
 		buttonClicks({action:'navigation push',nav:'createChannelNav',title:'Restrict Location',name:'restrictLocation'})
 	}

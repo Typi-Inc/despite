@@ -7,91 +7,138 @@ let {
   Component,
   Text,
   Image,
+  StyleSheet,
   TouchableOpacity,
   InteractionManager,
   TouchableWithoutFeedback,
   LayoutAnimation,
-  TouchableHighlight,
+  TouchableHighlight,LinkingIOS,
   View,Animated
 } =React;
+var Communications = require('react-native-communications');
 const Incremental = require('Incremental');
 const IncrementalGroup = require('IncrementalGroup');
 const IncrementalPresenter = require('IncrementalPresenter');
-
+import ParsedText from 'react-native-parsed-text'
 import MessageProfile from './messageProfile'
 import MessageButtons from './messageButtons'
 // var WithProgress = require('react-native-image-progress');
 // var ProgressBar = require('react-native-progress/Bar');
 import {veryFast,openAnimation} from '../animations'
 import {buttonClicks} from '../../actions/buttonClicks'
+var shortenUrl = function(url,protocol,host,port,path,filename,ext,query,fragment) {
+    // set url length limit
+    console.log('here',url,protocol,host,port,path,filename,ext,query,fragment)
+    var limit = 20,
+	show_www = false;
+    // remove brackets if URL inside them
+    if ( url.charAt(0) == '(' && url.charAt( url.length-1 ) == ')' ) {
+        url = url.slice(1,-1);
+    }
+    // add protocol if doesn't exist
+    if ( !protocol ) {
+        url = 'http://' + url;
+    }
+    // create new url to show
+    var domain = show_www ? host : host.replace(/www\./gi, '');
+    var visibleUrl = domain + (path || '/') + (filename || '') + (ext || '') + (query ? '?'+query : '') + (fragment || '');
+    // shorten URL if bigger than limit
+    if ( visibleUrl.length > limit && domain.length < limit ) {
+        visibleUrl = visibleUrl.slice(0, domain.length + (limit - domain.length)) + '...';
+    }
+    return '' + visibleUrl + '';
+};
+let urlRegex = /\(?(?:(http|https|ftp):\/\/)?(?:((?:[^\W\s]|\.|-|[:]{1})+)@{1})?((?:www.)?(?:[^\W\s]|\.|-)+[\.][^\W\s]{2,4}|localhost(?=\/)|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(?::(\d*))?([\/]?[^\s\?]*[\/]{1})*(?:\/?([^\s\n\?\[\]\{\}\#]*(?:(?=\.)){1}|[^\s\n\?\[\]\{\}\.\#]*)?([\.]{1}[^\s\?\#]*)?)?(?:\?{1}([^\s\n\#\[\]]*))?([\#][^\s\n]*)?\)?/gi;
+
 export default class Message extends Component{
-	state={loading:this.props.index>2?true:false,
-		karma:Math.floor(Math.random()*1000),
-		haveIRated:false,isSaved:false,
-		lineCount:Math.floor(Math.random()*100)};
+	constructor(props){
+		super(props)
+		this.state={loading:this.props.index>2?true:false,
+			karma:Math.floor(Math.random()*1000),
+			haveIRated:false,isSaved:false,
+			lineCount:Math.floor(Math.random()*100)
+		};
+		this.handleUrlPress=this.handleUrlPress.bind(this)
+		this.handlePhonePress=this.handlePhonePress.bind(this)
+		this.handleNamePress=this.handleNamePress.bind(this)
+		this.handleEmailPress=this.handleEmailPress.bind(this)
+		this.renderText=this.renderText.bind(this)
+	}
+
 	navigateToImageViewer(){
 		// buttonClicks({action:'navigation push', nav:'topNav',name:'imageViewer'})
 		// Animated.spring(this.anim,{toValue:this.anim._value>0?0:1}).start()
 		// this.image.setNativeProps({style:{position:'absolute',top:0,lef}})
 	}
-	// componentDidMount(){
-	// 	if(this.props.index>2){
-	// 		if(this.props.index>5 ){
-	// 			this.setTimeout(()=>{
-	// 				InteractionManager.runAfterInteractions(()=>{
-	// 					this.setState({loading:false})
-	// 				})
-	// 			},200)
-	// 		}else if(this.props.index>10 && this.props.index<15){
-	// 			this.setTimeout(()=>{
-	// 				InteractionManager.runAfterInteractions(()=>{
-	// 					this.setState({loading:false})
-	// 				})
-	// 			},400)
-	// 		}else if(this.props.index>14 && this.props.index<24){
-	// 			this.setTimeout(()=>{
-	// 				InteractionManager.runAfterInteractions(()=>{
-	// 					this.setState({loading:false})
-	// 				})
-	// 			},600)
-	// 		}else if(this.props.index>23 && this.props.index<34){
-	// 			this.setTimeout(()=>{
-	// 				InteractionManager.runAfterInteractions(()=>{
-	// 					this.setState({loading:false})
-	// 				})
-	// 			},800)
-	// 		}else if(this.props.index>33){
-	// 			this.setTimeout(()=>{
-	// 				InteractionManager.runAfterInteractions(()=>{
-	// 					this.setState({loading:false})
-	// 				})
-	// 			},1000)
-	// 		}
-	// 		else{
-	// 			InteractionManager.runAfterInteractions(()=>{
-	// 				this.setState({loading:false})
-	// 			})
-	// 		}
-			
-	// 	}
-	// }
+	
+
+ handleUrlPress(url) {
+ 	if(url.substring(0,4)!=='http'){
+    if(url[0]===' '){
+      LinkingIOS.openURL('http://'+url.substring(1,url.length))
+    }else{
+      LinkingIOS.openURL('http://'+url)
+    }
+ 		
+ 	}else{
+ 		LinkingIOS.openURL(url);
+ 	}
+  }
+
+
+  handlePhonePress(phone) {
+    Communications.phonecall(phone, true)
+  }
+
+  handleNamePress(name) {
+    alert(`Hello ${name}`);
+  }
+
+  handleEmailPress(email) {
+    Communications.email([email],null,null,'Despite','hey, let us chat')
+  }
+  renderText(matchingString, matches) {
+    // matches => ["[@michel:5455345]", "@michel", "5455345"]
+    let url
+    if(matchingString[0]===' '){
+     url=matchingString.substring(1,matchingString.length)
+
+    }else{
+    	url=matchingString
+    }
+    if(url.length>20) return url.substring(0,20)+'...'
+    return ' '+url;
+  }
 	render(){
+		// var messageText = this.props.message.text;
+		// messageText = messageText.replace(urlRegex, shortenUrl);
+
 		this.anim=this.anim || new Animated.Value(0)
 		// if(this.state.loading) return null
-		return (
-			
-			<View style={[s.container,{overflow:'hidden',}]}>					
+		return (			
+			<View style={[s.container,{overflow:'hidden',backgroundColor:this.props.backgroundColor?'rgba(16,148,64,.1)':'white'}]}>					
 					<View style={{margin:8,marginRight:0,marginLeft:4,marginBottom:12,
 						borderColor:this.props.color,borderLeftWidth:2,
 						paddingLeft:5,paddingBottom:0,paddingTop:0}}>
 
-						<Incremental key={this.props.index}><View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:5*k,width:300*k}}>
+						<Incremental key={this.props.index}><View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',width:300*k}}>
 							<MessageProfile profile={this.props.message.author}/>
 							<MessageButtons index={this.props.index} karma={this.state.carma} haveIRated={this.state.haveIRated} isSaved={this.state.isSaved}/>
 						</View></Incremental>
-						<Incremental key={this.props.index+' '}><Text style={{width:300*k,marginLeft:3*k,fontSize:17,marginBottom:5*k,lineHeight:23}}> 
+						<Incremental key={this.props.index+' '}><View style={{width:300*k,padding:4*k,}}><ParsedText 
+						parse={
+				            [
+				              {type: 'url',style: styles.url, onPress: this.handleUrlPress,renderText:this.renderText},
+				              {type: 'phone',style: styles.phone, onPress: this.handlePhonePress},
+				              {type: 'email',style: styles.email, onPress: this.handleEmailPress},
+				              {pattern: /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi,style: styles.url, onPress: this.handleUrlPress,renderText:this.renderText},
+				              {pattern: /\B@[a-z0-9_-]+/gi, style: styles.username, onPress: this.handleNamePress},
+				              {pattern: /#(\w+)/,style: styles.hashTag},
+				            ]
+				          }
+							style={{fontSize:17,lineHeight:23}}> 
 							{this.props.message.text}
-						</Text></Incremental>
+						</ParsedText></View></Incremental>
 
 				
 						<View style={{flexDirection:'row',marginLeft:3*k,marginBottom:0}}>
@@ -110,39 +157,61 @@ export default class Message extends Component{
 
 						</View>
 					</View>
-
-					
-
-				
-
 			</View>
 
 			)
 	}
 
 };
+
 Object.assign(Message.prototype, TimerMixin);
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
 
-// <TouchableWithoutFeedback onPress={()=>{
-// 					let handle = React.findNodeHandle(this.image);
-// 					handle&&UIManager.measure(handle,(x,y,width,height,pagex,pagey)=>{
-// 						// Animated.timing(this.anim,{toValue:1,duration:100}).start()
-// 						buttonClicks({action:'show image viewer',pagey:pagey})
-// 					})
+  url: {
+    color: '#109440',
+  },
+
+  email: {
+    color:'#109440',
+  },
+
+  text: {
+    color: 'black',
+    fontSize: 15,
+  },
+
+  phone: {
+    color: '#109440',
+  },
+
+  name: {
+    color: 'red',
+  },
+
+  username: {
+    color: 'rgb(80,80,80)',
+    fontSize:17,
+    fontWeight: 'bold'
+  },
+
+  magicNumber: {
+    fontSize: 15,
+    color: 'pink',
+  },
+
+  hashTag: {
+    fontStyle: 'italic',
+  },
+
+});
 
 
-// 					}}>
-// 					<Animated.Image ref={el=>this.image=el}
-// 				      style={{ height:this.anim.interpolate({inputRange:[0,1],outputRange:[200,280*k]}),
-// 				      	width:this.anim.interpolate({inputRange:[0,1],outputRange:[200,280*k]}),
-// 				      	margin:this.anim.interpolate({inputRange:[0,1],outputRange:[15,0]}),
-// 				      	marginBottom:5,
-// 				      	left:0,
-// 				      	opacity:this.anim.interpolate({inputRange:[0,1],outputRange:[1,0]}),
-// 				      	marginLeft:45*k,
-// 				      	borderRadius:this.anim.interpolate({inputRange:[0,1],outputRange:[20,0]}),}}
-// 				      source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcxvY5y5_BrPwLfkiS5hpnlHDmO-U8mbsjamCGQQqYwieXLHst' }}
-// 				    />
-// 				</TouchableWithoutFeedback>
+
 
 

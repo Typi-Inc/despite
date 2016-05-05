@@ -17,6 +17,7 @@ export default class BackButton extends Component{
 
 			<TouchableOpacity style={{height:45,width:45,justifyContent:'center',alignItems:'flex-start'}} onPress={()=>{
 					dismissKeyboard()
+					// console.log(this.props.route)
 					if(this.props.index===0){
 						buttonClicks({action:'go back to chats',nav:'topNav'})
 						return;

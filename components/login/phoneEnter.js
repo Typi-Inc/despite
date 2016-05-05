@@ -10,6 +10,7 @@ let {
   Text,
   View
 } =React;
+import CountryPicker from 'react-native-country-picker-modal';
 export default class PhoneEnter extends Component{
 	state={};
 	render(){
@@ -18,10 +19,7 @@ export default class PhoneEnter extends Component{
 			<View style={{backgroundColor:'white',flex:1,alignItems:'center'}}>
 				<TouchableOpacity style={{marginTop:30,padding:10*k,borderRadius:5,...center,borderWidth:1}}>
 					<Text style={{fontSize:16,fontWeight:'500'}}>Выберите страну</Text>
-
 				</TouchableOpacity>
-
-
 
 			</View>
 

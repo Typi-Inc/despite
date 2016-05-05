@@ -76,7 +76,7 @@ export default class App extends Component{
 					else if (route.name=='imageViewer') return Navigator.SceneConfigs.FadeAndroid
 					return Navigator.SceneConfigs.PushFromRight
 				}}
-				onWillFocus={(e)=>dismissKeyboard()}
+				// onWillFocus={(e)=>dismissKeyboard()}
 				renderScene={this.renderApp.bind(this)}
 				style={{paddingTop:this.statusBarHeight,backgroundColor:'black'}}
 				

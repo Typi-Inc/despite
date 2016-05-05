@@ -5,17 +5,22 @@ import React from 'react-native';
 let {
   AppRegistry,
   Component,
+  LayoutAnimation,
   Text,
-  View
+  View,
+  InteractionManager
 } =React;
+// import Rx from 'rxjs'
+import {keyboard} from '../animations'
 const LATITUDE_DELTA=0.0922
 const LONGITUDE_DELTA=0.0521
 var Slider = require('react-native-slider');
 import MapView from 'react-native-maps';
 export default class RestrictLocation extends Component{
-	state={showRestriction:true,value:100,radius:100,x:{latitude:43.24,
+	state={loading:false,disableRegion:false,showRestriction:true,value:500,radius:100,x:{latitude:43.24,
 				    	longitude:76.9}};
-	componentDidMount(){
+
+	componentWillMount(){
     navigator.geolocation.getCurrentPosition(
       (position) => {
         // var initialPosition = JSON.stringify(position);
@@ -25,44 +30,71 @@ export default class RestrictLocation extends Component{
 				x:{latitude: position.coords.latitude,
 					longitude: position.coords.longitude}
        		 })
-        	this.setTimeout(()=>this.setState({currentRegion: {
+        	if(!this.state.currentRegion) this.setState({currentRegion: {
 					latitude: position.coords.latitude,
 					longitude: position.coords.longitude,
 					latitudeDelta: LATITUDE_DELTA,
 					longitudeDelta: LONGITUDE_DELTA
-				},}),1000)
+				}},()=>{
+					this.setState({disableRegion:true})
+				})
+			else{return;}
+        }else{
+        	this.setState({currentRegion:{...this.state.x,latitudeDelta: LATITUDE_DELTA,
+					longitudeDelta: LONGITUDE_DELTA}})
         }
-        // this.setTimeout(()=>console.log(initialPosition,position.coords),500)
-        // if(initialPosition&&initialPosition.coords.latitude>43) this.setState({initialPosition});
       },
-      (error) => alert(error.message),
+      (error) => {
+      		this.setState({currentRegion: {
+					latitude: 43.24,
+					longitude: 76.9,
+					latitudeDelta: LATITUDE_DELTA,
+					longitudeDelta: LONGITUDE_DELTA
+				}})
+      		alert('Пожалуйста, включите Location Services для Despite')
+      },
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     );
-    this.watchID = navigator.geolocation.watchPosition((position) => {
-      this.setState({currentRegion: {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          latitudeDelta: LATITUDE_DELTA,
-          longitudeDelta: LONGITUDE_DELTA,
-        }});
-    });
+    // this.watchID = navigator.geolocation.watchPosition((position) => {
+      // this.setState({currentRegion: {
+      //     latitude: position.coords.latitude,
+      //     longitude: position.coords.longitude,
+      //     latitudeDelta: LATITUDE_DELTA,
+      //     longitudeDelta: LONGITUDE_DELTA,
+      //   }});
+    // });
   }
 
   componentWillUnmount(){
-    navigator.geolocation.clearWatch(this.watchID);
+    // navigator.geolocation.clearWatch(this.watchID);
+  }
+  componentDidMount(){
+  	InteractionManager.runAfterInteractions(()=>{
+  		this.setState({loading:false})
+  	})
   }
 	render(){
+		if(this.state.loading){
+			return <View style={{flex:1,backgroundColor:'white'}}/>
+		}
+		// console.log(this.state.currentRegion)
 		return (
 
 			<View style={{backgroundColor:'white',flex:1}}>
 				 
 
 				<MapView
+				onPress={(coord,point)=>{
+					LayoutAnimation.configureNext(keyboard)
+					this.setState({x:coord.nativeEvent.coordinate})
+				}}
+				 // onRegionChangeComplete={(reg)=>this.setState({currentRegion:reg})}
 				// followUserLocation={true}
 				showsUserLocation={true}
 				// value={this.state.value}
+				initialRegion={this.state.currentRegion}
 				 style={{height:568*h,width:320*k,alignSelf:'center',flex:3}}
-				    initialRegion={this.state.currentRegion}
+				    region={this.state.disableRegion?null:this.state.currentRegion}
 				  >
 				 <MapView.Circle  
 				  	center={this.state.x}
@@ -75,12 +107,9 @@ export default class RestrictLocation extends Component{
 				     <MapView.Marker draggable
 					    coordinate={this.state.x}
 					    onDragEnd={(e) => this.setState({ x: e.nativeEvent.coordinate })}
-					  >
+					  />
 
-					  </MapView.Marker>
-					  <MapView.Callout>
-						    <Text>hello</Text>
-						  </MapView.Callout>
+					  
 				  </MapView>
 
 
@@ -90,7 +119,7 @@ export default class RestrictLocation extends Component{
 						    justifyContent: 'center'}}>
 			        <Slider
 			          value={this.state.value}
-			          minimumValue={100}
+			          minimumValue={500}
 			          maximumValue={10000}
 			          step={100}
 			          onValueChange={(value) => this.setState({value})} />

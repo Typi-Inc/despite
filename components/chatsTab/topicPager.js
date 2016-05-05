@@ -42,8 +42,11 @@ export default class TopicPager extends Component{
 			 renderTabBar={() => <Topics ref={el=>this.topics=el}/>}>
 			<DiscoverList tabLabel='Топ 20'/>
    			<DelayRendering tabLabel='Рядом' delay={100}><DiscoverList /></DelayRendering>
-   			<DelayRendering tabLabel='Советы' delay={200}><DiscoverList /></DelayRendering>
+   			<DelayRendering tabLabel='Для женщин' delay={200}><DiscoverList /></DelayRendering>
    			<DelayRendering tabLabel='Куда сходить?' delay={200}><DiscoverList /></DelayRendering>
+   			<DelayRendering tabLabel='Акции рядом' delay={300}><DiscoverList /></DelayRendering>
+   			<DelayRendering tabLabel='Полезные каналы' delay={300}><DiscoverList /></DelayRendering>
+   			<DelayRendering tabLabel='Вопросы' delay={300}><DiscoverList /></DelayRendering>
    			
 			
    				

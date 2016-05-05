@@ -65,15 +65,22 @@ export let directs=[{
 ]
 
 export let messages = [
+{author:{name:'Arthur',
+		image:'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTOHYUwxK20Tmwj53Tcisraeqzk0wbrSq1_3GQY5ynkS2kdYU7L'},
+		text:`gist.github.com/dperini/729294 Hello this is an example of the ParsedText, links are clickable and phone number 87471113457 can call too.
+But you can also do more with this package, for example Bob will change style and David too. foo@gmail.com And the magic number is #react #react-native`,
+		karma:123,
+		haveIRated:false
+	},
 	{author:{name:'Arthur',
 		image:'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTOHYUwxK20Tmwj53Tcisraeqzk0wbrSq1_3GQY5ynkS2kdYU7L'},
-		text:`I danced with two people at my wedding. The one I married, and the other one I wish I married instead.`,
+		text:`I have join..me danced with two people at my wedding. The one I married, and the other one I wish I married instead.`,
 		karma:123,
 		haveIRated:false
 	},
 	{author:{name:'Loren',
 		image:'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQqDuSd87qONim1PYPyVVpMVewVEIGOBUu8h3s4D2deyshRohDw'},
-		text:`Son: "Daddy, I fell in love & want to date this awesome girl!"
+		text:`@johhny chocolife.me john.Me Son: "Daddy, I fell in love & want to date this awesome girl!"
 Father: "That's great son. Who is she?"
 Son: "It's Sandra, the neighbor's daughter".
 Father: "Oh hoo, I wish you hadn't said that.
@@ -181,8 +188,6 @@ Joe was feeling great, when the salesman asked,  "How about some new underwear?"
 		karma:542,
 		haveIRated:false
 	},
-
-	
 
 
 

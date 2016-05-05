@@ -24,6 +24,7 @@ let {
 export default class SmallViewer extends Component{
 	state={child:<View/>,height:500*k,top:35*k,width:294*k,marginLeft:14*k,borderHeight:1};
 	componentWillMount(){
+		console.log('mounting smallViewwer')
 	  	this.buttonClicksSubscription=buttonClicks$.subscribe((x)=>{
 	  		if(x.action==='close'){
 	  			this.closeSmallViewer()
@@ -62,7 +63,7 @@ export default class SmallViewer extends Component{
 		this.setTimeout(()=>{
 			Animated.timing(this.anim,{
 				toValue:1,
-				duration:150,
+				duration:200,
 			}).start()
 		},200)
 		},0)
@@ -72,7 +73,7 @@ export default class SmallViewer extends Component{
 		Animated.timing(this.bAnim,{toValue:0,duration:1}).start()
 		Animated.timing(this.anim,{
 				toValue:0,
-				duration:150,
+				duration:200,
 		}).start()
 		this.setTimeout(()=>{
 			LayoutAnimation.configureNext(openAnimation)
@@ -105,8 +106,8 @@ export default class SmallViewer extends Component{
 					ref={el=>this.close=el}>
 						<TouchableOpacity style={{...center,height:40*k,width:40*k}} onPress={()=>this.closeSmallViewer()}>
 							<Animated.Image source={{uri:'close',isStatic:true}} 
-							style={{width:this.anim.interpolate({inputRange:[0,1],outputRange:[0,14*k]}),alignSelf:'center',
-							height:this.anim.interpolate({inputRange:[0,1],outputRange:[0,14*k]}),
+							style={{width:14*k,height:14*k,alignSelf:'center',
+							opacity:this.anim.interpolate({inputRange:[0,.5,.7,1],outputRange:[0,0,0.5,1]}),
 							}}/>
 						</TouchableOpacity>
 					</Animated.View>
