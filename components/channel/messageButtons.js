@@ -64,7 +64,7 @@ export default class MessageButtons extends Component{
 						</Animated.View>
 					</TouchableOpacity>
 						<Animated.Text style={{fontWeight:'500',marginLeft:10,
-					color:'#109440',marginRight:this.anim.interpolate({inputRange:[0,1],outputRange:[0,17*k]}),
+					color:'rgb(14,122,254)',marginRight:this.anim.interpolate({inputRange:[0,1],outputRange:[0,17*k]}),
 					fontSize:this.anim.interpolate({inputRange:[0,1],outputRange:[0.1,17]}),
 					alignSelf:'center'}}>+{this.state.karma}</Animated.Text>
 					<TouchableHighlight underlayColor={'transparent'} onPress={()=>{

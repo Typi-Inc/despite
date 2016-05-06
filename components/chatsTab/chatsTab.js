@@ -25,6 +25,7 @@ export default class ChatsTab extends Component{
 		this.anim=this.anim || new Animated.Value(0)
 		return (
 			<View style={{flex:1}}>
+					<View style={{width:320*k,height:1,backgroundColor:'black',}}/>
 
 					<View style={{width:320*k,flexDirection:'row',height:70,borderBottomWidth:.5,borderColor:'rgb(215,215,215)',
 						...center,paddingTop:14,}}>

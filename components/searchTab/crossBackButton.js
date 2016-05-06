@@ -9,7 +9,7 @@ let {
   TouchableOpacity
 } =React;
 import dismissKeyboard from 'dismissKeyboard'
-import {buttonClicks} from '../../actions/buttonClicks'
+import {buttonClicks,registerNav} from '../../actions/buttonClicks'
 export default class CrossBackButton extends Component{
 	state={};
 	render(){
@@ -19,7 +19,8 @@ export default class CrossBackButton extends Component{
 					dismissKeyboard()
 					if(this.props.index===0){
 						buttonClicks({action:'go back to chats',nav:'topNav'})
-					}else{
+					}
+					else{
 						this.props.navigator.pop()
 					}
 					

@@ -59,9 +59,9 @@ export default class BlackScreen extends Component{
 					top:70,left:this.anim.interpolate({inputRange:[0,1],outputRange:[600*k,0]}),
 					height:400*k,width:320*k,backgroundColor:'black'}}>
 					<ScrollView ref={el=>this.scroll=el} keyboardShouldPersistTaps={true} contentContainerStyle={{paddingTop:10,paddingBottom:140*k}}>
-							{topics.map((topic)=>{
+							{topics.map((topic,i)=>{
 
-						return <Topic color={'white'} border={'no'} topic={topic}/>
+						return <Topic key={i} color={'white'} border={'no'} topic={topic}/>
 					})}
 
 					</ScrollView>

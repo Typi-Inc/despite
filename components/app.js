@@ -28,6 +28,8 @@ import Tabs from './tabs'
 let Sound = require('react-native-sound');
 import Viewer from './imageViewer/viewer'
 import CreateChannelNavigation from './createChannelTab/createChannelNavigation'
+import RegistrationNavigation from './login/registrationNavigation'
+
 import ImageViewerNavigation from './imageViewer/imageViewerNavigation'
 export default class App extends Component{
 	state={};
@@ -69,7 +71,7 @@ export default class App extends Component{
 		return (
 			<View style={{flex:1}}>
 			<Navigator ref={el=>this.nav=el}
-				initialRoute={{name:'testa'}}
+				initialRoute={{name:'login'}}
 				configureScene={(route,routeStack)=>{
 					if(route.name==='createChannel') return {...Navigator.SceneConfigs.FloatFromBottom, gestures: {}}
 					else if (route.name==='channel') return Navigator.SceneConfigs.FloatFromRight
@@ -93,7 +95,7 @@ export default class App extends Component{
 		else if(route.name==='createChannel') return <View style={{flex:1,backgroundColor:'white'}}>
 			<CreateChannelNavigation routeInfo={route.routeInfo} topNav={navigator}/>
 			</View>
-		else if (route.name==='login') return <PhoneEnter/>
+		else if (route.name==='login') return <RegistrationNavigation/>
 		else if (route.name==='imageViewer') return <ImageViewerNavigation/>
 		else if (route.name==='test') return <Test/>
 		return <Tabs/>

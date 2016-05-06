@@ -174,11 +174,11 @@ const styles = StyleSheet.create({
   },
 
   url: {
-    color: '#109440',
+    color: 'rgb(14,122,254)',
   },
 
   email: {
-    color:'#109440',
+    color:'rgb(14,122,254)',
   },
 
   text: {
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
   },
 
   phone: {
-    color: '#109440',
+    color: 'rgb(14,122,254)',
   },
 
   name: {
