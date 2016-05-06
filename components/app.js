@@ -95,7 +95,7 @@ export default class App extends Component{
 		else if(route.name==='createChannel') return <View style={{flex:1,backgroundColor:'white'}}>
 			<CreateChannelNavigation routeInfo={route.routeInfo} topNav={navigator}/>
 			</View>
-		else if (route.name==='login') return <RegistrationNavigation/>
+		else if (route.name==='login') return <View style={{flex:1,backgroundColor:'white'}}><RegistrationNavigation/></View>
 		else if (route.name==='imageViewer') return <ImageViewerNavigation/>
 		else if (route.name==='test') return <Test/>
 		return <Tabs/>

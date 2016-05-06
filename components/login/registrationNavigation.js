@@ -92,7 +92,8 @@ export default class RegistrationNavigation extends Component{
 				ref={el=>this.nav=el}
 				configureScene={(route,routeStack)=>{
 					if(route.name==='countryPicker') return Navigator.SceneConfigs.FloatFromBottom
-					return Navigator.SceneConfigs.PushFromRight
+
+					return {...Navigator.SceneConfigs.HorizontalSwipeJump,gestures:{}}
 				}}
 				navigator={this.props.navigator}
 				initialRoute={{name:'phoneEnter',info:this.props.routeInfo,title:'Your Phone'}}

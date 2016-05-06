@@ -81,7 +81,6 @@ export default class CountryPicker extends Component{
 				this.text=x.text
 				let found=this.getCountriesByText(x.text)
 				this.scroll&&this.scroll.scrollTo({x:0,y:0,animated:false})
-				console.log(found.notFound)
 				this.setState({foundCountries:found.result,notFound:found.notFound})
 			}else{
 				return
