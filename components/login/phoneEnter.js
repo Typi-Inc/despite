@@ -15,8 +15,10 @@ let {
 import dismissKeyboard from 'dismissKeyboard'
 import {chooseCountry$,registerNav,next} from '../../actions/buttonClicks'
 import {countries } from '../mock'
+var phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance();
+var phoneNumber = phoneUtil.parse('202-456-1414', 'KZ');
 export default class PhoneEnter extends Component{
-	state={country:{name:'Kazakhstan',dial_code:'+7'}};
+	state={country:{name:'Kazakhstan',dial_code:'+7',code:'KZ'}};
 	chooseCountry(){
 		dismissKeyboard()
 		registerNav({action:'navigation push',name:'countryPicker',title:'choose country'})
@@ -33,6 +35,8 @@ export default class PhoneEnter extends Component{
 		})
 	}
 	render(){
+
+		// console.log(phoneUtil.isPossibleNumber(phoneNumber))
 		return (
 
 			<View style={{backgroundColor:'white',flex:1,alignItems:'center',paddingLeft:10}}>
@@ -48,7 +52,7 @@ export default class PhoneEnter extends Component{
 						{this.state.country.dial_code}
 					</Text>
 					<TextInput autoFocus={true}
-					keyboardType={'phone-pad'}
+					keyboardType={'number-pad'}
 					autoCorrect={false} ref={(e)=>this.input=e} clearButtonMode={'while-editing'}
 					style={{marginLeft:20,fontSize:20,
 						width:300*k,height:30,borderRadius:5,marginRight:5}}

@@ -25,7 +25,7 @@ export default class EnterCode extends Component{
 					keyboardType={'number-pad'}
 					maxLength={5}
 					autoFocus={true}
-					autoCorrect={false} ref={(e)=>this.input=e} clearButtonMode={'while-editing'}
+					autoCorrect={false} ref={(e)=>this.input=e} 
 					style={{fontSize:20,alignSelf:'center',textAlign:'center',
 						width:300*k,height:30,borderRadius:5,marginRight:5}}
 				   	value={this.state.text}

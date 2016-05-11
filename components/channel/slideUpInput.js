@@ -57,10 +57,12 @@ export default class SlideUpInput extends Component{
  	 }
 
  	hide(){
+     // this.options&&this.hideOptions()
       if(this.state.disable) return
  	  	if(this.t){
  	  		LayoutAnimation.configureNext(keyboard);
 		    this.t &&	this.t.setNativeProps({style:{bottom:0}})
+
  	  	}
  	  	this.props.setBottom(this.addHeight)
 	  }
@@ -72,6 +74,15 @@ export default class SlideUpInput extends Component{
     LayoutAnimation.configureNext(keyboard);
     this.mentions && this.mentions.setNativeProps({style:{height:0}})
   }
+  showHashTags(){
+    LayoutAnimation.configureNext(keyboard);
+    this.hashTags && this.hashTags.setNativeProps({style:{height:220-this.state.height}})
+  }
+  hideHashTags(){
+    LayoutAnimation.configureNext(keyboard);
+    this.hashTags && this.hashTags.setNativeProps({style:{height:0}})
+  }
+ 
 	getAddHeight(){
 		return this.addHeight
 	}
@@ -146,7 +157,7 @@ export default class SlideUpInput extends Component{
 		return (
           <View ref={el=>this.t=el} style={{position:'absolute',
           justifyContent:'flex-end',alignItems:'flex-end',bottom:0,left:0,width:320*k}}>
-            <View ref={el=>this.mentions=el} style={{width:320*k,height:0,backgroundColor:'black'}}>
+            <View ref={el=>this.mentions=el} style={{width:320*k,height:0,backgroundColor:'black',overflow:'hidden'}}>
               <ScrollView>
                 <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>hello</Text>
                 <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>hello</Text>
@@ -154,28 +165,31 @@ export default class SlideUpInput extends Component{
                 <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>hello</Text>
                 <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>hello</Text>
                 <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>hello</Text>
-                <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>buy</Text>
-                <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>buy</Text>
-                <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>buy</Text>
-                <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>bslk</Text>
                 <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>hello</Text>
-                <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>ds</Text>
+                <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>hello</Text>
               </ScrollView>
             </View>
+            <View ref={el=>this.hashTags=el} style={{width:320*k,height:0,backgroundColor:'black'}}>
+              <ScrollView>
+                <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>hashtag 1</Text>
+                <Text style={{color:'white',fontSize:15,fontWeight:'500',margin:7}}>hashtag 2</Text>
+              </ScrollView>
+            </View>
+            
+
               <View ref={el=>this.main=el} 
               style={{backgroundColor:'white',marginBottom:0,
-             	 height:Math.max(43*k, (12*k+this.state.height)),borderTopWidth:0.5,
+             	 height:Math.max(45*k, (12*k+this.state.height)),borderTopWidth:1,
               	flexDirection:'row',justifyContent:'flex-start',alignItems:'flex-end',
-                borderColor:'rgb(150,150,150)',width:320*k,}}>
+                borderColor:'rgb(220,220,220)',width:320*k,}}>
                   <TextInput
                   keyboardType={'twitter'}
                   // keyboardAppearance={'dark'}
                     ref={el=>this.textInput=el}
                     style={{height: Math.max(30*k, this.state.height),marginLeft:7,flex:5,
                     fontSize:17,alignItems:'flex-end',
-                      // borderColor: '#BD10E0', borderLeftWidth:2,
-                      justifyContent:'flex-start',
-                      alignSelf:'center',width:240*k,paddingLeft:2*k,paddingBottom:4*k}}
+                      borderColor: '#BD10E0', borderLeftWidth:2,justifyContent:'flex-start',
+                      alignSelf:'center',width:240*k,paddingLeft:10*k,paddingBottom:4*k}}
                     value={this.state.text}
                     onChange={(event) => {
                       // event.nativeEvent.text.length===0?this.submit.setNativeProps({style:{backgroundColor:'gray'}}):this.submit.setNativeProps({style:{backgroundColor:'#0084b4'}})
@@ -186,7 +200,11 @@ export default class SlideUpInput extends Component{
                           height: Math.min(event.nativeEvent.contentSize.height,129*k)
                         });
                         if(/@[a-zA-Z0-9]*$/.test(this.state.text)) this.showMentions()
-                        else if(this.state.text[this.state.text.length-1]||this.state.text.length===0) this.hideMenitions()
+                        else if(/#[a-zA-Z0-9]*$/.test(this.state.text)) this.showHashTags()
+                        else if(this.state.text[this.state.text.length-1]||this.state.text.length===0) {
+                          this.hideMenitions()
+                          this.hideHashTags()
+                        }
                        	this.addHeight=this.state.height<35*k?0:this.state.height-30*k
                         this.props.setBottom(this.addHeight)
                       }}
@@ -195,10 +213,13 @@ export default class SlideUpInput extends Component{
                     placeholder={'Начать разговор'}
                     placeholderTextColor={'rgb(160,160,160)'}
                     />
-                    <TouchableOpacity style={{marginRight:5}} onPress={()=>this.textInput.blur()} >
-                        <Text style={{
-                    	color:/\S/.test(this.state.text) && !this.state.replyAction?'rgb(14,122,254)':'rgb(160,160,160)',fontWeight:'500',flex:1,marginRight:5,//alignSelf:'center',
-                    	fontSize:17,marginBottom:11*k,marginLeft:5*k}}>Send</Text></TouchableOpacity>
+                    <Text onPress={()=>this.textInput.blur()} style={[s.blueText,{
+                      color:/\S/.test(this.state.text) && !this.state.replyAction?'#BD10E0':'rgb(160,160,160)',fontWeight:'600',flex:1,marginRight:5,//alignSelf:'center',
+                      fontSize:17,marginBottom:11*k,marginLeft:5*k}]}>Отпр.</Text>
+                    
+
+                    
+                  
                     	               
               </View> 
 

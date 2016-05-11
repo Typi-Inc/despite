@@ -115,8 +115,11 @@ export default class Message extends Component{
 
 		this.anim=this.anim || new Animated.Value(0)
 		// if(this.state.loading) return null
-		return (			
-			<View style={[s.container,{overflow:'hidden',backgroundColor:this.props.backgroundColor?'rgba(16,148,64,.1)':'white'}]}>					
+		return (		
+    <TouchableWithoutFeedback onLongPress={()=>{
+        buttonClicks({action:'messageActions',props:this.state})
+    }}>	
+			<View style={[s.container,{overflow:'hidden',backgroundColor:this.props.backgroundColor?'rgba(14,122,254,.1)':'white'}]}>					
 					<View style={{margin:8,marginRight:0,marginLeft:4,marginBottom:12,
 						borderColor:this.props.color,borderLeftWidth:2,
 						paddingLeft:5,paddingBottom:0,paddingTop:0}}>
@@ -141,23 +144,27 @@ export default class Message extends Component{
 						</ParsedText></View></Incremental>
 
 				
-						<View style={{flexDirection:'row',marginLeft:3*k,marginBottom:0}}>
-							<TouchableHighlight underlayColor={'rgb(120,120,120'} 
-							onPress={()=>{
-								// buttonClicks({action:'show image viewer'})
-								buttonClicks({action:'reply pressed',to:'Johnnrdino'})
-								}} style={{height:20,width:70,justifyContent:'flex-end'}}>
-							<Text style={s.smallGreyText}>Ответить</Text></TouchableHighlight>
+						<View style={{flexDirection:'row',marginLeft:3*k,marginBottom:0,justifyContent:'space-between',width:300*k}}>
+              <View style={{flexDirection:'row'}}>
+  							<TouchableHighlight underlayColor={'rgb(120,120,120'} 
+  							onPress={()=>{
+  								// buttonClicks({action:'show image viewer'})
+  								buttonClicks({action:'reply pressed',to:'Johnnrdino'})
+  								}} style={{height:20,width:70,justifyContent:'flex-end'}}>
+  							<Text style={s.smallGreyText}>Ответить</Text></TouchableHighlight>
 
-							<TouchableHighlight underlayColor={'rgb(120,120,120'} 
-								style={{height:20,width:130,justifyContent:'flex-end',marginLeft:10}}
-								 onPress={()=>buttonClicks({action:'navigation push',name:'line',nav:'channelNav',info:this.props})}>
-								<Text style={s.smallGreyText}>Разговор ({this.state.lineCount})</Text>
-							</TouchableHighlight>
+  							<TouchableHighlight underlayColor={'rgb(120,120,120'} 
+  								style={{height:20,width:130,justifyContent:'flex-end',marginLeft:10}}
+  								 onPress={()=>buttonClicks({action:'navigation push',name:'line',nav:'channelNav',info:this.props})}>
+  								<Text style={s.smallGreyText}>Разговор ({this.state.lineCount})</Text>
+  							</TouchableHighlight>
+              </View>
+             
 
 						</View>
 					</View>
 			</View>
+    </TouchableWithoutFeedback>
 
 			)
 	}
@@ -174,11 +181,14 @@ const styles = StyleSheet.create({
   },
 
   url: {
-    color: 'rgb(14,122,254)',
+    // color: 'rgb(14,122,254)',
+    fontWeight:'bold'
   },
 
   email: {
-    color:'rgb(14,122,254)',
+    // color:'rgb(14,122,254)',
+    fontWeight:'bold'
+
   },
 
   text: {
@@ -187,7 +197,8 @@ const styles = StyleSheet.create({
   },
 
   phone: {
-    color: 'rgb(14,122,254)',
+    fontWeight:'bold'
+    // color: 'rgb(14,122,254)',
   },
 
   name: {
@@ -196,8 +207,8 @@ const styles = StyleSheet.create({
 
   username: {
     color: 'rgb(80,80,80)',
-    fontSize:17,
-    fontWeight: 'bold'
+    fontSize:18,
+    fontWeight: '500'
   },
 
   magicNumber: {

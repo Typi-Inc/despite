@@ -15,10 +15,12 @@ let {
   Text,
   View
 } =React;
+
+import IncrementalGroup from 'IncrementalGroup'
 import CountryRow from './countryRow'
 import dismissKeyboard from 'dismissKeyboard'
 import {registerNav$} from '../../actions/buttonClicks'
-import {countries,firstLetters} from '../mock'
+import {countries,firstLetters,dataBlob,sectionIDs,rowIDs} from '../mock'
 export default class CountryPicker extends Component{
 	constructor(props){
 		super(props)
@@ -41,25 +43,26 @@ export default class CountryPicker extends Component{
 	    }
 	}
 	getData(){
-		let length = countries.length,
-            dataBlob = {},
-            sectionIDs = [],
-            rowIDs = [],
-            i,
-            j;
-       	for (i = 0; i < 25; i++) {
-       		sectionIDs.push(i)
-       		dataBlob[`${i}`]=firstLetters[i]
-       		rowIDs[i]=[] 
-       	}
-       	for (i = 0; i < length; i++) {
-       		for (j = 0; j < 25; j++) {
-       			if(countries[i].name[0]===dataBlob[`${j}`]){
-       				rowIDs[j].push(countries[i].name)
-       				dataBlob[`${j}:${rowIDs[j][rowIDs[j].indexOf(countries[i].name)]}`]=countries[i]
-       			}
-       		}
-       	}
+		// let length = countries.length,
+  //           dataBlob = {},
+  //           sectionIDs = [],
+  //           rowIDs = [],
+  //           i,
+  //           j;
+  //      	for (i = 0; i < 25; i++) {
+  //      		sectionIDs.push(i)
+  //      		dataBlob[`${i}`]=firstLetters[i]
+  //      		rowIDs[i]=[] 
+  //      	}
+  //      	for (i = 0; i < length; i++) {
+  //      		for (j = 0; j < 25; j++) {
+  //      			if(countries[i].name[0]===dataBlob[`${j}`]){
+  //      				rowIDs[j].push(countries[i].name)
+  //      				dataBlob[`${j}:${rowIDs[j][rowIDs[j].indexOf(countries[i].name)]}`]=countries[i]
+  //      			}
+  //      		}
+  //      	}
+  //      	console.log(dataBlob,rowIDs,sectionIDs)
        	 this.setState({
             dataSource : this.state.dataSource.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs),
         	loaded:true
@@ -69,8 +72,11 @@ export default class CountryPicker extends Component{
 	componentWillUnmount(){
 		this.registerNavSubscription.unsubscribe()
 	}
-	componentDidMount(){
+	componentWillMount(){
 		this.getData()
+
+	}
+	componentDidMount(){
 		this.registerNavSubscription=registerNav$.subscribe((x)=>{
 			if(x.action==='focus start'){
 				Animated.timing(this.anim,{toValue:1,duration:1}).start()
@@ -152,6 +158,7 @@ export default class CountryPicker extends Component{
 	}
 	renderRow(rowData,sectionID,rowId){
 		// console.log(rowData)
+		if(sectionID>2) return <IncrementalGroup disabled={false}><CountryRow key={rowData.name} rowData={rowData} /></IncrementalGroup>
 		return <CountryRow key={rowData.name} rowData={rowData} />
 	}
 	renderSectionHeader(section){

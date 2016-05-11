@@ -20,9 +20,9 @@ export default class SearchTab extends Component{
 			<View style={{flex:1}}>
 				<ScrollView contentContainerStyle={{marginTop:10}}>
 
-					{topics.map((topic)=>{
+					{topics.map((topic,i)=>{
 
-						return <Topic topic={topic}/>
+						return <Topic key={i} topic={topic}/>
 					})}
 
 

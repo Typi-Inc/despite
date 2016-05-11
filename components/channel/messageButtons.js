@@ -64,7 +64,7 @@ export default class MessageButtons extends Component{
 						</Animated.View>
 					</TouchableOpacity>
 						<Animated.Text style={{fontWeight:'500',marginLeft:10,
-					color:'rgb(14,122,254)',marginRight:this.anim.interpolate({inputRange:[0,1],outputRange:[0,17*k]}),
+					color:'black',marginRight:this.anim.interpolate({inputRange:[0,1],outputRange:[0,17*k]}),
 					fontSize:this.anim.interpolate({inputRange:[0,1],outputRange:[0.1,17]}),
 					alignSelf:'center'}}>+{this.state.karma}</Animated.Text>
 					<TouchableHighlight underlayColor={'transparent'} onPress={()=>{
@@ -78,7 +78,7 @@ export default class MessageButtons extends Component{
 						}}>
 
 							{this.state.isSaved?<Image 
-								source={{uri:'saved',isStatic:true,}}
+								source={{uri:'bookmark',isStatic:true,}}
 								style={{height:18*k,width:16*k,}}/>:
 								<Animated.Image source={{uri:'save',isStatic:true,}} 
 									style={{height:this.anim.interpolate({inputRange:[0,1],outputRange:[0,18*k]}),
@@ -110,18 +110,7 @@ export default class MessageButtons extends Component{
 					
 				</View>
 
-				{this.props.discovery?
-					null
-				:<TouchableOpacity //style={{backgroundColor:'blue'}} 
-						onPress={()=>buttonClicks({action:'messageActions',props:this.state})}>
-						<View style={{width:27*k,marginLeft:7*k,paddingRight:6*k,height:40*k,justifyContent:'center',alignItems:'flex-end',}}>
-							<Image source={{uri:'more',isStatic:true,}} style={s.menuImage}/>
-						</View>
-					</TouchableOpacity>
-
-
-
-				}
+			
 				
 				
 			</View>

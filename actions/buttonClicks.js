@@ -14,3 +14,7 @@ export const chooseCountry = (args) => chooseCountry$.next(args);
 export const next$ = new Rx.Subject();
 
 export const next = (args) => next$.next(args);
+
+export const alias$=new Rx.Subject();
+
+export const alias = (args) => alias$.next(args);

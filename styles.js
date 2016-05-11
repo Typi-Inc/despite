@@ -19,8 +19,8 @@ const styles = StyleSheet.create({
     fontSize:14,
   },
   menuImage:{
-    height:21*k,
-    width:6*k,
+    height:24*k,
+    width:7*k,
     marginLeft:3*k,
     marginRight:3*k
   },

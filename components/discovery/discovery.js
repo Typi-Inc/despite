@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   	height:40*k
   },
   nameOfChannel:{
-  	color:'black',fontSize:16,fontWeight:'500'
+  	color:'black',fontSize:17,
   },
   post:{
   	color:'rgb(100,100,100)',

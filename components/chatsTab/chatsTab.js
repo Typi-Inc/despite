@@ -64,13 +64,10 @@ export default class ChatsTab extends Component{
 				<Animated.View style={{flex:1,top:70,bottom:0,position:'absolute',left:this.anim.interpolate({inputRange:[0,1],outputRange:[0,320*k]})}}>
 					<ScrollView>
 					
-						{directs.map((direct,i)=><View><Direct key={i}  direct={direct}/></View>
+						{directs.map((direct,i)=><View  key={i}><Direct  direct={direct}/></View>
 					
 
 						)}
-
-	 
-
 					</ScrollView>
 				</Animated.View>
 				<Animated.View style={{backgroundColor:'blue',flex:1,

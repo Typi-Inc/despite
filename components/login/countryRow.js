@@ -10,6 +10,7 @@ let {
 } =React;
 import dismissKeyboard from 'dismissKeyboard'
 import {chooseCountry,registerNav} from '../../actions/buttonClicks'
+import Incremental from 'Incremental'
 export default class CountryRow extends Component{
 	state={};
 	_onPress(country){
@@ -21,7 +22,7 @@ export default class CountryRow extends Component{
 		let rowData=this.props.rowData
 		return (
 
-			<TouchableOpacity onPress={this._onPress.bind(this,rowData)} style={{alignSelf:'flex-end',borderBottomWidth:1,borderColor:'rgb(240,240,240)',
+			<Incremental><TouchableOpacity onPress={this._onPress.bind(this,rowData)} style={{alignSelf:'flex-end',borderBottomWidth:1,borderColor:'rgb(240,240,240)',
 				padding:13,paddingLeft:5,overflow:rowData.name==='Barbados'?'visible':'hidden',
 				flexDirection:'row',width:310*k,justifyContent:'space-between',alignItems:'center'}}>
 
@@ -29,7 +30,7 @@ export default class CountryRow extends Component{
 					
 					<Text style={{fontSize:17,fontWeight:'500'}}>{rowData.dial_code}</Text>
 
-				</TouchableOpacity>
+				</TouchableOpacity></Incremental>
 
 			)
 	}

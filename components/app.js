@@ -14,6 +14,7 @@ let {
 
 } =React;
 import Test from './test'
+import Alias from './alias'
 import dismissKeyboard from 'dismissKeyboard'
 import PhoneEnter from './login/phoneEnter'
 var RCTStatusBarManager = require('NativeModules').StatusBarManager;
@@ -71,21 +72,23 @@ export default class App extends Component{
 		return (
 			<View style={{flex:1}}>
 			<Navigator ref={el=>this.nav=el}
-				initialRoute={{name:'login'}}
+				initialRoute={{name:'logins'}}
 				configureScene={(route,routeStack)=>{
 					if(route.name==='createChannel') return {...Navigator.SceneConfigs.FloatFromBottom, gestures: {}}
 					else if (route.name==='channel') return Navigator.SceneConfigs.FloatFromRight
 					else if (route.name=='imageViewer') return Navigator.SceneConfigs.FadeAndroid
 					return Navigator.SceneConfigs.PushFromRight
 				}}
-				// onWillFocus={(e)=>dismissKeyboard()}
+				onWillFocus={(e)=>dismissKeyboard()}
 				renderScene={this.renderApp.bind(this)}
 				style={{paddingTop:this.statusBarHeight,backgroundColor:'black'}}
 				
 			/>
+			<Alias/>
 			<SmallViewer/>
 			<BlackScreen/>
 			<Viewer/>
+			
 			</View>
 			)
 	}
