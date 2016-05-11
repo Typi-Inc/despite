@@ -1,5 +1,5 @@
 import TimerMixin from 'react-timer-mixin'
-import React from 'react-native'; 
+import React from 'react-native';
 let {
   AppRegistry,
   Component,
@@ -41,7 +41,7 @@ let NavigationBarRouteMapper={
 
 			else if(route.name==='restrictLocation') return <BlackButton type={'Готово'}/>
 			else if (route.name==='countryPicker') return null
-			return <Next name={route.name}/>		
+			return <Next name={route.name}/>
 		},
 		Title(route, navigator, index, navState){
 			if(route.name==='countryPicker') return <CountrySearchInput/>
@@ -52,7 +52,7 @@ let NavigationBarRouteMapper={
 export default class RegistrationNavigation extends Component{
 	state={height:0,statusBarHeight:20};
 	componentWillMount(){
-		this.regusterNavSubscription=registerNav$.subscribe((x)=>{
+		this.registerNavSubscription=registerNav$.subscribe((x)=>{
 			if(x.action==='navigation push'){
 				this.nav&&this.nav.push({name:x.name,routeInfo:x.info,title:x.title})
 			}else if(x.action==='pop'){
@@ -87,32 +87,28 @@ export default class RegistrationNavigation extends Component{
 	}
 	render(){
 		return (
-			<Navigator 
+			<Navigator
 				style={{paddingTop:70}}
 				ref={el=>this.nav=el}
 				configureScene={(route,routeStack)=>{
 					if(route.name==='countryPicker') return Navigator.SceneConfigs.FloatFromBottom
-
 					return {...Navigator.SceneConfigs.HorizontalSwipeJump,gestures:{}}
 				}}
 				navigator={this.props.navigator}
-				initialRoute={{name:'phoneEnter',info:this.props.routeInfo,title:'Your Phone'}}
+				initialRoute={{name:'codeEnter',info:this.props.routeInfo,title:'Your Phone'}}
 				renderScene={this.renderCreateChannel.bind(this)}
 				navigationBar={
 					<Navigator.NavigationBar
-					// navigator={navigator}
+					  // navigator={navigator}
 						// topNav={this.props.topNav}
 						ref={el=>this.navBar=el}
-			            routeMapper={NavigationBarRouteMapper}
-			            style={{height:70,backgroundColor:'white',borderBottomWidth:.5,borderColor:'rgb(215,215,215)'}}
-			          />
+			      routeMapper={NavigationBarRouteMapper}
+			      style={{height:70,backgroundColor:'white',borderBottomWidth:.5,borderColor:'rgb(215,215,215)'}}
+			    />
 				}
 			/>
-
-			)
+		)
 	}
 
 };
 Object.assign(RegistrationNavigation.prototype, TimerMixin);
-
-

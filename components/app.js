@@ -1,7 +1,7 @@
 import TimerMixin from 'react-timer-mixin'
 let UIManager = require('NativeModules').UIManager;
 import s from '../styles'
-import React from 'react-native'; 
+import React from 'react-native';
 let {
   AppRegistry,
   Component,
@@ -43,17 +43,17 @@ export default class App extends Component{
 
 			if(x.action==='navigation push'&&x.nav==='topNav'){
 				buttonClicks({action:'unsubscribe'})
-				
+
 				this.nav&&this.nav.push({name:x.name,routeInfo:x.info,messageId:x.messageId})
 			}else if (x.action==='go back to chats'&&x.nav==='topNav'){
 				buttonClicks({action:'unsubscribe'})
 				this.nav&&this.nav.pop()
-			}	
+			}
 	  	})
  	 AppStateIOS.addEventListener('change', this._handleAppStateChange);
 
 	  	RCTStatusBarManager.getHeight((e)=>this.setState({statusBarHeight:e.height}))
-	  
+
 
 	}
 
@@ -81,7 +81,7 @@ export default class App extends Component{
 				// onWillFocus={(e)=>dismissKeyboard()}
 				renderScene={this.renderApp.bind(this)}
 				style={{paddingTop:this.statusBarHeight,backgroundColor:'black'}}
-				
+
 			/>
 			<SmallViewer/>
 			<BlackScreen/>

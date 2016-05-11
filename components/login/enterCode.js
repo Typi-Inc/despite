@@ -1,7 +1,7 @@
 import TimerMixin from 'react-timer-mixin'
 let UIManager = require('NativeModules').UIManager;
 import s from '../../styles'
-import React from 'react-native'; 
+import React from 'react-native';
 let {
   AppRegistry,
   Component,
@@ -11,33 +11,37 @@ let {
   View
 } =React;
 import CountryPicker from 'react-native-country-picker-modal';
-export default class EnterCode extends Component{
+import connect from '../../rx-state/connect'
+import bindAction from '../../rx-state/bindAction'
+import state$ from '../../state'
+import registrationActions from '../../actions/registration'
+class EnterCode extends Component{
 	state={};
 	render(){
 		return (
 
 			<View style={{backgroundColor:'white',flex:1,alignItems:'center',paddingLeft:10}}>
-				
+
 
 				<View style={{flexDirection:'row',alignItems:'center',padding:18*k,paddingLeft:4,width:310*k,alignSelf:'flex-end',borderBottomWidth:1,borderColor:'rgb(225,225,225)'}}>
-				
+
 					<TextInput
-					keyboardType={'number-pad'}
-					maxLength={5}
-					autoFocus={true}
-					autoCorrect={false} ref={(e)=>this.input=e} clearButtonMode={'while-editing'}
-					style={{fontSize:20,alignSelf:'center',textAlign:'center',
+  					keyboardType={'number-pad'}
+  					maxLength={5}
+  					autoFocus={true}
+  					autoCorrect={false} ref={(e)=>this.input=e} clearButtonMode={'while-editing'}
+  					style={{fontSize:20,alignSelf:'center',textAlign:'center',
 						width:300*k,height:30,borderRadius:5,marginRight:5}}
 				   	value={this.state.text}
-	                placeholder={'Code'}
-	                placeholderTextColor={'rgb(140,140,140)'}
-	                onChange={(event) => {
-	                  this.setState({
-	                      text: event.nativeEvent.text,})
-	                 	 // next({action:'getPhone',phone:this.state.country.dial_code+''+event.nativeEvent.text})
-
-	                  }
-	              }
+            placeholder={'Code'}
+            placeholderTextColor={'rgb(140,140,140)'}
+            onChange={(event) => {
+              // this.setState({
+              //   text: event.nativeEvent.text})
+             	 // next({action:'getPhone',phone:this.state.country.dial_code+''+event.nativeEvent.text})
+               this.props.assignToRegisteringUser({ code: event.nativeEvent.text })
+              }
+            }
 						/>
 
 
@@ -47,7 +51,7 @@ export default class EnterCode extends Component{
 				</Text>
 
 
-				 
+
 			</View>
 
 
@@ -56,3 +60,8 @@ export default class EnterCode extends Component{
 
 };
 Object.assign(EnterCode.prototype, TimerMixin);
+
+export default connect(state$, state => ({
+  code: state.getIn(['registering_user', 'code']),
+  assignToRegisteringUser: bindAction(registrationActions.assignToRegisteringUser$)
+}))(EnterCode)
